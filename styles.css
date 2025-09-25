@@ -179,8 +179,6 @@ width:100%;
   background-color:rgba(32, 85, 100);
 }
 
-/bio section/
-
 .bio{
   height:120vh;
   display:flex;
@@ -222,7 +220,7 @@ width:100%;
 .bio-title span{
   color:#205463;
 }
-/footer/
+
 footer{
   background-color: rgb(102, 143, 102);
   color:#314432;
@@ -311,4 +309,5 @@ transform:translateY(-3px);
   border-top: 2px solid rgba(225, 228, 226, 0.1);
   color:#314432;
   font-size:15px;
+
 }
