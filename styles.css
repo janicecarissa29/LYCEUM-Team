@@ -186,9 +186,29 @@ body{
   cursor:pointer;
   border:none;
   font-size:18px;
+  background-color:var(--bg-color);
+  box-shadow: 0 0 15px #71b280;
+  color:white;
+  right:30px;
+  bottom:15px;
+  position:absolute;
+}
+
+.btn:hover{
+  background-color: #134e5e;
+  box-shadow: 0 0 35px #71b280;
 }
 
 .btn-secondary{
+  display:inline-block;
+  padding:8px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  transition: all 0.2s ease;
+  cursor:pointer;
+  border:none;
+  font-size:18px;
   background-color:var(--bg-color);
   color:white;
   padding:10px 25px;
@@ -209,6 +229,15 @@ body{
 }
 
 .btn-primary{
+  display:inline-block;
+  padding:8px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  transition: all 0.2s ease;
+  cursor:pointer;
+  border:none;
+  font-size:18px;
   position:absolute;
   bottom:15px;
   right:220px;
@@ -372,3 +401,5 @@ transform:translateY(-3px);
     }
 
   }
+  }
+
