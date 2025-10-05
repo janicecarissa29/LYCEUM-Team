@@ -3,21 +3,175 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Features - Lyceum</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Lyceum - Data Sensor IoT Live</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"> 
+ 
+  
+  <script src="3d-image.js"></script>
 </head>
 <body>
+ 
   <nav class="navbar">
-    <!-- Tambahkan navigasi jika perlu -->
+    <div class="navbar-container">
+      <a href="index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <button class="navbar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="navbar-menu">
+        <li><a href="index.html">Home</a></li> 
+        <li><a href="features.html"class="active">Features</a></li>
+        <li><a href="preview.html">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+         <div class="nav-buttons">
+            <a href="#" class="btn">Support</a>
+        </div>
+      </ul>
+    </div>
+    
   </nav>
 
-  <main>
-    <h1>Fitur Unggulan Lyceum</h1>
-    <p>Di halaman ini kamu bisa menjelaskan fitur-fitur utama dari Lyceum seperti gene editing, deteksi IoT, dan lainnya.</p>
-  </main>
+  <div class="layer-blur"></div>
 
+  <section class="sensor-page">
+    <div class="container">
+      <h1 class="sensor-title">Data Sensor IoT Live</h1>
+      
+      <div class="sensor-header-info">
+          <p>
+              <span class="info-label">Domain Efek</span> <i class="fa-solid fa-arrow-right"></i> Penyakit R. Solanacearum
+          </p>
+          <a href="#" class="btn-primary btn-refresh">Refresh Data <i class="fa-solid fa-rotate-right"></i></a>
+      </div>
+
+
+      <div class="sensor-grid">
+        <div class="sensor-card">
+          <div class="card-icon-area">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <span class="status-label status-hot">Panas</span>
+          </div>
+          <h3 class="card-title">Suhu Tanah</h3>
+          <p class="card-value">35.5 °C</p>
+          <p class="card-desc">Suhu yang terdeteksi saat ini.</p>
+        </div>
+        <div class="sensor-card">
+          <div class="card-icon-area">
+            <i class="fa-solid fa-droplet"></i>
+            <span class="status-label status-normal">Normal</span>
+          </div>
+          <h3 class="card-title">Sensor PH Tanah</h3>
+          <p class="card-value">6.5</p>
+          <p class="card-desc">Kondisi PH ideal untuk tanaman.</p>
+        </div>
+
+        <div class="sensor-card">
+          <div class="card-icon-area">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+            <span class="status-label status-critical">Risiko Tinggi</span>
+          </div>
+          <h3 class="card-title">Resiko R.Solanacearum</h3>
+          <p class="card-value">85%</p>
+          <p class="card-desc">Tingkat risiko berdasarkan model prediksi.</p>
+        </div>
+        
+        <div class="sensor-card">
+          <div class="card-icon-area">
+            <i class="fa-solid fa-water"></i>
+            <span class="status-label status-optimal">Optimal</span>
+          </div>
+          <h3 class="card-title">Kelembaban Tanah</h3>
+          <p class="card-value">72%</p>
+          <p class="card-desc">Kelembaban dalam batas normal.</p>
+        </div>
+      </div>
+      
+    </div>
+  </section>
   <footer>
-    <!-- Tambahkan footer jika perlu -->
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3> About Lyceum</h3>
+          <p style="color:#314432; margin-bottom:20px;">lyceum merupakan tempat perkumpulan untuk membahas sesuatu</p>
+          <div class="social-links">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-location-dot"></i> Jl.DR.Sutomo,Bukit Cermin,Kec.Tanjungpinang Bar.,Kota Tanjungpinang,Kepulauan Riau</li>
+            <li><i class="fa-solid fa-envelope"></i> Lyceum.co @email.com</li>
+            <li><i class="fa-solid fa-clock"></i> Mon-Fri: 7am - 3pm</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2025 Lyceum.co
+      </div>
+    </div>
   </footer>
-</body>
+
+
+  <div id="loginSignupModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="tabs">
+            <button id="loginTab" class="tab-btn active" onclick="showForm('login')">Log In</button>
+            <button id="signupTab" class="tab-btn" onclick="showForm('signup')">Sign Up</button>
+        </div>
+        
+        <div id="loginForm" class="form-container">
+            <h3>Log In</h3>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div id="signupForm" class="form-container hidden">
+            <h3>Sign Up</h3>
+            <form>
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password (min 8 characters)" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+   <script>
+    // Fungsi untuk mengganti antara Log In dan Sign Up
+    function showForm(formType) {
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+
+        if (formType === 'login') {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+        } else if (formType === 'signup') {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+            loginTab.classList.remove('active');
+            signupTab.classList.add('active');
+        }
+    }
+    </script>
+    </body>
 </html>
