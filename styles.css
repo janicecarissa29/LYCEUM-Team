@@ -81,6 +81,14 @@ body{
   white-space: nowrap;
 }
 
+.navbar-container .navbar-menu li a:hover {
+  color:#162530;
+  background-color: rgba(221, 230, 223, 0.8);
+  border:2px solid #134e5e;
+  transform: translateY(-2px); /* sedikit naik saat hover */
+}
+
+
 .navbar-container .navbar-menu li a:hover, .navbar-container .nav-menu li a{
   color:#162530;
   background-color: rgba(221, 230, 223, 0.8);
@@ -89,6 +97,19 @@ body{
 
 .navbar-container .navbar-menu.active {
   display:flex;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #579672;
+
+
+}
+
+.navbar-container .navbar-menu li a.active {
+  display:flex;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #579672;
+
 
 }
 
@@ -289,7 +310,7 @@ body{
 .bio-title{
   font-size:51px;
   line-height:1.1;
-  margin-bottom:300px;
+  margin-bottom:700px;
   letter-spacing:0.5px;
   margin-left:-100px;
 }
@@ -297,6 +318,301 @@ body{
 .bio-title span{
   color:#205463;
 }
+
+
+/* --- Perubahan pada Z-Index Navbar --- */
+/* (Pastikan ini ada di CSS Anda - ini yang membuat Navbar tetap di atas) */
+.navbar {
+  /* ... properti lain ... */
+  z-index: 999; 
+}
+
+/* --- Gaya Modal (Jendela Kecil) yang Dimodifikasi --- */
+
+.modal-overlay {
+    /* Menutupi seluruh layar KECUALI bagian yang ditutupi oleh elemen z-index lebih tinggi */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Latar belakang blur dan gelap */
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* KUNCI: Z-index lebih rendah dari Navbar (999) */
+    z-index: 990; 
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #f0fff0, #ffffff); 
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+    border: 3px solid var(--bio-medium);
+    animation: fadeIn 0.3s ease-out;
+    /* Pastikan modal-content juga memiliki z-index tinggi agar tombol submit bisa diklik */
+    z-index: 991; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Gaya Form */
+.form-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form-container h3 {
+    color: var(--bio-dark);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--bio-accent);
+    border-radius: 8px;
+    box-sizing: border-box; 
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-container input:focus {
+    border-color: var(--bio-medium);
+    box-shadow: 0 0 5px rgba(81, 168, 103, 0.5);
+    outline: none;
+}
+
+.form-container button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bio-medium);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.form-container button[type="submit"]:hover {
+    background-color: #4a9e5b;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Gaya Tab untuk Log In / Sign Up */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #ddd;
+}
+
+.tab-btn {
+    padding: 10px 25px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: all 0.3s;
+    border-radius: 8px 8px 0 0;
+    margin: 0 5px;
+}
+
+.tab-btn.active {
+    background-color: #ffffff;
+    color: var(--bio-dark);
+    border-bottom: 3px solid var(--bio-dark);
+    font-weight: 700;
+}
+
+.sensor-page {
+    min-height: 90vh; 
+    padding: 100px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+
+.sensor-title {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.sensor-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+    padding: 0 10px;
+    color: var(--bio-light);
+}
+
+.info-label {
+    font-weight: 600;
+    color: var(--bio-accent);
+}
+
+.btn-refresh {
+    position: relative; 
+    right: auto;
+    bottom: auto;
+    padding: 8px 15px;
+    font-size: 16px;
+}
+
+/* --- Gaya Tombol Log In di Navbar --- */
+.btn-login {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    background-color: var(--bio-accent); /* Warna yang berbeda agar menonjol */
+    box-shadow: 0 0 10px rgba(113, 178, 128, 0.5);
+    color: var(--text-dark);
+    right: 130px; /* Geser agar tidak tumpang tindih dengan Support */
+    bottom: 15px;
+    position: absolute;
+}
+
+.btn-login:hover {
+    background-color: #51a867;
+    box-shadow: 0 0 20px var(--bio-accent);
+    color: var(--text-light);
+}
+
+
+/* ... (Gaya .modal-content, .form-container, dll. sama seperti sebelumnya) ... */
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 30px;
+    width: 100%;
+    max-width: 900px;
+}
+
+.sensor-card {
+    background-color: var(--bg-color); 
+    padding: 30px;
+    border-radius: 12px;
+    color: var(--text-light);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    min-height: 200px; 
+    display: flex;
+    flex-direction: column;
+}
+
+.sensor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px var(--bio-medium);
+}
+
+.card-icon-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sensor-card i {
+    font-size: 2.5rem;
+    color: var(--bio-light);
+}
+
+.status-label {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-hot {
+    background-color: #ff6347; 
+}
+
+.status-normal {
+    background-color: #3cb371;
+
+.status-critical {
+    background-color: #cc0000; 
+}
+
+.status-optimal {
+    background-color: var(--bio-medium);
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: var(--bio-light);
+    margin-bottom: 5px;
+    font-weight: 400;
+}
+
+.card-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #a0c49d;
+}
+
+
+@media (max-width: 768px) {
+    .sensor-page {
+        padding: 80px 20px;
+    }
+    .sensor-grid {
+        grid-template-columns: 1fr;
+    }
+    .sensor-header-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .btn-refresh {
+        margin-top: 15px;
+    }
+    }
+  }
 
 
 footer{
@@ -401,5 +717,4 @@ transform:translateY(-3px);
     }
 
   }
-  }
-
+  
