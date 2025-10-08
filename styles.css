@@ -12,8 +12,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
-
 }
 
 body{
@@ -22,8 +20,6 @@ body{
   line-height:1.8;
   overflow-x:hidden;
   background: linear-gradient(to bottom,#134e5e, #71b280);
-  
-
 }
 
 .container{
@@ -43,7 +39,7 @@ body{
   background:transparent;
   box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
-  z-index:999;
+  z-index:1000;
 }
 
 .navbar-container{
@@ -87,9 +83,8 @@ body{
   color:#162530;
   background-color: rgba(221, 230, 223, 0.8);
   border:2px solid #134e5e;
-  transform: translateY(-2px); /* sedikit naik saat hover */
+  transform: translateY(-2px);
 }
-
 
 .navbar-container .navbar-menu li a:hover, .navbar-container .nav-menu li a{
   color:#162530;
@@ -102,8 +97,6 @@ body{
   color: #fff;
   font-weight: bold;
   border-bottom: 2px solid #579672;
-
-
 }
 
 .navbar-container .navbar-menu li a.active {
@@ -111,8 +104,6 @@ body{
   color: #fff;
   font-weight: bold;
   border-bottom: 2px solid #579672;
-
-
 }
 
 .navbar-toggle{
@@ -149,7 +140,7 @@ body{
     right:0;
     padding:5rem 1.5rem;
     box-shadow:0 10px 10px rgba(0, 0, 0, 0.5);
-    
+    backdrop-filter:blur(10px);
   }
 
 .navbar-toggle{
@@ -186,7 +177,6 @@ body{
   }
 }
 
-
 .layer-blur{
   height:0;
   width:30rem;
@@ -196,7 +186,6 @@ body{
   box-shadow:0 0 700px 15px rgb(192, 235, 192);
   rotate:-30deg;
   z-index:-1;
-
 }
 
 .btn{
@@ -238,13 +227,11 @@ body{
   right:30px;
   bottom:15px;
   position:absolute;
-  
 }
 
 .btn-secondary:hover{
   background:#37788a;
   transform:translateY(-3px);
-
 }
 
 .btn-secondary:active{
@@ -267,7 +254,6 @@ body{
   background: transparent;
   color:white;
   border: 1px solid var(--bg-color);
- 
 }
 
 .btn-primary:hover{
@@ -278,7 +264,6 @@ body{
 .btn-primary:active{
   background-color:rgba(32, 85, 100);
 }
-
 
 .bio{
   height:120vh;
@@ -321,101 +306,270 @@ body{
   color:#205463;
 }
 
-
-/* --- Perubahan pada Z-Index Navbar --- */
-/* (Pastikan ini ada di CSS Anda - ini yang membuat Navbar tetap di atas) */
-.navbar {
-  /* ... properti lain ... */
-  z-index: 999; 
-}
-
-/* --- Gaya Modal (Jendela Kecil) yang Dimodifikasi --- */
-
 .modal-overlay {
-    /* Menutupi seluruh layar KECUALI bagian yang ditutupi oleh elemen z-index lebih tinggi */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* Latar belakang blur dan gelap */
-    background-color: rgba(75, 69, 69, 0.3); 
-    -webkit-backdrop-filter: blur(10px); 
-    
+    background-color: rgba(19, 78, 94, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    /* KUNCI: Z-index lebih rendah dari Navbar (999) */
-    z-index: 990; 
+    z-index: 999;
+    animation: fadeIn 0.4s ease-out;
 }
 
 .modal-content {
-    background:transparent; 
-    backdrop-filter:blur(10px);
-    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(113, 178, 128, 0.9);
+    padding: 40px 35px;
     width: 90%;
-    max-width: 500px;
+    max-width: 420px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     position: relative;
-   
-    animation: fadeIn 0.3s ease-out;
-    /* Pastikan modal-content juga memiliki z-index tinggi agar tombol submit bisa diklik */
-    z-index: 991; 
+    animation: slideUp 0.5s ease-out;
 }
 
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(113, 178, 128, 0.1) 0%, 
+        rgba(32, 84, 99, 0.1) 50%, 
+        rgba(19, 78, 94, 0.1) 100%);
+    border-radius: 20px;
+    z-index: -1;
+}
+
+/* Animations for modal */
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Gaya Form */
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Enhanced Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    padding: 5px;
+    backdrop-filter: blur(10px);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.tab-btn.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.tab-btn:hover::before {
+    left: 100%;
+}
+
+/* Enhanced Form Container */
 .form-container {
-    margin-top: 20px;
     text-align: center;
 }
 
 .form-container h3 {
-    color: #ffffff;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced Input Fields with Better Spacing */
+.input-group {
+    position: relative;
+    margin-bottom:25px; /* Increased from 20px to 25px */
 }
 
 .form-container input {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid var(--bio-accent);
-    border-radius: 8px;
-    box-sizing: border-box; 
+    padding: 16px 20px; /* Slightly increased padding for better height */
+    margin-bottom: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 12px;
+    box-sizing: border-box;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.form-container input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-container input:focus {
-    border-color: var(--bio-medium);
-    box-shadow: 0 0 5px rgba(86, 150, 102, 0.5);
+    border-color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(113, 178, 128, 0.4);
     outline: none;
+    transform: translateY(-2px);
 }
 
+/* Enhanced Submit Button */
 .form-container button[type="submit"] {
     width: 100%;
-    padding: 12px;
-    background-color: var(--bio-medium);
+    padding: 16px; /* Increased padding for better proportion */
+    background: linear-gradient(135deg, var(--bio-medium), var(--bio-accent));
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-top: 10px;
-    transition: background-color 0.2s, transform 0.2s;
+    margin-top: 25px; /* Increased from 20px to 25px */
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(81, 168, 103, 0.4);
 }
 
 .form-container button[type="submit"]:hover {
-    background-color: #478f56;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(81, 168, 103, 0.6);
+    background: linear-gradient(135deg, var(--bio-accent), var(--bio-medium));
+}
+
+.form-container button[type="submit"]:active {
+    transform: translateY(-1px);
+}
+
+/* Close Button Enhancement */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Additional Form Links with Better Spacing */
+.form-links {
+    margin-top: 25px; /* Increased from 20px to 25px */
+    text-align: center;
+}
+
+.form-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    display: block;
+    margin-bottom: 8px; /* Added spacing between links */
+}
+
+.form-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Social Login Options with Better Spacing */
+.social-login {
+    margin-top: 30px; /* Increased from 25px to 30px */
+    text-align: center;
+}
+
+.social-login p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 18px; /* Increased from 15px to 18px */
+    font-size: 0.9rem;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 12px; /* Increased from 10px to 12px */
+    justify-content: center;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 14px; /* Increased from 12px to 14px */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Increased from 8px to 10px */
+    font-size: 0.9rem;
+}
+
+.social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
@@ -423,33 +577,29 @@ body{
     display: none !important;
 }
 
-/* Gaya Tab untuk Log In / Sign Up */
-.tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 25px;
-    border-bottom: 2px solid #71b280;
+/* Responsive Design for Modal */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .tabs {
+        flex-direction: column;
+        gap: 8px; /* Increased from 5px to 8px */
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+        gap: 10px; /* Added gap for mobile */
+    }
+    
+    .input-group {
+        margin-bottom: 20px; /* Slightly reduced for mobile */
+    }
 }
 
-.tab-btn {
-    padding: 10px 25px;
-    border: none;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    font-size: 1.1rem;
-    color: var(--text-dark);
-    font-weight: 500;
-    transition: all 0.3s;
-    border-radius: 8px 8px 0 0;
-    margin: 0 5px;
-}
-
-.tab-btn.active {
-    background-color: #ffffff;
-    color: var(--bio-dark);
-    border-bottom: 3px solid var(--bio-dark);
-    font-weight: 700;
-}
+/* Sisanya tetap sama... */
 
 .sensor-page {
     min-height: 90vh; 
@@ -492,7 +642,6 @@ body{
     font-size: 16px;
 }
 
-/* --- Gaya Tombol Log In di Navbar --- */
 .btn-login {
     display: inline-block;
     padding: 8px 20px;
@@ -503,22 +652,20 @@ body{
     cursor: pointer;
     border: none;
     font-size: 18px;
-    background-color: var(--bio-accent); /* Warna yang berbeda agar menonjol */
+    background-color: var(--bio-accent);
     box-shadow: 0 0 10px rgba(113, 178, 128, 0.5);
     color: var(--text-dark);
-    right: 130px; /* Geser agar tidak tumpang tindih dengan Support */
+    right: 130px;
     bottom: 15px;
     position: absolute;
 }
 
 .btn-login:hover {
     background-color: #51a867;
-    box-shadow: 0 0px 20px var(--bio-accent);
+    box-shadow: 0 0 20px var(--bio-accent);
     color: var(--text-light);
 }
 
-
-/* ... (Gaya .modal-content, .form-container, dll. sama seperti sebelumnya) ... */
 .sensor-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
@@ -570,6 +717,7 @@ body{
 
 .status-normal {
     background-color: #3cb371;
+}
 
 .status-critical {
     background-color: #cc0000; 
@@ -598,7 +746,6 @@ body{
     color: #a0c49d;
 }
 
-
 @media (max-width: 768px) {
     .sensor-page {
         padding: 80px 20px;
@@ -613,114 +760,8 @@ body{
     .btn-refresh {
         margin-top: 15px;
     }
-    }
-  }
-
-
-footer{
-   background: linear-gradient(to bottom, #71b280, #134e5e);
-  color:#314432;
-  padding:20px 0 10px;
-  position:relative;
-  border-top: 3px solid #579672;
 }
 
-.footer-content{
-  display: grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px, 1fr));
-  gap:50px;
-  margin-left:-100px;
-  margin-bottom:10px;
-  vertical-align: top;
-  
-}
-
-.footer-column h3 {
-  font-size:22px;
-  margin-bottom:15px;
-  position:relative;
-  padding-bottom:10px;
-  
-}
-
-.footer-column h3::after{
-  content:'';
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:50px;
-  height:2px;
-  background-color:#446e4e;
-  
-}
-
-.footer-links{
-  list-style:none;
-}
-
-.footer-links li{
-  margin-bottom:5px;
-}
-
-.footer-links a{
-  color:#8cbd8f;
-  text-decoration:none;
-  transition:all 0.3s ease;
-}
-
-.footer-links a:hover{
-  color:#72e0a2;
-  padding-left:5px;
-}
-
-.social-links{
-  display:flex;
-  gap:10px;
-  margin-top:20px;
-  margin-right:20px;
- 
-
-}
-
-.social-links a{
-  display:flex;
-  align-items:center;
-  justify-content: center;
-  width:40px;
-  height:40px;
-  background:#71b280;
-  border-radius:50%;
-  color:#314432;
-  font-size:18px;
-  transition: all 0.3s ease;
-}
-
-.social-links a:hover{
-background:#76c799;
-transform:translateY(-3px);
-}
-
-.copyright{
-  text-align:center;
-  padding-top:20px;
-  border-top: 2px solid rgba(225, 228, 226, 0.1);
-  color:#314432;
-  font-size:15px;
-}
-
-@keyframes fadeInUp{
-  from{
-    opacity:0;
-    transform:translateY();
-    }
-    to{
-      opacity:1;
-      transform:translateY();
-    }
-
-  }
-  
-  /* preview */
 .prv{
    min-height: 90vh; 
    display: flex;
@@ -832,5 +873,101 @@ transform:translateY(-3px);
         animation-delay: 0.2s; 
         animation-duration: 0.8s;
     }
+
+footer{
+   background: linear-gradient(to bottom, #71b280, #134e5e);
+  color:#314432;
+  padding:20px 0 10px;
+  position:relative;
+  border-top: 3px solid #579672;
 }
 
+.footer-content{
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px, 1fr));
+  gap:50px;
+  margin-left:-100px;
+  margin-bottom:10px;
+  vertical-align: top;
+}
+
+.footer-column h3 {
+  font-size:22px;
+  margin-bottom:15px;
+  position:relative;
+  padding-bottom:10px;
+}
+
+.footer-column h3::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:50px;
+  height:2px;
+  background-color:#446e4e;
+}
+
+.footer-links{
+  list-style:none;
+}
+
+.footer-links li{
+  margin-bottom:5px;
+}
+
+.footer-links a{
+  color:#8cbd8f;
+  text-decoration:none;
+  transition:all 0.3s ease;
+}
+
+.footer-links a:hover{
+  color:#72e0a2;
+  padding-left:5px;
+}
+
+.social-links{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+  margin-right:20px;
+}
+
+.social-links a{
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  width:40px;
+  height:40px;
+  background:#71b280;
+  border-radius:50%;
+  color:#314432;
+  font-size:18px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover{
+background:#76c799;
+transform:translateY(-3px);
+}
+
+.copyright{
+  text-align:center;
+  padding-top:20px;
+  border-top: 2px solid rgba(225, 228, 226, 0.1);
+  color:#314432;
+  font-size:15px;
+}
+
+@keyframes fadeInUp{
+  from{
+    opacity:0;
+    transform:translateY();
+    }
+    to{
+      opacity:1;
+      transform:translateY();
+    }
+}
+}
