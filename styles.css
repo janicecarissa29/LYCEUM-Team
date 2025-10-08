@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  
 
 }
 
@@ -21,6 +22,7 @@ body{
   line-height:1.8;
   overflow-x:hidden;
   background: linear-gradient(to bottom,#134e5e, #71b280);
+  
 
 }
 
@@ -147,7 +149,7 @@ body{
     right:0;
     padding:5rem 1.5rem;
     box-shadow:0 10px 10px rgba(0, 0, 0, 0.5);
-    backdrop-filter:blur(10px);
+    
   }
 
 .navbar-toggle{
@@ -338,8 +340,7 @@ body{
     height: 100%;
     
     /* Latar belakang blur dan gelap */
-    background-color: rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(10px); 
+    background-color: rgba(75, 69, 69, 0.3); 
     -webkit-backdrop-filter: blur(10px); 
     
     display: flex;
@@ -351,14 +352,15 @@ body{
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #f0fff0, #ffffff); 
+    background:transparent; 
+    backdrop-filter:blur(10px);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(113, 178, 128, 0.9);
     width: 90%;
-    max-width: 450px;
+    max-width: 500px;
     position: relative;
-    border: 3px solid var(--bio-medium);
+   
     animation: fadeIn 0.3s ease-out;
     /* Pastikan modal-content juga memiliki z-index tinggi agar tombol submit bisa diklik */
     z-index: 991; 
@@ -376,7 +378,7 @@ body{
 }
 
 .form-container h3 {
-    color: var(--bio-dark);
+    color: #ffffff;
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
@@ -394,7 +396,7 @@ body{
 
 .form-container input:focus {
     border-color: var(--bio-medium);
-    box-shadow: 0 0 5px rgba(81, 168, 103, 0.5);
+    box-shadow: 0 0 5px rgba(86, 150, 102, 0.5);
     outline: none;
 }
 
@@ -413,7 +415,7 @@ body{
 }
 
 .form-container button[type="submit"]:hover {
-    background-color: #4a9e5b;
+    background-color: #478f56;
     transform: translateY(-2px);
 }
 
@@ -426,7 +428,7 @@ body{
     display: flex;
     justify-content: center;
     margin-bottom: 25px;
-    border-bottom: 2px solid #ddd;
+    border-bottom: 2px solid #71b280;
 }
 
 .tab-btn {
@@ -511,7 +513,7 @@ body{
 
 .btn-login:hover {
     background-color: #51a867;
-    box-shadow: 0 0 20px var(--bio-accent);
+    box-shadow: 0 0px 20px var(--bio-accent);
     color: var(--text-light);
 }
 
@@ -718,3 +720,117 @@ transform:translateY(-3px);
 
   }
   
+  /* preview */
+.prv{
+   min-height: 90vh; 
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   padding-top: 100px; 
+   padding-bottom: 250px;
+}
+
+.prv-container {
+   display: flex;
+    gap: 50px; 
+    max-width: 1200px;
+    width: 90%;
+    flex-wrap: wrap; 
+    justify-content: center;
+    margin: 0 auto; 
+}
+
+.preview-card {
+    background:transparent; 
+    color:white;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 10px 30px rgba(149, 199, 170, 0.5);
+    width: 100%;
+    max-width: 500px;
+    cursor: pointer; 
+    transition: all 0.3s ease-in-out;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+}
+
+.preview-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(113, 178, 128, 0.8);
+}
+
+
+.card-content h3 {
+    color: var(--bio-light);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid var(--bio-accent);
+    padding-bottom: 5px;
+   
+}
+
+.card-image {
+    width: 100%;
+    height: 80px; 
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end; 
+    overflow: hidden; 
+    align-items: center; 
+}
+
+
+
+.image-placeholder {
+    font-size: 3rem;
+    color: var(--bio-light);
+    transition: transform 1s ease-out;
+    transform: translateX(150%); 
+}
+
+.image-placeholder i {
+    font-size: 3rem;
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(150%);
+    }
+    100% {
+       
+        transform: translateX(0); 
+    }
+}
+
+.preview-card:hover .slide-right {
+    animation: slideFromRight 0.8s forwards;
+}
+
+
+@media (min-width: 768px) {
+    .preview-card {
+        flex-direction: row; 
+        align-items: center;
+        padding: 40px;
+    }
+    .card-content {
+        flex: 1;
+        padding-right: 20px;
+    }
+    .card-image {
+        width: 100px; 
+        height: 100px;
+        margin-top: 0;
+        flex-shrink: 0; 
+    }
+    
+    .prv-container .preview-card:nth-child(2):hover .slide-right {
+        animation-delay: 0.2s; 
+        animation-duration: 0.8s;
+    }
+}
+
