@@ -13,5 +13,6 @@ function handleLogout() {
 function handleLogout() {
     localStorage.removeItem('lyceum_isLoggedIn'); 
     checkLoginStatus(); 
-    window.location.href = 'index.html'; 
+    window.location.href = 'index.html'; }
+
 
