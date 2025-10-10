@@ -971,3 +971,132 @@ transform:translateY(-3px);
     }
 }
 }
+
+
+.support-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use a light semi-transparent background for a subtle effect */
+    background-color: rgba(19, 78, 94, 0.1); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Higher than navbar */
+    transition: opacity 0.3s ease;
+    opacity: 1;
+}
+
+.support-modal-content {
+    background: rgba(255, 255, 255, 0.1); /* Slightly transparent white for the inner content */
+    backdrop-filter: blur(10px); /* The key for the blur effect */
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px; /* Small window size */
+    position: relative;
+    color: white; 
+    text-align: center;
+    transform: scale(1);
+    transition: transform 0.3s ease-out;
+}
+
+.support-modal-overlay.hidden {
+    display: none;
+    opacity: 0;
+}
+
+.support-modal-content h3 {
+    color: #71b280;
+    margin-bottom: 5px;
+    font-size: 1.8rem;
+}
+
+.support-modal-content p {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.support-contact-links {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.contact-item {
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: #162530;
+    margin-bottom: 5px;
+}
+
+.contact-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #71b280;
+}
+
+.contact-item a, .contact-item p {
+    font-size: 0.9rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: var(--bio-light);
+}
+
+.social-links-modal {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-links-modal a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: var(--bio-medium);
+    border-radius: 50%;
+    color: #162530;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-links-modal a:hover {
+    background: #579672;
+    transform: scale(1.1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    color: var(--bio-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff6347;
+}
