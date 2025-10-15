@@ -38,61 +38,260 @@
 
   <div class="layer-blur"></div>
 
-  <section class="sensor-page">
-    <div class="container">
-      <h1 class="sensor-title">Data Sensor IoT Live</h1>
-      
-      <div class="sensor-header-info">
-          <p>
-              <span class="info-label">Domain Efek</span> <i class="fa-solid fa-arrow-right"></i> Penyakit R. Solanacearum
-          </p>
-          <a href="#" class="btn-primary btn-refresh">Refresh Data <i class="fa-solid fa-rotate-right"></i></a>
+<section class="features-showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2>synbio Features</h2>
+      <p>Explore the powerful capabilities of our IoT monitoring system</p>
+    </div>
+    
+    <div class="features-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="monitoring">Real-time Monitoring</button>
+        <button class="tab-btn" data-tab="analytics">Analisis Data</button>
+        <button class="tab-btn" data-tab="alerts">Smart Alerts</button>
+        <button class="tab-btn" data-tab="integration">System Integration</button>
       </div>
-
-
-      <div class="sensor-grid">
-        <div class="sensor-card">
-          <div class="card-icon-area">
-            <i class="fa-solid fa-temperature-three-quarters"></i>
-            <span class="status-label status-hot">Panas</span>
+      
+      <div class="tab-content">
+        <div class="tab-panel active" id="monitoring">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="data-flow-animation">
+                <div class="sensor-node">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Sensor Node</span>
+                </div>
+                <div class="data-transmission">
+                  <div class="signal-pulse"></div>
+                  <div class="signal-pulse delay-1"></div>
+                  <div class="signal-pulse delay-2"></div>
+                </div>
+                <div class="cloud-node">
+                  <i class="fa-solid fa-cloud"></i>
+                  <span>Cloud Platform</span>
+                </div>
+                <div class="data-transmission reverse">
+                  <div class="signal-pulse"></div>
+                  <div class="signal-pulse delay-1"></div>
+                  <div class="signal-pulse delay-2"></div>
+                </div>
+                <div class="dashboard-node">
+                  <i class="fa-solid fa-display"></i>
+                  <span>Dashboard</span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Real-time Data Monitoring</h3>
+              <p> System kami akan mengambil data secara terus-menerus dan menampilkan sensor data secara real, agar pengguna dapat mendapatkan informasi secara langsung</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i> Pembaruan setiap 30 detik</li>
+                <li><i class="fa-solid fa-check"></i> </li>
+                <li><i class="fa-solid fa-check"></i> Export data in multiple formats</li>
+              </ul>
+            </div>
           </div>
-          <h3 class="card-title">Suhu Tanah</h3>
-          <p class="card-value">35.5 °C</p>
-          <p class="card-desc">Suhu yang terdeteksi saat ini.</p>
-        </div>
-        <div class="sensor-card">
-          <div class="card-icon-area">
-            <i class="fa-solid fa-droplet"></i>
-            <span class="status-label status-normal">Normal</span>
-          </div>
-          <h3 class="card-title">Sensor PH Tanah</h3>
-          <p class="card-value">6.5</p>
-          <p class="card-desc">Kondisi PH ideal untuk tanaman.</p>
-        </div>
-
-        <div class="sensor-card">
-          <div class="card-icon-area">
-            <i class="fa-solid fa-fire-flame-curved"></i>
-            <span class="status-label status-critical">Risiko Tinggi</span>
-          </div>
-          <h3 class="card-title">Resiko R.Solanacearum</h3>
-          <p class="card-value">85%</p>
-          <p class="card-desc">Tingkat risiko berdasarkan model prediksi.</p>
         </div>
         
-        <div class="sensor-card">
-          <div class="card-icon-area">
-            <i class="fa-solid fa-water"></i>
-            <span class="status-label status-optimal">Optimal</span>
+        <div class="tab-panel" id="analytics">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="analytics-chart">
+                <div class="chart-container">
+                  <div class="chart-bar" style="height: 70%">
+                    <span class="chart-value">70%</span>
+                    <span class="chart-label">Risk Accuracy</span>
+                  </div>
+                  <div class="chart-bar" style="height: 85%">
+                    <span class="chart-value">85%</span>
+                    <span class="chart-label">Data Precision</span>
+                  </div>
+                  <div class="chart-bar" style="height: 90%">
+                    <span class="chart-value">90%</span>
+                    <span class="chart-label">Model Reliability</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Advanced Data Analytics</h3>
+              <p>Our AI-powered analytics engine processes sensor data to provide actionable insights and predictive modeling for disease prevention.</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i> Predictive disease modeling</li>
+                <li><i class="fa-solid fa-check"></i> Trend analysis and forecasting</li>
+                <li><i class="fa-solid fa-check"></i> Correlation analysis between parameters</li>
+                <li><i class="fa-solid fa-check"></i> Customizable reporting</li>
+              </ul>
+            </div>
           </div>
-          <h3 class="card-title">Kelembaban Tanah</h3>
-          <p class="card-value">72%</p>
-          <p class="card-desc">Kelembaban dalam batas normal.</p>
+        </div>
+        
+        <div class="tab-panel" id="alerts">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="alert-system">
+                <div class="alert-indicator critical">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>Critical Alert</span>
+                </div>
+                <div class="alert-indicator warning">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <span>Warning</span>
+                </div>
+                <div class="alert-indicator info">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <span>Information</span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Smart Alert System</h3>
+              <p>Receive timely notifications when soil conditions require attention, helping you prevent disease outbreaks before they occur.</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i> Multi-channel notifications (SMS, Email, App)</li>
+                <li><i class="fa-solid fa-check"></i> Customizable threshold settings</li>
+                <li><i class="fa-solid fa-check"></i> Escalation protocols for critical alerts</li>
+                <li><i class="fa-solid fa-check"></i> Alert history and analytics</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-panel" id="integration">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="integration-icons">
+                <div class="integration-item">
+                  <i class="fa-brands fa-aws"></i>
+                  <span>AWS IoT</span>
+                </div>
+                <div class="integration-item">
+                  <i class="fa-solid fa-database"></i>
+                  <span>Database</span>
+                </div>
+                <div class="integration-item">
+                  <i class="fa-solid fa-mobile-screen"></i>
+                  <span>Mobile App</span>
+                </div>
+                <div class="integration-item">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <span>API</span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Seamless System Integration</h3>
+              <p>Our platform integrates with existing agricultural systems and provides APIs for custom development and third-party integrations.</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i> RESTful API for custom applications</li>
+                <li><i class="fa-solid fa-check"></i> Integration with irrigation systems</li>
+                <li><i class="fa-solid fa-check"></i> Weather data synchronization</li>
+                <li><i class="fa-solid fa-check"></i> Farm management software compatibility</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature-cards-section">
+  <div class="container">
+    <h2 class="section-title">Additional Capabilities</h2>
+    <div class="feature-cards-grid">
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3>Trend Analysis</h3>
+        <p>Track soil parameter trends over time to identify patterns and optimize growing conditions.</p>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Advanced</span>
         </div>
       </div>
       
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <h3>Geospatial Mapping</h3>
+        <p>Visualize sensor data on interactive maps to identify problem areas across your fields.</p>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Premium</span>
+        </div>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <h3>Automated Reporting</h3>
+        <p>Generate comprehensive reports automatically and schedule delivery to stakeholders.</p>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Standard</span>
+        </div>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3>Data Security</h3>
+        <p>Enterprise-grade security with encrypted data transmission and secure cloud storage.</p>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Essential</span>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="interactive-demo">
+  <div class="container">
+    <h2 class="section-title">Interactive Demo</h2>
+    <div class="demo-container">
+      <div class="demo-controls">
+        <h3>Adjust Parameters to See Risk Changes</h3>
+        <div class="slider-control">
+          <label for="temp-slider">Temperature (°C)</label>
+          <input type="range" id="temp-slider" min="15" max="40" value="28" class="slider">
+          <span id="temp-value">28°C</span>
+        </div>
+        <div class="slider-control">
+          <label for="ph-slider">pH Level</label>
+          <input type="range" id="ph-slider" min="4" max="9" value="6.5" step="0.1" class="slider">
+          <span id="ph-demo-value">6.5</span>
+        </div>
+        <div class="slider-control">
+          <label for="moisture-slider">Moisture (%)</label>
+          <input type="range" id="moisture-slider" min="20" max="90" value="65" class="slider">
+          <span id="moisture-value">65%</span>
+        </div>
+      </div>
+      <div class="demo-result">
+        <div class="risk-meter">
+          <div class="meter-gauge">
+            <div class="gauge-fill" id="gauge-fill"></div>
+            <div class="gauge-needle" id="gauge-needle"></div>
+          </div>
+          <div class="risk-label" id="risk-label">Medium Risk</div>
+          <div class="risk-percentage" id="risk-percentage">45%</div>
+        </div>
+        <div class="recommendations">
+          <h4>Recommendations</h4>
+          <ul id="recommendations-list">
+            <li>menjaga temperatur saat ini</li>
+            <li>pH sedang di kisaran normal</li>
+            <li>mempertimbangkan untuk mengurangi kelembapan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
   <footer>
     <div class="container">
       <div class="footer-content">
@@ -122,34 +321,6 @@
     </div>
   </footer>
 
-
-  <div id="loginSignupModal" class="modal-overlay">
-    <div class="modal-content">
-        <div class="tabs">
-            <button id="loginTab" class="tab-btn active" onclick="showForm('login')">Log In</button>
-            <button id="signupTab" class="tab-btn" onclick="showForm('signup')">Sign Up</button>
-        </div>
-        
-        <div id="loginForm" class="form-container">
-            <h3>Log In</h3>
-            <form>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <button type="submit">Log In</button>
-            </form>
-        </div>
-
-        <div id="signupForm" class="form-container hidden">
-            <h3>Sign Up</h3>
-            <form>
-                <input type="text" placeholder="Group Name" required>
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password (min 8 characters)" required>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
-    </div>
-</div>
 
 <div class="support-modal-overlay hidden" id="supportModal">
   <div class="support-modal-content">
@@ -183,27 +354,5 @@
         
 
 <script src="script.js"></script>
-
-   <script>
-    // Fungsi untuk mengganti antara Log In dan Sign Up
-    function showForm(formType) {
-        const loginForm = document.getElementById('loginForm');
-        const signupForm = document.getElementById('signupForm');
-        const loginTab = document.getElementById('loginTab');
-        const signupTab = document.getElementById('signupTab');
-
-        if (formType === 'login') {
-            loginForm.classList.remove('hidden');
-            signupForm.classList.add('hidden');
-            loginTab.classList.add('active');
-            signupTab.classList.remove('active');
-        } else if (formType === 'signup') {
-            loginForm.classList.add('hidden');
-            signupForm.classList.remove('hidden');
-            loginTab.classList.remove('active');
-            signupTab.classList.add('active');
-        }
-    }
-    </script>
     </body>
 </html>
