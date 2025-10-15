@@ -8,4 +8,5 @@
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile7.jpeg?raw=true)
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile8.jpeg?raw=true)
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile9.jpeg?raw=true)
-
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile11.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile12.jpeg?raw=true)
