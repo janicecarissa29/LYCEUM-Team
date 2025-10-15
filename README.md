@@ -1,1 +1,11 @@
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile1.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile10.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile2.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile3.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile4.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile5.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile6.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile7.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile8.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile9.jpeg?raw=true)
+
