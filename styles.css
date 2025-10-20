@@ -310,7 +310,7 @@ body{
   margin-bottom:300px;
   letter-spacing:0.5px;
   margin-left:-80px;
-  margin-top:-180px;
+  margin-top:-250px;
 }
 
 .bio-title span{
@@ -529,9 +529,9 @@ body{
     transform: rotate(90deg);
 }
 
-
+/* Additional Form Links with Better Spacing */
 .form-links {
-    margin-top: 25px; 
+    margin-top: 25px; /* Increased from 20px to 25px */
     text-align: center;
 }
 
@@ -549,9 +549,9 @@ body{
     text-decoration: underline;
 }
 
-
+/* Social Login Options with Better Spacing */
 .social-login {
-    margin-top: 30px; 
+    margin-top: 30px; /* Increased from 25px to 30px */
     text-align: center;
 }
 
@@ -592,6 +592,7 @@ body{
     display: none !important;
 }
 
+/* Responsive Design for Modal */
 @media (max-width: 480px) {
     .modal-content {
         padding: 30px 20px;
@@ -812,13 +813,13 @@ body{
 }
 
 .chart-bar {
-  width: 75px;
+  width: 60px;
   background: linear-gradient(to top, var(--bio-medium), var(--bio-light));
   border-radius: 5px 5px 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   position: relative;
   transition: height 0.5s ease;
 }
@@ -1100,6 +1101,7 @@ body{
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  pointer-events: none;
 }
 
 .slider::-webkit-slider-thumb {
@@ -1205,6 +1207,26 @@ body{
   left: 0;
 }
 
+.sensor-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+
+input[type="range"][disabled] {
+  opacity: 1;
+  cursor: default;
+}
+
+.sensor-section p {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+  color: #314432;
+}
+
 @media (max-width: 768px) {
   .feature-detail {
     grid-template-columns: 1fr;
@@ -1265,9 +1287,9 @@ body{
     }
     .btn-refresh {
         margin-top: 15px;
-    }                                                                                                                                                                                       
+    }
 }
-                                                                                                                                       
+
 /*PREVIEW*/
 p {
  line-height: 1.6;
@@ -1564,7 +1586,7 @@ p {
         animation-delay: 0.2s; 
         animation-duration: 0.8s;
     }
-    
+
 /*FOOTER*/
 footer{
   background: linear-gradient(to bottom, #71b280, #134e5e);
@@ -1942,7 +1964,6 @@ background:#76c799;
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 20px;
     font-weight: 500;
-    text-align:center;
 }
 
 .profile-details {
