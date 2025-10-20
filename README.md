@@ -12,5 +12,5 @@
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile12.jpeg?raw=true)
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile13.jpeg?raw=true)
 ![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/profile14.jpeg?raw=true)
-![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/image1.jpeg?raw=true)
-![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/image2.jpeg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/image1.jpg?raw=true)
+![alt text](https://github.com/janicecarissa29/LYCEUM-Team/blob/main/public/image2.jpg?raw=true)
