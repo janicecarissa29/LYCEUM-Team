@@ -1,11 +1,3 @@
-const navbarToggle = document.querySelector('.navbar-toggle');
-const navbarMenu= document.querySelector('.navbar-menu');
-
-navbarToggle.addEventListener('click', ()=>{
-  navbarToggle.classList.toggle('active');
-  navbarMenu.classList.toggle('active');
-})
-
 function handleLogout() {
     localStorage.removeItem('lyceum_isLoggedIn'); 
 }
@@ -70,4 +62,26 @@ function handleLogout() {
             }
         });
     }
+
+    // === Modal Login Tabs ===
+window.showForm = function (formType) {
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  const loginTab = document.getElementById("loginTab");
+  const signupTab = document.getElementById("signupTab");
+
+  if (formType === "login") {
+    loginForm.classList.remove("hidden");
+    signupForm.classList.add("hidden");
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+  } else {
+    loginForm.classList.add("hidden");
+    signupForm.classList.remove("hidden");
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+  }
+};
+    
 });
+

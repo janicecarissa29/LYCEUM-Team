@@ -1,18 +1,21 @@
 {
-  "name": "lyceum-backend",
+  "name": "lyceum-project-1",
   "version": "1.0.0",
-  "description": "Backend untuk login app Lyceum",
-  "main": "server.js",
+  "main": "script.js",
   "scripts": {
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "index.html"
   },
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "body-parser": "^2.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.3",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericshi658-ux/Lyceum-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ericshi658-ux/Lyceum-Project/issues"
+  },
+  "homepage": "https://github.com/ericshi658-ux/Lyceum-Project#readme",
+  "description": ""
 }
