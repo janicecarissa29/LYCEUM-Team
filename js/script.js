@@ -1,6 +1,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('sandCanvas');
+    if (!canvas) { return; }
     const ctx = canvas.getContext('2d');
     
     // Set canvas size to match container
@@ -303,6 +304,28 @@ document.addEventListener('DOMContentLoaded', function() {
         supportModal.addEventListener('click', function(e) {
             if (e.target === supportModal) {
                 supportModal.classList.add('hidden');
+            }
+        });
+    }
+
+    // Open login modal via Support when supportModal is not present (e.g., features.html)
+    const loginSignupModal = document.getElementById('loginSignupModal');
+    if (supportBtn && !supportModal && loginSignupModal) {
+        supportBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginSignupModal.classList.remove('hidden');
+            loginSignupModal.style.display = 'flex';
+            const blurLayer = document.querySelector('.layer-blur');
+            if (blurLayer) blurLayer.classList.add('active');
+        });
+
+        // Close login modal when clicking outside
+        loginSignupModal.addEventListener('click', function(e) {
+            if (e.target === loginSignupModal) {
+                loginSignupModal.classList.add('hidden');
+                loginSignupModal.style.display = 'none';
+                const blurLayer = document.querySelector('.layer-blur');
+                if (blurLayer) blurLayer.classList.remove('active');
             }
         });
     }
