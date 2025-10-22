@@ -18,6 +18,10 @@
   <nav class="navbar">
     <div class="navbar-container">
       <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
       <button class="navbar-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -28,14 +32,35 @@
         <li><a href="features.html" class="active">Features</a></li>
         <li><a href="preview.html">Preview</a></li> 
         <li><a href="about.html">About Us</a></li>
-         <div class="nav-buttons">
-            <a href="#" class="btn">Support</a>
-            <div class="user-info hidden" id="userInfo">
-              <i class="fa-solid fa-user"></i>
-              <span id="userEmail"></span>
-              <button id="logoutBtn" class="btn-secondary">Logout</button>
-            </div>
-        </div>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+        <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="preview.html">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
+
       </ul>
     </div>
 
@@ -165,45 +190,6 @@
   </div>
 </section>
         
-        <div class="tab-panel" id="integration">
-          <div class="feature-detail">
-            <div class="feature-visual">
-              <div class="feature-visual">
-                <div class="integration-icons">
-                  <div class="integration-item">
-                    <i class="fa-brands fa-aws"></i>
-                    <span>Firebase IoT</span>
-                  </div>
-                  <div class="integration-item">
-                    <i class="fa-solid fa-database"></i>
-                    <span>Database</span>
-                  </div>
-                  <div class="integration-item">
-                    <i class="fa-solid fa-mobile-screen"></i>
-                    <span>Mobile App</span>
-                  </div>
-                  <div class="integration-item">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                    <span>API</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="feature-description">
-              <h3>Smart Alert System</h3>
-              <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
-              <ul class="feature-benefits">
-                <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
-                <li><i class="fa-solid fa-check"></i> notifikasi  warning ketika terjadi eskalasi bakteri</li>
-                <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="feature-cards-section">
   <div class="container">
@@ -277,43 +263,6 @@
   </div>
 </section>
 
-<div class="tab-panel" id="integration">
-          <div class="feature-detail">
-            <div class="feature-visual">
-              <div class="integration-icons">
-                <div class="integration-item">
-                  <i class="fa-brands fa-aws"></i>
-                  <span>Firebase IoT</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-database"></i>
-                  <span>Database</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                  <span>Mobile App</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-cloud-arrow-up"></i>
-                  <span>API</span>
-                </div>
-              </div>
-            </div>
-            <div class="feature-description">
-              <h3>Smart Alert System</h3>
-              <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
-              <ul class="feature-benefits">
-                <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
-                <li><i class="fa-solid fa-check"></i> notifikasi  warning ketika terjadi eskalasi bakteri</li>
-                <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="interactive-demo">
   <div class="container">
@@ -437,3 +386,32 @@
 
 </body>
 </html>
+
+<!-- Support Modal (consistent across pages) -->
+<div class="support-modal-overlay hidden" id="supportModal">
+  <div class="support-modal-content">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <h3>Need Assistance?</h3>
+    <p>We're here to help you understand Lyceum's project!</p>
+    
+    <div class="support-contact-links">
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <h4>Call Us</h4>
+        <p>+62 818-0918-5655</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <h4>Email Us</h4>
+        <a href="mailto:Lyceum.co@email.com">lyceumsmansa@email.com</a>
+      </div>
+    </div>
+
+    <h4>Connect With Us</h4>
+    <div class="social-links-modal">
+      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</div>
