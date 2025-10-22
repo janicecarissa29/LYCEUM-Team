@@ -173,12 +173,12 @@ body{
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: none;
   border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   flex-direction: column;
   min-width: 200px;
   z-index: 1000;
@@ -195,12 +195,12 @@ body{
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.10);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: none;
   border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
   flex-direction: column;
   min-width: 240px;
   padding: 10px;
@@ -224,7 +224,7 @@ body{
 }
 
 .navbar-dropdown li + li {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-top: none;
   margin-top: 6px;
   padding-top: 6px;
 }
@@ -240,9 +240,9 @@ body{
 }
 
 .navbar-dropdown li a:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(255, 255, 255, 0.16);
   transform: translateX(2px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
 }
 
 .navbar-dropdown li a.active {
@@ -945,6 +945,18 @@ body{
 @media (max-width: 1024px) {
   .navbar-actions {
     display: none;
+  }
+  /* Ensure main nav links only appear in hamburger on small screens */
+  .navbar-menu {
+    display: none !important;
+  }
+  /* Push user email further to the right on small screens */
+  .navbar {
+    justify-content: flex-start;
+  }
+  .user-info {
+    margin-left: auto;
+    margin-right: 16px;
   }
 }
 
