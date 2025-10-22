@@ -273,16 +273,25 @@ document.addEventListener('DOMContentLoaded', function() {
 // Navigation toggle for mobile
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
+    const navbarMenu = document.querySelector('.navbar-dropdown') || document.querySelector('.navbar-menu');
     
-    if (navbarToggle) {
+    if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', function() {
             navbarMenu.classList.toggle('active');
+            navbarToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navbarToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
+                navbarMenu.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            }
         });
     }
     
     // Support modal functionality
-    const supportBtn = document.querySelector('.nav-buttons .btn');
+    const supportBtn = document.getElementById('supportBtn');
     const supportModal = document.getElementById('supportModal');
     const closeModal = document.getElementById('closeModal');
     
@@ -290,11 +299,13 @@ document.addEventListener('DOMContentLoaded', function() {
         supportBtn.addEventListener('click', function(e) {
             e.preventDefault();
             supportModal.classList.remove('hidden');
+            supportModal.classList.add('active');
         });
     }
     
     if (closeModal && supportModal) {
         closeModal.addEventListener('click', function() {
+            supportModal.classList.remove('active');
             supportModal.classList.add('hidden');
         });
     }
@@ -303,6 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (supportModal) {
         supportModal.addEventListener('click', function(e) {
             if (e.target === supportModal) {
+                supportModal.classList.remove('active');
                 supportModal.classList.add('hidden');
             }
         });
@@ -330,3 +342,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Scroll reveal animations
+(function() {
+    const revealElements = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || revealElements.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach((el) => observer.observe(el));
+})();
