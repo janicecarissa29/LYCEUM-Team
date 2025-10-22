@@ -1,11 +1,10 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('sandCanvas');
-    if (!canvas) { return; }
+    const container = document.querySelector('.sand-container');
+    if (!canvas || !container) { return; }
     const ctx = canvas.getContext('2d');
     
     // Set canvas size to match container
-    const container = document.querySelector('.sand-container');
     
     function resizeCanvas() {
         canvas.width = container.clientWidth;
@@ -39,37 +38,34 @@ document.addEventListener('DOMContentLoaded', function() {
     // Constants for 3D space
     const CENTER_Z = 0;
 
-    // Color palette - gradasi yang lebih menarik
-    const colorPalette = [
-        'rgba(144, 238, 144, 0.4)',  // Light green
-        'rgba(152, 251, 152, 0.35)', // Pale green
-        'rgba(240, 255, 240, 0.3)',  // Honeydew
-        'rgba(245, 255, 250, 0.35)', // Mint cream
-        'rgba(255, 255, 255, 0.25)', // White
-        'rgba(240, 255, 255, 0.3)',  // Azure
-        'rgba(248, 255, 248, 0.2)',  // Ghost white with green tint
-    ];
-    
-    // Mouse-responsive colors
-    const mouseColors = [
-        'rgba(50, 205, 50, 0.6)',    // Lime green
-        'rgba(34, 139, 34, 0.5)',    // Forest green
-        'rgba(144, 238, 144, 0.4)',  // Light green
-        'rgba(152, 251, 152, 0.5)',  // Pale green
-    ];
+        const colorPalette = [
+            'rgba(144, 238, 144, 0.15)', 
+            'rgba(152, 251, 152, 0.12)', 
+            'rgba(240, 255, 240, 0.1)', 
+            'rgba(245, 255, 250, 0.12)', 
+            'rgba(255, 255, 255, 0.08)',
+            'rgba(240, 255, 255, 0.1)', 
+            'rgba(248, 255, 248, 0.08)', 
+        ];
+        
+        const mouseColors = [
+            'rgba(50, 205, 50, 0.25)', 
+            'rgba(34, 139, 34, 0.2)',  
+            'rgba(144, 238, 144, 0.15)',
+            'rgba(152, 251, 152, 0.2)', 
+        ];
 
-    // Color blending function
-    function blendColors(color1, color2, ratio) {
-        const rgba1 = color1.match(/[\d.]+/g);
-        const rgba2 = color2.match(/[\d.]+/g);
-        
-        const r = Math.round(rgba1[0] * (1 - ratio) + rgba2[0] * ratio);
-        const g = Math.round(rgba1[1] * (1 - ratio) + rgba2[1] * ratio);
-        const b = Math.round(rgba1[2] * (1 - ratio) + rgba2[2] * ratio);
-        const a = (parseFloat(rgba1[3]) * (1 - ratio) + parseFloat(rgba2[3]) * ratio).toFixed(2);
-        
-        return `rgba(${r}, ${g}, ${b}, ${a})`;
-    }
+        function blendColors(color1, color2, ratio) {
+            const rgba1 = color1.match(/[\d.]+/g);
+            const rgba2 = color2.match(/[\d.]+/g);
+            
+            const r = Math.round(rgba1[0] * (1 - ratio) + rgba2[0] * ratio);
+            const g = Math.round(rgba1[1] * (1 - ratio) + rgba2[1] * ratio);
+            const b = Math.round(rgba1[2] * (1 - ratio) + rgba2[2] * ratio);
+            const a = (parseFloat(rgba1[3]) * (1 - ratio) + parseFloat(rgba2[3]) * ratio).toFixed(2);
+            
+            return `rgba(${r}, ${g}, ${b}, ${a})`;
+        }
 
     // Initialize particles
     function initParticles() {
@@ -273,25 +269,16 @@ document.addEventListener('DOMContentLoaded', function() {
 // Navigation toggle for mobile
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-dropdown') || document.querySelector('.navbar-menu');
+    const navbarMenu = document.querySelector('.navbar-menu');
     
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', function() {
             navbarMenu.classList.toggle('active');
-            navbarToggle.classList.toggle('active');
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!navbarToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
-                navbarMenu.classList.remove('active');
-                navbarToggle.classList.remove('active');
-            }
         });
     }
     
     // Support modal functionality
-    const supportBtn = document.getElementById('supportBtn');
+    const supportBtn = document.querySelector('.nav-buttons .btn');
     const supportModal = document.getElementById('supportModal');
     const closeModal = document.getElementById('closeModal');
     
@@ -299,13 +286,11 @@ document.addEventListener('DOMContentLoaded', function() {
         supportBtn.addEventListener('click', function(e) {
             e.preventDefault();
             supportModal.classList.remove('hidden');
-            supportModal.classList.add('active');
         });
     }
     
     if (closeModal && supportModal) {
         closeModal.addEventListener('click', function() {
-            supportModal.classList.remove('active');
             supportModal.classList.add('hidden');
         });
     }
@@ -314,48 +299,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (supportModal) {
         supportModal.addEventListener('click', function(e) {
             if (e.target === supportModal) {
-                supportModal.classList.remove('active');
                 supportModal.classList.add('hidden');
             }
         });
     }
-
-    // Open login modal via Support when supportModal is not present (e.g., features.html)
-    const loginSignupModal = document.getElementById('loginSignupModal');
-    if (supportBtn && !supportModal && loginSignupModal) {
-        supportBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            loginSignupModal.classList.remove('hidden');
-            loginSignupModal.style.display = 'flex';
-            const blurLayer = document.querySelector('.layer-blur');
-            if (blurLayer) blurLayer.classList.add('active');
-        });
-
-        // Close login modal when clicking outside
-        loginSignupModal.addEventListener('click', function(e) {
-            if (e.target === loginSignupModal) {
-                loginSignupModal.classList.add('hidden');
-                loginSignupModal.style.display = 'none';
-                const blurLayer = document.querySelector('.layer-blur');
-                if (blurLayer) blurLayer.classList.remove('active');
-            }
-        });
-    }
 });
-
-// Scroll reveal animations
-(function() {
-    const revealElements = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window) || revealElements.length === 0) return;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-
-    revealElements.forEach((el) => observer.observe(el));
-})();
