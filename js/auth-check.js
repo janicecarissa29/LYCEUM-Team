@@ -1,26 +1,58 @@
 import { auth } from "./firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
 
 onAuthStateChanged(auth, (user) => {
   const openLoginBtn = document.getElementById("openLoginBtn");
   const modal = document.getElementById("loginSignupModal");
+  const userInfo = document.getElementById("userInfo");
+  const userEmailEl = document.getElementById("userEmail");
+  const logoutBtn = document.getElementById("logoutBtn");
 
   if (user) {
-    console.log("✅ Logged in as:", user.email);
-    if (modal) modal.style.display = "none";
-    if (openLoginBtn) openLoginBtn.textContent = "Logout";
+    if (modal) {
+      modal.style.display = "none";
+      modal.classList.add("hidden");
+    }
 
-    openLoginBtn.onclick = async () => {
-      await auth.signOut();
-      location.reload();
-    };
+    // Tampilkan user info di navbar
+    if (userInfo) {
+      userInfo.classList.remove("hidden");
+    }
+    if (userEmailEl) {
+      userEmailEl.textContent = user.email || "Logged In";
+    }
+    if (logoutBtn) {
+      logoutBtn.onclick = async () => {
+        await signOut(auth);
+        location.reload();
+      };
+    }
+
+    // Jika ada tombol login lama, ubah menjadi Logout
+    if (openLoginBtn) {
+      openLoginBtn.textContent = "Logout";
+      openLoginBtn.onclick = async () => {
+        await signOut(auth);
+        location.reload();
+      };
+    }
   } else {
-    console.log("❌ Belum login");
-    if (openLoginBtn) openLoginBtn.textContent = "Login";
-    openLoginBtn.onclick = () => {
-      modal.style.display = "flex";
-      document.querySelector(".layer-blur").classList.add("active");
-    };
-  }
+    // Sembunyikan user info saat belum login
+    if (userInfo) {
+      userInfo.classList.add("hidden");
+    }
 
+    // Jika tombol login ada, jadikan pemicu modal
+    if (openLoginBtn) {
+      openLoginBtn.textContent = "Login";
+      openLoginBtn.onclick = () => {
+        if (modal) {
+          modal.classList.remove("hidden");
+          modal.style.display = "flex";
+        }
+        const blurLayer = document.querySelector(".layer-blur");
+        if (blurLayer) blurLayer.classList.add("active");
+      };
+    }
+  }
 });

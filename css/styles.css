@@ -2099,3 +2099,31 @@ canvas {
     transform: rotate(360deg);
   }
 }
+
+/* Password visibility toggle */
+.form-container .password-wrapper {
+  position: relative;
+}
+.form-container .password-wrapper input[type="password"],
+.form-container .password-wrapper input[type="text"] {
+  padding-right: 40px;
+}
+.form-container .toggle-password {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-58%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #000;
+      padding: 4px;
+    }
+   .form-container .toggle-password i {
+     font-size: 17px;
+     opacity: 0.85;
+   }
+   .form-container .toggle-password:hover i {
+     opacity: 1;
+    }
+
