@@ -531,7 +531,7 @@ body{
     background-color: rgba(19, 78, 94, 0.7);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 999;
@@ -704,6 +704,20 @@ body{
     transform: translateY(-1px);
 }
 
+/* Inline form message for login/signup */
+.form-message {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  display: none;
+}
+.form-message[data-type="error"] {
+  color: #e74c3c; /* Lyceum theme danger */
+}
+.form-message[data-type="success"] {
+  color: #2ecc71; /* Lyceum theme success */
+}
+
 .close-modal {
     position: absolute;
     top: 15px;
@@ -823,6 +837,7 @@ body{
    margin-right: 8px;
    white-space: nowrap;
    order: 3;
+   min-width: 180px;
  }
  .user-info i {
    color: var(--bio-light);
@@ -835,6 +850,11 @@ body{
    border-radius: 18px;
    background: rgba(113, 178, 128, 0.25);
    box-shadow: 0 0 10px rgba(113, 178, 128, 0.6);
+   display: inline-block;
+   max-width: 160px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
  }
  
  /* Menu actions styling inside dropdown */
@@ -950,13 +970,10 @@ body{
   .navbar-menu {
     display: none !important;
   }
-  /* Push user email further to the right on small screens */
-  .navbar {
-    justify-content: flex-start;
-  }
+  /* Move user email slightly to the right on small screens */
   .user-info {
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: 20px;
   }
 }
 
@@ -2399,4 +2416,47 @@ canvas {
    .form-container .toggle-password:hover i {
      opacity: 1;
     }
+
+/* Auth Loading Overlay */
+.auth-loading {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(19, 78, 94, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+}
+.auth-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+.auth-loading .spinner {
+  width: 56px;
+  height: 56px;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: var(--bio-light);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(113, 178, 128, 0.55);
+  animation: auth-spin 800ms linear infinite;
+}
+.auth-loading .message {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+/* Keyframes for auth spinner */
+@keyframes auth-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
