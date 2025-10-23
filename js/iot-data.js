@@ -28,31 +28,32 @@ onValue(sensorRef, (snapshot) => {
 
   updateUI(t, p, m);
 
-  tempSlider.value = data.temperature;
-  phSlider.value = data.ph;
-  moistureSlider.value = data.moisture;
+  // Sinkronisasi tampilan langsung bila elemen ada
+  if (tempSlider) tempSlider.value = data.temperature;
+  if (phSlider) phSlider.value = data.ph;
+  if (moistSlider) moistSlider.value = data.moisture;
 
   // Update teks tampilan
-  tempValue.textContent = `${data.temperature}°C`;
-  phValue.textContent = data.ph.toFixed(1);
-  moistureValue.textContent = `${data.moisture}%`;
+  if (tempValue) tempValue.textContent = `${data.temperature}°C`;
+  if (phValue) phValue.textContent = typeof data.ph === 'number' ? data.ph.toFixed(1) : `${data.ph}`;
+  if (moistValue) moistValue.textContent = `${data.moisture}%`;
 });
 
 function updateUI(t, p, m) {
-  // Update slider & text
-  tempSlider.value = t;
-  phSlider.value = p;
-  moistSlider.value = m;
+  // Update slider & text safely
+  if (tempSlider) tempSlider.value = t;
+  if (phSlider) phSlider.value = p;
+  if (moistSlider) moistSlider.value = m;
 
-  tempValue.textContent = `${t}°C`;
-  phValue.textContent = `${p}`;
-  moistValue.textContent = `${m}%`;
+  if (tempValue) tempValue.textContent = `${t}°C`;
+  if (phValue) phValue.textContent = `${p}`;
+  if (moistValue) moistValue.textContent = `${m}%`;
 
   // Hitung risk (contoh sederhana)
   let risk = (Math.abs(t - 28) * 2 + Math.abs(p - 6.5) * 10 + Math.abs(m - 65)) / 2;
   if (risk > 100) risk = 100;
 
-  riskPercent.textContent = `${Math.round(risk)}%`;
+  if (riskPercent) riskPercent.textContent = `${Math.round(risk)}%`;
   let level = "";
   let color = "";
 
@@ -67,17 +68,19 @@ function updateUI(t, p, m) {
     color = "linear-gradient(to right, #ff4444, #cc0000)";
   }
 
-  gauge.style.background = color;
-  riskText.textContent = level;
+  if (gauge) gauge.style.background = color;
+  if (riskText) riskText.textContent = level;
 
   // Update rekomendasi
-  rekom.innerHTML = `
+  if (rekom) {
+    rekom.innerHTML = `
     <ul>
       <li>${t < 25 ? "Naikkan temperatur." : t > 30 ? "Turunkan temperatur." : "Jaga temperatur saat ini."}</li>
       <li>${p < 6 ? "pH terlalu asam." : p > 7 ? "pH terlalu basa." : "pH normal."}</li>
       <li>${m > 70 ? "Pertimbangkan mengurangi kelembapan." : "Kelembapan ideal."}</li>
     </ul>
   `;
+  }
 
 }
 

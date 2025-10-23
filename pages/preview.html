@@ -15,6 +15,10 @@
   <nav class="navbar">
     <div class="navbar-container">
       <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
       <button class="navbar-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -25,9 +29,33 @@
         <li><a href="features.html">Features</a></li>
         <li><a href="preview.html" class="active">Preview</a></li> 
         <li><a href="about.html">About Us</a></li>
-         <div class="nav-buttons">
-            <a href="#" class="btn">Support</a>
-        </div>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+       <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html">Features</a></li>
+        <li><a href="preview.html" class="active">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
       </ul>
     </div>
     
@@ -173,6 +201,8 @@
 </div>
 
         
-   <script src="../js/script.js"></script>
+   <script type="module" src="../js/firebase.js"></script>
+ <script type="module" src="../js/auth-check.js"></script>
+ <script src="../js/script.js"></script>
 </body>
 </html>
