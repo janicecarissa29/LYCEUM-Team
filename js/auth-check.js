@@ -166,7 +166,7 @@ onAuthStateChanged(auth, (user) => {
           supportModal.classList.remove('hidden');
         } else {
           // Fallback: open login modal if support modal not found
-          const loginModal = document.getElementById('loginSignupModal');
+          const loginModal = document.getElementById('loginModal');
           if (loginModal) {
             loginModal.classList.remove('hidden');
             loginModal.style.display = 'flex';
@@ -221,7 +221,7 @@ onAuthStateChanged(auth, (user) => {
           supportModal.classList.remove('hidden');
         } else {
           // Fallback: open login modal if support modal not found
-          const loginModal = document.getElementById('loginSignupModal');
+          const loginModal = document.getElementById('loginModal');
           if (loginModal) {
             loginModal.classList.remove('hidden');
             loginModal.style.display = 'flex';
