@@ -1,10 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('sandCanvas');
-    const container = document.querySelector('.sand-container');
-    if (!canvas || !container) { return; }
+    if (!canvas) { return; }
     const ctx = canvas.getContext('2d');
     
     // Set canvas size to match container
+    const container = document.querySelector('.sand-container');
     
     function resizeCanvas() {
         canvas.width = container.clientWidth;
@@ -38,34 +39,37 @@ document.addEventListener('DOMContentLoaded', function() {
     // Constants for 3D space
     const CENTER_Z = 0;
 
-        const colorPalette = [
-            'rgba(144, 238, 144, 0.15)', 
-            'rgba(152, 251, 152, 0.12)', 
-            'rgba(240, 255, 240, 0.1)', 
-            'rgba(245, 255, 250, 0.12)', 
-            'rgba(255, 255, 255, 0.08)',
-            'rgba(240, 255, 255, 0.1)', 
-            'rgba(248, 255, 248, 0.08)', 
-        ];
-        
-        const mouseColors = [
-            'rgba(50, 205, 50, 0.25)', 
-            'rgba(34, 139, 34, 0.2)',  
-            'rgba(144, 238, 144, 0.15)',
-            'rgba(152, 251, 152, 0.2)', 
-        ];
+    // Color palette - gradasi yang lebih menarik
+    const colorPalette = [
+        'rgba(144, 238, 144, 0.4)',  // Light green
+        'rgba(152, 251, 152, 0.35)', // Pale green
+        'rgba(240, 255, 240, 0.3)',  // Honeydew
+        'rgba(245, 255, 250, 0.35)', // Mint cream
+        'rgba(255, 255, 255, 0.25)', // White
+        'rgba(240, 255, 255, 0.3)',  // Azure
+        'rgba(248, 255, 248, 0.2)',  // Ghost white with green tint
+    ];
+    
+    // Mouse-responsive colors
+    const mouseColors = [
+        'rgba(50, 205, 50, 0.6)',    // Lime green
+        'rgba(34, 139, 34, 0.5)',    // Forest green
+        'rgba(144, 238, 144, 0.4)',  // Light green
+        'rgba(152, 251, 152, 0.5)',  // Pale green
+    ];
 
-        function blendColors(color1, color2, ratio) {
-            const rgba1 = color1.match(/[\d.]+/g);
-            const rgba2 = color2.match(/[\d.]+/g);
-            
-            const r = Math.round(rgba1[0] * (1 - ratio) + rgba2[0] * ratio);
-            const g = Math.round(rgba1[1] * (1 - ratio) + rgba2[1] * ratio);
-            const b = Math.round(rgba1[2] * (1 - ratio) + rgba2[2] * ratio);
-            const a = (parseFloat(rgba1[3]) * (1 - ratio) + parseFloat(rgba2[3]) * ratio).toFixed(2);
-            
-            return `rgba(${r}, ${g}, ${b}, ${a})`;
-        }
+    // Color blending function
+    function blendColors(color1, color2, ratio) {
+        const rgba1 = color1.match(/[\d.]+/g);
+        const rgba2 = color2.match(/[\d.]+/g);
+        
+        const r = Math.round(rgba1[0] * (1 - ratio) + rgba2[0] * ratio);
+        const g = Math.round(rgba1[1] * (1 - ratio) + rgba2[1] * ratio);
+        const b = Math.round(rgba1[2] * (1 - ratio) + rgba2[2] * ratio);
+        const a = (parseFloat(rgba1[3]) * (1 - ratio) + parseFloat(rgba2[3]) * ratio).toFixed(2);
+        
+        return `rgba(${r}, ${g}, ${b}, ${a})`;
+    }
 
     // Initialize particles
     function initParticles() {
@@ -269,16 +273,25 @@ document.addEventListener('DOMContentLoaded', function() {
 // Navigation toggle for mobile
 document.addEventListener('DOMContentLoaded', function() {
     const navbarToggle = document.querySelector('.navbar-toggle');
-    const navbarMenu = document.querySelector('.navbar-menu');
+    const navbarMenu = document.querySelector('.navbar-dropdown') || document.querySelector('.navbar-menu');
     
     if (navbarToggle && navbarMenu) {
         navbarToggle.addEventListener('click', function() {
             navbarMenu.classList.toggle('active');
+            navbarToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navbarToggle.contains(event.target) && !navbarMenu.contains(event.target)) {
+                navbarMenu.classList.remove('active');
+                navbarToggle.classList.remove('active');
+            }
         });
     }
     
     // Support modal functionality
-    const supportBtn = document.querySelector('.nav-buttons .btn');
+    const supportBtn = document.getElementById('supportBtn');
     const supportModal = document.getElementById('supportModal');
     const closeModal = document.getElementById('closeModal');
     
@@ -286,11 +299,13 @@ document.addEventListener('DOMContentLoaded', function() {
         supportBtn.addEventListener('click', function(e) {
             e.preventDefault();
             supportModal.classList.remove('hidden');
+            supportModal.classList.add('active');
         });
     }
     
     if (closeModal && supportModal) {
         closeModal.addEventListener('click', function() {
+            supportModal.classList.remove('active');
             supportModal.classList.add('hidden');
         });
     }
@@ -299,8 +314,242 @@ document.addEventListener('DOMContentLoaded', function() {
     if (supportModal) {
         supportModal.addEventListener('click', function(e) {
             if (e.target === supportModal) {
+                supportModal.classList.remove('active');
                 supportModal.classList.add('hidden');
             }
         });
     }
+
+    // Open login modal via Support when supportModal is not present (e.g., features.html)
+    const loginSignupModal = document.getElementById('loginSignupModal');
+    if (supportBtn && !supportModal && loginSignupModal) {
+        supportBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginSignupModal.classList.remove('hidden');
+            loginSignupModal.style.display = 'flex';
+            const blurLayer = document.querySelector('.layer-blur');
+            if (blurLayer) blurLayer.classList.add('active');
+        });
+
+        // Close login modal when clicking outside
+        loginSignupModal.addEventListener('click', function(e) {
+            if (e.target === loginSignupModal) {
+                loginSignupModal.classList.add('hidden');
+                loginSignupModal.style.display = 'none';
+                const blurLayer = document.querySelector('.layer-blur');
+                if (blurLayer) blurLayer.classList.remove('active');
+            }
+        });
+    }
 });
+
+// Scroll reveal animations
+(function() {
+    const revealElements = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || revealElements.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    revealElements.forEach((el) => observer.observe(el));
+})();
+
+
+// Image slider interactions for Preview page
+// Attach inside DOMContentLoaded to ensure elements exist
+const imageSlider = document.querySelector('.image-slider');
+if (imageSlider) {
+    const container = imageSlider.querySelector('.slider-container');
+    const slides = Array.from(imageSlider.querySelectorAll('.slide'));
+    const prevBtn = imageSlider.querySelector('.slider-nav.prev');
+    const nextBtn = imageSlider.querySelector('.slider-nav.next');
+    const indicators = Array.from(imageSlider.querySelectorAll('.slider-indicators .indicator'));
+    let currentIndex = 0;
+
+    function updateSlider() {
+        if (!container || slides.length === 0) return;
+        const shift = (100 / slides.length) * currentIndex;
+        container.style.transform = `translateX(-${shift}%)`;
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        });
+    }
+
+    indicators.forEach((ind, i) => {
+        ind.addEventListener('click', () => {
+            currentIndex = i;
+            updateSlider();
+        });
+    });
+
+    updateSlider();
+}
+// Features page tab switching logic
+document.addEventListener('DOMContentLoaded', function() {
+  const featuresTabs = document.querySelector('.features-tabs');
+  if (!featuresTabs) return;
+
+  const tabButtons = Array.from(featuresTabs.querySelectorAll('.tab-btn'));
+  const tabPanels = Array.from(featuresTabs.querySelectorAll('.tab-panel'));
+
+  function activateTab(tabName) {
+    // Deactivate all
+    tabButtons.forEach(btn => btn.classList.remove('active'));
+    tabPanels.forEach(panel => panel.classList.remove('active'));
+
+    // Activate selected
+    const targetBtn = tabButtons.find(btn => btn.dataset.tab === tabName);
+    const targetPanel = featuresTabs.querySelector(`#${tabName}`);
+    if (targetBtn) targetBtn.classList.add('active');
+    if (targetPanel) targetPanel.classList.add('active');
+  }
+
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabName = btn.dataset.tab;
+      activateTab(tabName);
+    });
+    // accessibility
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-controls', btn.dataset.tab);
+  });
+
+  // Ensure initial active state aligns
+  const initialActive = tabButtons.find(btn => btn.classList.contains('active'));
+  activateTab(initialActive ? initialActive.dataset.tab : 'monitoring');
+});
+
+
+// Helper: open WhatsApp with mobile deep-link and desktop web fallback
+function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
+  try {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const appLink = `whatsapp://send?phone=${number}&text=${encodeURIComponent(text)}`;
+    const webLink = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+    if (isMobile) {
+      // Attempt deep link to app
+      window.location.href = appLink;
+      // Fallback to WhatsApp Web/new tab if app not handled
+      setTimeout(() => {
+        window.open(webLink, '_blank', 'noopener');
+      }, 800);
+      return false; // prevent default anchor navigation
+    } else {
+      // Desktop: open WhatsApp Web
+      window.open(webLink, '_blank', 'noopener');
+      return false;
+    }
+  } catch (e) {
+    // Last-resort fallback: open wa.me
+    const webLink = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+    window.open(webLink, '_blank', 'noopener');
+    return false;
+  }
+}
+
+
+// Inisialisasi audio global agar ada di semua halaman
+(function() {
+   const AUDIO_ID = 'site-bg-audio';
+   const AUDIO_SRC = '/Dreaming - Solo Piano Version.mp3'; // file di root proyek
+   const DEFAULT_VOLUME = 0.6;
+ 
+   const manageAudioState = () => {
+    let audio = document.getElementById(AUDIO_ID);
+    
+    // Jika audio belum ada, buat baru
+    if (!audio) {
+      audio = document.createElement('audio');
+      audio.id = AUDIO_ID;
+      audio.src = AUDIO_SRC;
+      audio.loop = true;
+      audio.preload = 'auto';
+      audio.muted = false; // coba autoplay bersuara
+      audio.volume = DEFAULT_VOLUME;
+      audio.setAttribute('playsinline',''); // iOS Safari inline playback
+      audio.style.display = 'none';
+      document.body.appendChild(audio);
+    }
+
+    // Ambil state dari sessionStorage
+    const savedTime = sessionStorage.getItem('audioCurrentTime');
+    const wasPaused = sessionStorage.getItem('audioWasPaused') === 'true';
+
+    const tryPlay = () => {
+      if (!audio) return;
+      // coba audible terlebih dahulu
+      audio.muted = false;
+      audio.volume = DEFAULT_VOLUME;
+      const p = audio.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => {
+          // Autoplay dengan suara diblokir: fallback ke muted lalu coba lagi
+          audio.muted = true;
+          audio.play().catch(()=>{});
+        });
+      }
+    };
+
+    // Set currentTime setelah metadata siap
+    audio.addEventListener('loadedmetadata', () => {
+      if (savedTime) {
+        const t = parseFloat(savedTime);
+        if (!Number.isNaN(t)) {
+          audio.currentTime = t;
+        }
+      }
+      // Mainkan jika sebelumnya tidak di-pause
+      if (!wasPaused) {
+        tryPlay();
+      }
+    }, { once: true });
+    
+    // Handler untuk interaksi pertama pengguna untuk bypass blokir autoplay
+    // Coba auto-unmute tanpa interaksi; jika ditolak, fallback ke muted lalu coba lagi
+    setTimeout(() => {
+      if (!audio) return;
+      audio.muted = false;
+      audio.volume = DEFAULT_VOLUME;
+      audio.play().catch(() => {
+        audio.muted = true;
+        audio.play().catch(()=>{});
+        setTimeout(() => {
+          audio.muted = false;
+          audio.volume = DEFAULT_VOLUME;
+        }, 1500);
+      });
+    }, 500);
+    
+    // Simpan state sebelum pindah halaman
+    window.addEventListener('beforeunload', () => {
+      if (audio) {
+        sessionStorage.setItem('audioCurrentTime', audio.currentTime);
+        sessionStorage.setItem('audioWasPaused', String(audio.paused));
+      }
+    });
+  };
+
+  document.addEventListener('DOMContentLoaded', () => {
+     manageAudioState();
+   });
+})();
