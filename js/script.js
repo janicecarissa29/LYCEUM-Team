@@ -16,30 +16,25 @@ document.addEventListener('DOMContentLoaded', function() {
     resizeCanvas();
     
     // Configuration
-    const PARTICLE_COUNT = 1200;
-    const PARTICLE_SIZE = 1.8;
-    const PARTICLE_SPEED = 0.6;
+    const PARTICLE_COUNT = 500;
+    const PARTICLE_SIZE = 4.8;
+    const PARTICLE_SPEED = 0.1;
     let CENTER_X = canvas.width / 2;
     let CENTER_Y = canvas.height / 2;
     let SPHERE_RADIUS = Math.min(canvas.width, canvas.height) * 0.35;
     
-    // Mouse interaction - enhanced
     let mouseX = CENTER_X;
     let mouseY = CENTER_Y;
     let targetMouseX = CENTER_X;
     let targetMouseY = CENTER_Y;
-    let mouseRadius = SPHERE_RADIUS * 1.2;
+    let mouseRadius = SPHERE_RADIUS * 0.3;
     let mousePressed = false;
     let mouseInfluence = 0;
-    
-    // Particles array
     let particles = [];
     let mode = 'magnetic';
     
-    // Constants for 3D space
     const CENTER_Z = 0;
 
-    // Color palette - gradasi yang lebih menarik
     const colorPalette = [
         'rgba(144, 238, 144, 0.4)',  // Light green
         'rgba(152, 251, 152, 0.35)', // Pale green
@@ -50,15 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
         'rgba(248, 255, 248, 0.2)',  // Ghost white with green tint
     ];
     
-    // Mouse-responsive colors
     const mouseColors = [
-        'rgba(50, 205, 50, 0.6)',    // Lime green
-        'rgba(34, 139, 34, 0.5)',    // Forest green
-        'rgba(144, 238, 144, 0.4)',  // Light green
-        'rgba(152, 251, 152, 0.5)',  // Pale green
+        'rgba(50, 205, 50, 0.6)',    
+        'rgba(34, 139, 34, 0.5)', 
+        'rgba(144, 238, 144, 0.4)',  
+        'rgba(152, 251, 152, 0.5)',
     ];
 
-    // Color blending function
     function blendColors(color1, color2, ratio) {
         const rgba1 = color1.match(/[\d.]+/g);
         const rgba2 = color2.match(/[\d.]+/g);
@@ -75,14 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function initParticles() {
         particles = [];
         for (let i = 0; i < PARTICLE_COUNT; i++) {
-            // Create particles in a spherical formation
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos((Math.random() * 2) - 1);
             const x = CENTER_X + SPHERE_RADIUS * Math.sin(phi) * Math.cos(theta);
             const y = CENTER_Y + SPHERE_RADIUS * Math.sin(phi) * Math.sin(theta);
             const z = SPHERE_RADIUS * Math.cos(phi);
             
-            // Pilih warna acak dari palette
             const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
             
             particles.push({
@@ -92,9 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 originalX: x,
                 originalY: y,
                 originalZ: z,
-                vx: (Math.random() - 0.5) * PARTICLE_SPEED,
-                vy: (Math.random() - 0.5) * PARTICLE_SPEED,
-                vz: (Math.random() - 0.5) * PARTICLE_SPEED,
+                vx: (Math.random() - 0.05) * PARTICLE_SPEED,
+                vy: (Math.random() - 0.05) * PARTICLE_SPEED,
+                vz: (Math.random() - 0.05) * PARTICLE_SPEED,
                 color: color,
                 originalColor: color,
                 mouseColor: mouseColors[Math.floor(Math.random() * mouseColors.length)],
@@ -103,16 +94,12 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
-    // Draw particles
+  
     function drawParticles() {
-        // Clear canvas dengan background transparan
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Sort particles by Z for proper rendering
+       
         particles.sort((a, b) => b.z - a.z);
         
-        // Draw each particle
         particles.forEach(p => {
             // Apply perspective
             const scale = 400 / (400 + p.z);
@@ -125,64 +112,54 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fill();
         });
     }
-    
-    // Update particles based on current mode
+
     function updateParticles() {
-        // Smooth mouse following
         mouseX += (targetMouseX - mouseX) * 0.1;
         mouseY += (targetMouseY - mouseY) * 0.1;
         
-        // Update mouse influence
         mouseInfluence += (mousePressed ? 1 : -1) * 0.05;
         mouseInfluence = Math.max(0, Math.min(1, mouseInfluence));
         
         particles.forEach(p => {
-            // Calculate distance from center
             const dx = p.x - CENTER_X;
             const dy = p.y - CENTER_Y;
             const dz = p.z - CENTER_Z;
             const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
             
-            // Enhanced mouse interaction
             const mouseDx = p.x - mouseX;
             const mouseDy = p.y - mouseY;
             const mouseDist = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy);
             
-            // Calculate mouse influence on this particle
             let particleMouseInfluence = 0;
             if (mouseDist < mouseRadius) {
                 const force = (mouseRadius - mouseDist) / mouseRadius;
                 particleMouseInfluence = force;
                 
                 if (mousePressed) {
-                    // Explosive effect when clicked
+
                     p.vx += (mouseDx / mouseDist) * force * 1.2;
                     p.vy += (mouseDy / mouseDist) * force * 1.2;
                     p.vz += (Math.random() - 0.5) * force * 0.8;
                 } else {
-                    // Gentle attraction to mouse
+
                     p.vx -= (mouseDx / mouseDist) * force * 0.15;
                     p.vy -= (mouseDy / mouseDist) * force * 0.15;
                     
-                    // Add swirling motion around mouse
                     const angle = Math.atan2(mouseDy, mouseDx);
                     p.vx += Math.cos(angle + Math.PI/2) * force * 0.1;
                     p.vy += Math.sin(angle + Math.PI/2) * force * 0.1;
                 }
             }
             
-            // Update particle's mouse influence
             p.mouseInfluence += (particleMouseInfluence - p.mouseInfluence) * 0.1;
             
-            // Blend colors based on mouse influence
             if (p.mouseInfluence > 0.1) {
                 const blend = p.mouseInfluence;
                 p.color = blendColors(p.originalColor, p.mouseColor, blend);
             } else {
                 p.color = p.originalColor;
             }
-            
-            // Different behaviors based on mode
+
             switch(mode) {
                 case 'storm':
                     // Add turbulence
@@ -192,31 +169,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                     
                 case 'calm':
-                    // Gentle movement toward origin
-                    p.vx += (p.originalX - p.x) * 0.002;
-                    p.vy += (p.originalY - p.y) * 0.002;
-                    p.vz += (p.originalZ - p.z) * 0.002;
+
+                    p.vx += (p.originalX - p.x) * 0.02;
+                    p.vy += (p.originalY - p.y) * 0.02;
+                    p.vz += (p.originalZ - p.z) * 0.02;
                     break;
                     
                 case 'magnetic':
-                    // Swirling magnetic field effect
-                    p.vx += (dy / dist) * 0.08;
-                    p.vy += (-dx / dist) * 0.08;
+                 
+                    p.vx += (dy / dist) * 0.008;
+                    p.vy += (-dx / dist) * 0.008;
                     p.vz += (Math.random() - 0.5) * 0.02;
                     break;
             }
-            
-            // Apply velocity
+   
             p.x += p.vx;
             p.y += p.vy;
             p.z += p.vz;
-            
-            // Apply damping
+     
             p.vx *= 0.98;
             p.vy *= 0.98;
             p.vz *= 0.98;
-            
-            // Constrain to sphere with soft boundary
+    
             if (dist > SPHERE_RADIUS) {
                 const force = 0.03 * (dist - SPHERE_RADIUS);
                 p.vx -= (dx / dist) * force;
@@ -320,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Open login modal via Support when supportModal is not present (e.g., features.html)
+    
     const loginSignupModal = document.getElementById('loginSignupModal');
     if (supportBtn && !supportModal && loginSignupModal) {
         supportBtn.addEventListener('click', function(e) {
@@ -343,7 +317,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Scroll reveal animations
 (function() {
     const revealElements = document.querySelectorAll('.reveal');
     if (!('IntersectionObserver' in window) || revealElements.length === 0) return;
@@ -360,9 +333,6 @@ document.addEventListener('DOMContentLoaded', function() {
     revealElements.forEach((el) => observer.observe(el));
 })();
 
-
-// Image slider interactions for Preview page
-// Attach inside DOMContentLoaded to ensure elements exist
 const imageSlider = document.querySelector('.image-slider');
 if (imageSlider) {
     const container = imageSlider.querySelector('.slider-container');
@@ -371,6 +341,10 @@ if (imageSlider) {
     const nextBtn = imageSlider.querySelector('.slider-nav.next');
     const indicators = Array.from(imageSlider.querySelectorAll('.slider-indicators .indicator'));
     let currentIndex = 0;
+    
+
+    let slideInterval;
+    const AUTO_SLIDE_DELAY = 2500; 
 
     function updateSlider() {
         if (!container || slides.length === 0) return;
@@ -381,30 +355,62 @@ if (imageSlider) {
         });
     }
 
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider();
+    }
+
+    function startAutoSlide() {
+        stopAutoSlide(); 
+        slideInterval = setInterval(nextSlide, AUTO_SLIDE_DELAY);
+    }
+
+    function stopAutoSlide() {
+        if (slideInterval) {
+            clearInterval(slideInterval);
+            slideInterval = null;
+        }
+    }
+
+    imageSlider.addEventListener('mouseenter', stopAutoSlide); 
+    // Mulai lagi saat mouse keluar
+    imageSlider.addEventListener('mouseleave', startAutoSlide);  
+
+
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
+            stopAutoSlide(); 
             currentIndex = (currentIndex - 1 + slides.length) % slides.length;
             updateSlider();
+            setTimeout(startAutoSlide, AUTO_SLIDE_DELAY); 
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
+            stopAutoSlide(); 
             currentIndex = (currentIndex + 1) % slides.length;
             updateSlider();
+            setTimeout(startAutoSlide, AUTO_SLIDE_DELAY);
         });
     }
 
     indicators.forEach((ind, i) => {
         ind.addEventListener('click', () => {
+            stopAutoSlide(); 
             currentIndex = i;
             updateSlider();
+            setTimeout(startAutoSlide, AUTO_SLIDE_DELAY);
         });
     });
 
     updateSlider();
+    
+   
+    startAutoSlide(); 
 }
-// Features page tab switching logic
+
+
 document.addEventListener('DOMContentLoaded', function() {
   const featuresTabs = document.querySelector('.features-tabs');
   if (!featuresTabs) return;
@@ -434,13 +440,11 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.setAttribute('aria-controls', btn.dataset.tab);
   });
 
-  // Ensure initial active state aligns
   const initialActive = tabButtons.find(btn => btn.classList.contains('active'));
   activateTab(initialActive ? initialActive.dataset.tab : 'monitoring');
 });
 
 
-// Helper: open WhatsApp with mobile deep-link and desktop web fallback
 function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
   try {
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -449,11 +453,10 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
     if (isMobile) {
       // Attempt deep link to app
       window.location.href = appLink;
-      // Fallback to WhatsApp Web/new tab if app not handled
       setTimeout(() => {
         window.open(webLink, '_blank', 'noopener');
       }, 800);
-      return false; // prevent default anchor navigation
+      return false; 
     } else {
       // Desktop: open WhatsApp Web
       window.open(webLink, '_blank', 'noopener');
@@ -468,10 +471,9 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
 }
 
 
-// Inisialisasi audio global agar ada di semua halaman
 (function() {
    const AUDIO_ID = 'site-bg-audio';
-   const AUDIO_SRC = '/Dreaming - Solo Piano Version.mp3'; // file di root proyek
+   const AUDIO_SRC = '/Dreaming - Solo Piano Version.mp3'; 
    const DEFAULT_VOLUME = 0.6;
  
    const manageAudioState = () => {
@@ -484,9 +486,9 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
       audio.src = AUDIO_SRC;
       audio.loop = true;
       audio.preload = 'auto';
-      audio.muted = false; // coba autoplay bersuara
+      audio.muted = false;
       audio.volume = DEFAULT_VOLUME;
-      audio.setAttribute('playsinline',''); // iOS Safari inline playback
+      audio.setAttribute('playsinline',''); 
       audio.style.display = 'none';
       document.body.appendChild(audio);
     }
@@ -497,20 +499,17 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
 
     const tryPlay = () => {
       if (!audio) return;
-      // coba audible terlebih dahulu
       audio.muted = false;
       audio.volume = DEFAULT_VOLUME;
       const p = audio.play();
       if (p && typeof p.catch === 'function') {
         p.catch(() => {
-          // Autoplay dengan suara diblokir: fallback ke muted lalu coba lagi
           audio.muted = true;
           audio.play().catch(()=>{});
         });
       }
     };
 
-    // Set currentTime setelah metadata siap
     audio.addEventListener('loadedmetadata', () => {
       if (savedTime) {
         const t = parseFloat(savedTime);
@@ -518,14 +517,12 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
           audio.currentTime = t;
         }
       }
-      // Mainkan jika sebelumnya tidak di-pause
+    
       if (!wasPaused) {
         tryPlay();
       }
     }, { once: true });
     
-    // Handler untuk interaksi pertama pengguna untuk bypass blokir autoplay
-    // Coba auto-unmute tanpa interaksi; jika ditolak, fallback ke muted lalu coba lagi
     setTimeout(() => {
       if (!audio) return;
       audio.muted = false;
@@ -540,7 +537,6 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
       });
     }, 500);
     
-    // Simpan state sebelum pindah halaman
     window.addEventListener('beforeunload', () => {
       if (audio) {
         sessionStorage.setItem('audioCurrentTime', audio.currentTime);
@@ -553,3 +549,136 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
      manageAudioState();
    });
 })();
+document.addEventListener('DOMContentLoaded', function() {
+
+    const tempSlider = document.getElementById('temp-slider');
+    const phSlider = document.getElementById('ph-slider');
+    const moistureSlider = document.getElementById('moisture-slider');
+                                                                
+    const recommendationsList = document.getElementById('recommendations-list');
+ 
+    tempSlider.disabled = false;
+    phSlider.disabled = false;
+    moistureSlider.disabled = false;                                   
+
+    function calculateRisk(temp, ph, moisture) {
+        let tempRisk = 0;
+        let phRisk = 0;
+        let moistureRisk = 0;
+
+        // Ideal: Temp 25-30 °C
+        if (temp < 25) tempRisk = (25 - temp) * 4;
+        else if (temp > 30) tempRisk = (temp - 30) * 8;
+        tempRisk = Math.min(tempRisk, 40);
+
+        // Ideal: pH 6.0-7.5
+        if (ph < 6.0) phRisk = (6.0 - ph) * 15;
+        else if (ph > 7.5) phRisk = (ph - 7.5) * 20;
+        phRisk = Math.min(phRisk, 30);
+
+        // Ideal: Moisture 50-70 %
+        if (moisture < 50) moistureRisk = (50 - moisture) * 1.5;
+        else if (moisture > 70) moistureRisk = (moisture - 70) * 2.5;
+        moistureRisk = Math.min(moistureRisk, 30);
+
+        const riskScore = Math.round(tempRisk + phRisk + moistureRisk);
+        return Math.min(100, riskScore);
+    }
+
+    function updateDemo() {
+        const temp = parseFloat(tempSlider.value);
+        const ph = parseFloat(phSlider.value);
+        const moisture = parseFloat(moistureSlider.value);
+
+        document.getElementById('temp-value').textContent = `${temp}°C`;
+        document.getElementById('ph-value').textContent = ph;
+        document.getElementById('moisture-value').textContent = `${moisture}%`;
+
+        const risk = calculateRisk(temp, ph, moisture);
+        document.getElementById('risk-percentage').textContent = `${risk}%`;
+        
+        let riskText = "Low Risk";
+        let fillColor = "#4CAF50"; 
+        let needleRotation = risk * 1.8 - 90; 
+
+        if (risk > 35 && risk <= 70) {
+            riskText = "Medium Risk";
+            fillColor = "#FFC107"; 
+        } else if (risk > 70) {
+            riskText = "High Risk";
+            fillColor = "#F44336"; 
+        }
+        
+        document.getElementById('risk-label').textContent = riskText;
+        document.getElementById('gauge-needle').style.transform = `rotate(${needleRotation}deg)`;
+        document.getElementById('gauge-fill').style.backgroundColor = fillColor;
+       
+        let recs = [];
+        
+        if (temp < 25) {
+            recs.push(`🌡️ Suhu Rendah: Tambahkan mulsa organik (jerami/sekam) untuk menjaga panas dan isolasi.`);
+        } else if (temp > 30) {
+            recs.push(`🌡️ Suhu Tinggi: Gunakan mulsa anorganik (plastik/jaring), lakukan penyiraman di sore hari.`);
+        } else {
+            recs.push(`✅ Suhu Optimal: Pertahankan di ${temp}°C`);
+        }
+
+        if (ph < 6.0) {
+            recs.push(`🧪 pH Asam Rendah: Tambahkan Kapur Dolomit atau kapur pertanian untuk menaikkan pH secara bertahap.`);
+        } else if (ph > 7.5) {
+            recs.push(`🧪 pH Basa Tinggi: Tambahkan belerang (sulfur) atau bahan organik seperti kompos untuk menurunkan pH.`);
+        } else {
+            recs.push(`✅ pH Optimal: Level pH sangat baik. Lanjutkan pemantauan rutin.`);
+        }
+
+        if (moisture < 50) {
+            recs.push(`💧 Kelembapan Kering: Lakukan penyiraman atau gunakan humidifier untuk meningkatkan kelembapan udara.`);
+        } else if (moisture > 70) {
+            recs.push(`💧 Kelembapan Basah: Tingkatkan ventilasi atau gunakan dehumidifier untuk mengurangi risiko jamur.`);
+        } else {
+            recs.push(`✅ Kelembapan Optimal: Level ${moisture}% berada di zona aman.`);
+        }
+
+        recommendationsList.innerHTML = recs.map(rec => `<li>${rec}</li>`).join('');
+    }
+
+    const sliders = [tempSlider, phSlider, moistureSlider];
+    sliders.forEach(slider => {
+        slider.addEventListener('input', updateDemo);
+    });
+
+    updateDemo();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const fanStatusIndicator = document.getElementById('fanStatus');
+    const fanOnButton = document.getElementById('fanOn');
+    const fanOffButton = document.getElementById('fanOff');
+    const fanControlPanel = document.querySelector('.fan-control-panel'); 
+    
+    const fanIcon = document.getElementById('fanIcon'); 
+
+    function turnFanOn() {
+        fanStatusIndicator.textContent = 'ON';
+        fanStatusIndicator.classList.add('active'); 
+        fanControlPanel.classList.add('is-on');    
+    
+    }
+
+    function turnFanOff() {
+        fanStatusIndicator.textContent = 'OFF';
+        fanStatusIndicator.classList.remove('active'); 
+        fanControlPanel.classList.remove('is-on');     
+        // fanIcon akan berhenti berputar karena kelas is-on dihapus
+    }
+
+    if (fanOnButton) {
+        fanOnButton.addEventListener('click', turnFanOn);
+    }
+
+    if (fanOffButton) {
+        fanOffButton.addEventListener('click', turnFanOff);
+    }
+    
+    turnFanOff(); 
+});
