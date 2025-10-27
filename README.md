@@ -28,11 +28,11 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 | **Edbert Andrisen Ng** | IoT Engineer |3D Simulation Engineer, Sensor Networks | - |
 | **Faustino Fernando** |  IoT Engineer |  Hardware Integration | - |
 | **Eric** | Backend Developer | UI/UX Developer | - |
-| **Nathaniel Judika Harefa** | Plasmid Designer | - |
-| **Syarif Rahmat Akbar** | Researcher | - |
-| **Janice Carissa** | UI/UX Designer | - |
-| **Francisca Viola** | Biology Developer | - |
-| **Violetta Augustia Renata** | Video Producer & Editor | - |
+| **Nathaniel Judika Harefa** | Plasmid Designer | - | | - |
+| **Syarif Rahmat Akbar** | Researcher | - | | - |
+| **Janice Carissa** | UI/UX Designer | - | | - |
+| **Francisca Viola** | Biology Developer | - | | - |
+| **Violetta Augustia Renata** | Video Producer & Editor | - | | - |
 
 
 ### Advisors & Mentors
