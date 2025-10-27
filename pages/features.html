@@ -9,15 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css"> 
- 
-  
-
+ <audio autoplay loop>
+        <source src="Dreaming - Solo Piano Version.mp3" type="audio/mp3">
+    </audio>
 </head>
 <body>
- 
+
   <nav class="navbar">
     <div class="navbar-container">
       <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
       <button class="navbar-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
@@ -28,9 +32,35 @@
         <li><a href="features.html" class="active">Features</a></li>
         <li><a href="preview.html">Preview</a></li> 
         <li><a href="about.html">About Us</a></li>
-         <div class="nav-buttons">
-            <a href="#" class="btn">Support</a>
-        </div>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+        <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="preview.html">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
+
       </ul>
     </div>
 
@@ -86,7 +116,7 @@
               <p> Sistem kami akan mengambil data secara terus-menerus dan menampilkan sensor data secara real, agar pengguna dapat mendapatkan informasi secara langsung</p>
               <ul class="feature-benefits">
                 <li><i class="fa-solid fa-check"></i> Pembaruan setiap 30 detik</li>
-                <li><i class="fa-solid fa-check"></i> </li>
+                <li><i class="fa-solid fa-check"></i> Visualisasi live dashboard interaktif</li>
                 <li><i class="fa-solid fa-check"></i> Export data in multiple formats</li>
               </ul>
             </div>
@@ -160,43 +190,6 @@
   </div>
 </section>
         
-        <div class="tab-panel" id="integration">
-          <div class="feature-detail">
-            <div class="feature-visual">
-              <div class="integration-icons">
-                <div class="integration-item">
-                  <i class="fa-brands fa-aws"></i>
-                  <span>Firebase IoT</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-database"></i>
-                  <span>Database</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                  <span>Mobile App</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-cloud-arrow-up"></i>
-                  <span>API</span>
-                </div>
-              </div>
-            </div>
-            <div class="feature-description">
-              <h3>Smart Alert System</h3>
-              <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
-              <ul class="feature-benefits">
-                <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
-                <li><i class="fa-solid fa-check"></i> notifikasi  warning ketika terjadi eskalasi bakteri</li>
-                <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="feature-cards-section">
   <div class="container">
@@ -206,8 +199,8 @@
         <div class="feature-card-icon">
           <i class="fa-solid fa-chart-line"></i>
         </div>
-        <h3>Trend Analysis</h3>
-        <p>Track soil parameter trends over time to identify patterns and optimize growing conditions.</p>
+        <h3>Analisa Tren Data</h3>
+        <p>Memantau kondisi tanah secara real-time dan memberikan analisis tren untuk membantu pengguna memahami pola perubahan.</p>
         <div class="feature-card-footer">
           <span class="feature-tag">Advanced</span>
         </div>
@@ -215,21 +208,10 @@
 
       <div class="feature-card">
         <div class="feature-card-icon">
-          <i class="fa-solid fa-map-location-dot"></i>
-        </div>
-        <h3>Geospatial Mapping</h3>
-        <p>Visualize sensor data on interactive maps to identify problem areas across your fields.</p>
-        <div class="feature-card-footer">
-          <span class="feature-tag">Premium</span>
-        </div>
-      </div>
-
-      <div class="feature-card">
-        <div class="feature-card-icon">
           <i class="fa-solid fa-robot"></i>
         </div>
-        <h3>Automated Reporting</h3>
-        <p>Generate comprehensive reports automatically and schedule delivery to stakeholders.</p>
+        <h3>Otomatisasi Laporan</h3>
+        <p>Pengguna dapat secara langsung menerima laporan mengenai suhu, kelembapan, dan pH tanah.</p>
         <div class="feature-card-footer">
           <span class="feature-tag">Standard</span>
         </div>
@@ -239,8 +221,8 @@
         <div class="feature-card-icon">
           <i class="fa-solid fa-shield-halved"></i>
         </div>
-        <h3>Data Security</h3>
-        <p>Enterprise-grade security with encrypted data transmission and secure cloud storage.</p>
+        <h3>Keamanan Data</h3>
+        <p>Data pengguna disimpan dengan aman dan hanya dapat diakses oleh pengguna yang terautentikasi.</p>
         <div class="feature-card-footer">
           <span class="feature-tag">Essential</span>
         </div>
@@ -248,10 +230,10 @@
       
       <div class="feature-card">
         <div class="feature-card-icon">
-          <i class="fa-solid fa-map-location-dot"></i>
+          <i class="fa-solid fa-fan" id="fanIcon"></i>
         </div>
-        <h3>Fan Control Panel</h3>
-          <p>Remotely control ventilation systems with real-time status monitoring and scheduling.</p>
+        <h3>Kontrol Panel Kipas</h3>
+          <p>Memungkinkan pengguna untuk mengontrol status kipas secara manual.</p>
           <div class="fan-control-panel">
             <div class="fan-status">
               <span class="status-label">Status:</span>
@@ -270,43 +252,6 @@
   </div>
 </section>
 
-<div class="tab-panel" id="integration">
-          <div class="feature-detail">
-            <div class="feature-visual">
-              <div class="integration-icons">
-                <div class="integration-item">
-                  <i class="fa-brands fa-aws"></i>
-                  <span>Firebase IoT</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-database"></i>
-                  <span>Database</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-mobile-screen"></i>
-                  <span>Mobile App</span>
-                </div>
-                <div class="integration-item">
-                  <i class="fa-solid fa-cloud-arrow-up"></i>
-                  <span>API</span>
-                </div>
-              </div>
-            </div>
-            <div class="feature-description">
-              <h3>Smart Alert System</h3>
-              <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
-              <ul class="feature-benefits">
-                <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
-                <li><i class="fa-solid fa-check"></i> notifikasi  warning ketika terjadi eskalasi bakteri</li>
-                <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="interactive-demo">
   <div class="container">
@@ -360,8 +305,7 @@
   </div>
 </section>
 
-<!-- ✅ Modal Login (tidak diubah, hanya dipertahankan agar login bisa digunakan) -->
-  <div id="loginSignupModal" class="modal-overlay">
+  <div id="loginSignupModal" class="modal-overlay hidden">
     <div class="modal-content">
       <div class="tabs">
           <button id="loginTab" class="tab-btn active" onclick="showForm('login')">Log In</button>
@@ -381,7 +325,12 @@
           <h3>Sign Up</h3>
          <form id="signupFormElement">
               <input type="email" id="signupEmail" placeholder="Email" required />
-              <input type="password" id="signupPassword" placeholder="Password" required />
+              <div class="password-wrapper">
+                <input type="password" id="signupPassword" placeholder="Password" required />
+                <button type="button" id="toggleSignupPassword" class="toggle-password" aria-label="Tampilkan password">
+                  <i class="fa-solid fa-eye"></i>
+                </button>
+              </div>
               <button type="submit" id="signupBtn">Sign Up</button>
           </form>
       </div>
@@ -397,7 +346,7 @@
           <div class="social-links">
             <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
 
@@ -405,7 +354,7 @@
           <h3>Contact Us</h3>
           <ul class="footer-links">
             <li><i class="fa-solid fa-location-dot"></i> Jl.DR.Sutomo,Bukit Cermin,Kec.Tanjungpinang Bar.,Kota Tanjungpinang,Kepulauan Riau</li>
-            <li><i class="fa-solid fa-envelope"></i> Lyceum.co @email.com</li>
+            <li><i href="https://wa.me/qr/QE4WBOVA5DQSA1"target="_blank" class="fa-solid fa-envelope"></i> Lyceum.co @email.com</li>
             <li><i class="fa-solid fa-clock"></i> Mon-Fri: 7am - 3pm</li>
           </ul>
         </div>
@@ -417,11 +366,40 @@
     </div>
   </footer>
 
-  <script type="module" src="firebase.js"></script>
-  <script type="module" src="login.js"></script>
-  <script type="module" src="auth-check.js"></script>
-  <script type="module" src="iot-data.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/login.js"></script>
+  <script type="module" src="../js/auth-check.js"></script>
+  <script type="module" src="../js/iot-data.js"></script>
+  <script src="../js/script.js"></script>
 
 </body>
 </html>
+
+<!-- Support Modal (consistent across pages) -->
+<div class="support-modal-overlay hidden" id="supportModal">
+  <div class="support-modal-content">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <h3>Need Assistance?</h3>
+    <p>We're here to help you understand Lyceum's project!</p>
+    
+    <div class="support-contact-links">
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <h4>Call Us</h4>
+        <p>+62 818-0918-5655</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <h4>Email Us</h4>
+        <a href="mailto:Lyceum.co@email.com">lyceumsmansa@email.com</a>
+      </div>
+    </div>
+
+    <h4>Connect With Us</h4>
+    <div class="social-links-modal">
+      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</div>
