@@ -9,28 +9,53 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
- 
-  
-
 </head>
 <body>
- 
+
   <nav class="navbar">
     <div class="navbar-container">
       <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
       <button class="navbar-toggle">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </button>
       <ul class="navbar-menu">
-        <li><a href="../index.html">Home</a></li> 
+       <li><a href="../index.html">Home</a></li> 
         <li><a href="features.html">Features</a></li>
-        <li><a href="preview.html"class="active">Preview</a></li> 
+        <li><a href="preview.html" class="active">Preview</a></li> 
         <li><a href="about.html">About Us</a></li>
-         <div class="nav-buttons">
-            <a href="#" class="btn">Support</a>
-        </div>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+       <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html">Features</a></li>
+        <li><a href="preview.html" class="active">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
       </ul>
     </div>
     
@@ -42,18 +67,22 @@
         <div class="preview-container">
             <div class="orientation">
                 <h3>Latar Belakang</h3>
-                <p>Navigasi patogen tanah yang merusak tanaman data kerugian akibat patogen tanah dan skala persebaran keterbatasan metode pengendalian konvensional potensi Myxocoxus Xanthus dan Myxovirescin A1 peran sistem deteksi biosensor penggunaan alat IoT sebagai perantara harapan dan dampak penelitian.</p>
+                <p>Ralstonia Solanacearum adalah patogen yang dikenal sebagai agen penyebab layu bakteri, patogen ini menyerang lebih dari 450 spesies tanaman dari 54 famili botani, termasuk tomat, cabai, dan kentang.
+                   Patogen ini berkembang optimal pada suhu 28°C-30°C dan mampu bertahan di tanah maupun air. Bahan tanaman yang terinfeksi lebih dari dua tahun, dengan kemampuan beradaptasi yang tinggi dan ketahanan terhadap lingkungan yang ekstrim, Ralstonia Solanacearum menjadi ancaman serius bagi sistem pertanian tropis. Infeksi ini menimbulkan kerugian ekonomi global mencapai ratusan juta dollar per tahunnya. Selain itu, berbagai metode pengendalian Ralstonia Solanacearum seperti rotasi tanaman, penggunaan fungisida kimia, sanitasi lahan dan pemulihan varietas telah diterapkan untuk menekan infeksi Ralstonia Solanacearum. akan tetapi, pengendalian ini masih terbatas dan belum menghilangkan Ralstonia Solanacearum secara maksimal.</p>
                 
                 <div class="image-slider">
                     <div class="slider-container">
                         <div class="slide">
-                            <img src="../assets/images/image1.jpg" alt="Tanaman 1">
+                            <img src="../assets/images/image1.jpg" alt="Patogen Jahat">
                         </div>
                         <div class="slide">
-                            <img src="../assets/images/image2.jpg" alt="Tanaman 2">
+                            <img src="../assets/images/image2.jpg" alt="Tanaman Terinfeksi">
+                        </div>
+                         <div class="slide">
+                            <img src="../assets/images/image3.jpg" alt="Bakteri">
                         </div>
                         <div class="slide">
-                            <img src="../assets/images/profile11.jpeg" alt="Tanaman 3">
+                            <img src="../assets/images/profile11.jpeg" alt="Penelitian Laboratorium">
                         </div>
                     </div>
                     
@@ -64,6 +93,7 @@
                         <div class="indicator active" data-index="0"></div>
                         <div class="indicator" data-index="1"></div>
                         <div class="indicator" data-index="2"></div>
+                        <div class="indicator" data-index="3"></div>
                     </div>
                 </div>
             </div>
@@ -116,6 +146,8 @@
  </div>
 </div>
 </section>
+
+
  <footer>
     <div class="container">
       <div class="footer-content">
@@ -125,7 +157,7 @@
           <div class="social-links">
             <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
-            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
 
@@ -175,7 +207,8 @@
 </div>
 
         
-   <script src="script.js"></script>
+   <script type="module" src="../js/firebase.js"></script>
+ <script type="module" src="../js/auth-check.js"></script>
+ <script src="../js/script.js"></script>
 </body>
-</html>
 </html>

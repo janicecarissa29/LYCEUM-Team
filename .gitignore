@@ -1,0 +1,30 @@
+# Audio files
+*.mp3
+*.wav
+*.m4a
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node modules (if any)
+node_modules/
+
+# Build files
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Cache files
+.cache/
