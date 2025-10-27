@@ -36,8 +36,10 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 
 
 ### Advisors & Mentors
-- **[Advisor Name]** - Agricultural Technology Expert
-- **[Advisor Name]** - Biotechnology Research Supervisor
+- **Kennis Rozana S.Pd.,M.Si** -  Biotechnology Research Supervisor
+- **Ezra Harvey Pongarrang** - Biotechnology Research Supervisor
+- **Aidil Baihaqi** - Informatics Supervisor
+- **Jeffry** - Biology Supervisor
 
 ## 🚀 Fitur Utama
 
