@@ -2,8 +2,16 @@
 import { db } from './firebase.js';
 import { ref, onValue, set } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js';
 
-// Mendukung beberapa variasi path di Firebase
-function sprinklerPaths() { return ['sprinkler1/state', 'sprinkler/state', 'Sprinkler/state', 'Sprinkler']; }
+// Mendukung beberapa variasi path di Firebase, termasuk Pump agar kontrol manual sprinkler
+// juga dapat mengubah state perangkat yang membaca dari /Pump
+function sprinklerPaths() {
+  return [
+    // Sprinkler variants
+    'sprinkler1/state', 'sprinkler/state', 'Sprinkler/state', 'Sprinkler',
+    // Pump variants (firmware mungkin memakai ini)
+    'pump/state', 'pump1/state', 'Pump/state', 'Pump'
+  ];
+}
 
 function applySprinklerStatusUI(status) {
   const statusIndicator = document.getElementById('sprinklerStatus');

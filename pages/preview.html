@@ -13,6 +13,8 @@
 </head>
 <body>
 
+  
+
   <nav class="navbar">
     <div class="navbar-container">
       <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
@@ -65,7 +67,9 @@
   <div class="layer-blur"></div>
 
 <section class="preview-section">
-        <div class="preview-container">
+  <div id="sand-fluida-container" class="sand-fluida-container"></div>
+  <!-- Partikel mirip Home, tanpa mengubah background sand-fluida -->
+    <div class="preview-container">
             <div class="orientation">
                 <h3>Latar Belakang</h3>
                 <p>Ralstonia Solanacearum adalah patogen yang dikenal sebagai agen penyebab layu bakteri, patogen ini menyerang lebih dari 450 spesies tanaman dari 54 famili botani, termasuk tomat, cabai, dan kentang.
@@ -101,10 +105,11 @@
         </div>
     </section>
 
-</section>
+ </section>
 
 
 <section class="prv">
+  <div id="sand-fluida-container"></div>
   <div class="prv-container">
 
     <div class="preview-card" onclick="toggleCardAnimation(this)">
@@ -178,7 +183,7 @@
     </div>
   </footer>
 
-  <div class="support-modal-overlay hidden" id="supportModal">
+ <div class="support-modal-overlay hidden" id="supportModal">
   <div class="support-modal-content">
     <button class="close-btn" id="closeModal">&times;</button>
     <h3>Need Assistance?</h3>
@@ -207,9 +212,9 @@
   </div>
 </div>
 
-        
-   <script type="module" src="../js/firebase.js"></script>
- <script type="module" src="../js/auth-check.js"></script>
- <script src="../js/script.js"></script>
+    <!-- sand-fluida disabled on Preview to avoid lag -->
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/auth-check.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
