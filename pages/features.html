@@ -8,10 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css"> 
- <audio autoplay loop>
-        <source src="Dreaming - Solo Piano Version.mp3" type="audio/mp3">
-    </audio>
 </head>
 <body>
 
@@ -235,18 +233,60 @@
         <h3>Kontrol Panel Kipas</h3>
           <p>Memungkinkan pengguna untuk mengontrol status kipas secara manual.</p>
           <div class="fan-control-panel">
+            <div class="fan-target">
+              <span class="fan-target-label">Fan:</span>
+              <div class="segmented-control" id="fanSelectorGroup" role="group" aria-label="Pilih Kipas">
+                <button type="button" class="segment active" data-value="fan1">Fan 1</button>
+                <button type="button" class="segment" data-value="fan2">Fan 2</button>
+              </div>
+            </div>
             <div class="fan-status">
               <span class="status-label">Status:</span>
               <span class="status-indicator" id="fanStatus">OFF</span>
             </div>
             <div class="fan-controls">
-              <button class="fan-btn fan-on" id="fanOn">ON</button>
-              <button class="fan-btn fan-off" id="fanOff">OFF</button>
+              <div class="toggle-control">
+                <label class="toggle-switch" aria-label="Toggle fan">
+                  <input type="checkbox" id="fanToggle" />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+                <span class="switch-text" id="fanToggleText">OFF</span>
+              </div>
             </div>
           </div>
           <div class="feature-card-footer">
            <span class="feature-tag">Control</span>
           </div>
+      </div>
+
+      <!-- Kontrol Sprinkler -->
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-shower" id="sprinklerIcon"></i>
+        </div>
+        <h3>Kontrol Sprinkler</h3>
+        <p>Menampilkan status sprinkler (tanpa tombol kontrol manual).</p>
+        <div class="fan-control-panel">
+          <div class="fan-status">
+            <span class="status-label">Status:</span>
+            <span class="status-indicator" id="sprinklerStatus">OFF</span>
+          </div>
+          <div class="fan-controls">
+            <div class="toggle-control">
+              <label class="toggle-switch" aria-label="Toggle sprinkler">
+                <input type="checkbox" id="sprinklerToggle" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+              <span class="switch-text" id="sprinklerToggleText">OFF</span>
+              <span class="badge" id="sprinklerRaw">Raw: --</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Control</span>
+        </div>
       </div>
     </div>
   </div>
@@ -290,6 +330,11 @@
           </div>
           <div class="risk-label" id="risk-label">Medium Risk</div>
           <div class="risk-percentage" id="risk-percentage">45%</div>
+          <div class="live-badges">
+            <span class="badge" id="live-temp">Temp: --°C</span>
+            <span class="badge" id="live-humidity">Humidity: --%</span>
+            <span class="badge" id="live-ph">pH: --</span>
+          </div>
         </div>
 
         <div class="recommendations">
@@ -337,7 +382,8 @@
     </div>
   </div>
 
-   <footer>
+
+  <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-column">
@@ -354,7 +400,10 @@
           <h3>Contact Us</h3>
           <ul class="footer-links">
             <li><i class="fa-solid fa-location-dot"></i> Jl.DR.Sutomo,Bukit Cermin,Kec.Tanjungpinang Bar.,Kota Tanjungpinang,Kepulauan Riau</li>
-            <li><i href="https://wa.me/qr/QE4WBOVA5DQSA1"target="_blank" class="fa-solid fa-envelope"></i> Lyceum.co @email.com</li>
+            <li>
+              <i class="fa-brands fa-whatsapp"></i>
+              <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener">Hubungi via WhatsApp</a>
+            </li>
             <li><i class="fa-solid fa-clock"></i> Mon-Fri: 7am - 3pm</li>
           </ul>
         </div>
@@ -369,6 +418,8 @@
   <script type="module" src="../js/firebase.js"></script>
   <script type="module" src="../js/login.js"></script>
   <script type="module" src="../js/auth-check.js"></script>
+  <script type="module" src="../js/fan-control.js"></script>
+  <script type="module" src="../js/sprinkler-control.js"></script>
   <script type="module" src="../js/iot-data.js"></script>
   <script src="../js/script.js"></script>
 

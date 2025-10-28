@@ -475,7 +475,8 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
    const AUDIO_ID = 'site-bg-audio';
    const AUDIO_SRC = '/Dreaming - Solo Piano Version.mp3'; 
    const DEFAULT_VOLUME = 0.6;
- 
+   const onHomePage = /\/index\.html$/.test(window.location.pathname) || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+   
    const manageAudioState = () => {
     let audio = document.getElementById(AUDIO_ID);
     
@@ -546,7 +547,18 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
   };
 
   document.addEventListener('DOMContentLoaded', () => {
-     manageAudioState();
+     if (!onHomePage) return; // Hindari inisialisasi audio di halaman selain Home
+     try {
+       fetch(AUDIO_SRC, { method: 'HEAD' })
+         .then((resp) => {
+           if (resp && resp.ok) {
+             manageAudioState();
+           }
+         })
+         .catch(() => { /* jika file tidak ada, jangan inisialisasi audio */ });
+     } catch (_) {
+       // Jika fetch tidak tersedia, skip aman
+     }
    });
 })();
 document.addEventListener('DOMContentLoaded', function() {
@@ -556,7 +568,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const moistureSlider = document.getElementById('moisture-slider');
                                                                 
     const recommendationsList = document.getElementById('recommendations-list');
- 
+    // Jika slider awalnya disabled, berarti mode realtime (di-handle oleh iot-data.js).
+    // Hindari konflik: jangan aktifkan dan jangan override UI kalkulasi di sini.
+    if (!tempSlider || !phSlider || !moistureSlider) return;
+    const initiallyDisabled = tempSlider.hasAttribute('disabled') && phSlider.hasAttribute('disabled') && moistureSlider.hasAttribute('disabled');
+    if (initiallyDisabled) {
+        return;
+    }
+
+    // Mode demo manual: aktifkan slider
     tempSlider.disabled = false;
     phSlider.disabled = false;
     moistureSlider.disabled = false;                                   
@@ -662,6 +682,7 @@ document.addEventListener('DOMContentLoaded', function() {
         fanStatusIndicator.textContent = 'ON';
         fanStatusIndicator.classList.add('active'); 
         fanControlPanel.classList.add('is-on');    
+        if (fanIcon) { fanIcon.classList.add('spinning'); }
     
     }
 
@@ -669,7 +690,8 @@ document.addEventListener('DOMContentLoaded', function() {
         fanStatusIndicator.textContent = 'OFF';
         fanStatusIndicator.classList.remove('active'); 
         fanControlPanel.classList.remove('is-on');     
-        // fanIcon akan berhenti berputar karena kelas is-on dihapus
+        if (fanIcon) { fanIcon.classList.remove('spinning'); }
+        // fanIcon akan berhenti berputar karena kelas spinning dihapus
     }
 
     if (fanOnButton) {

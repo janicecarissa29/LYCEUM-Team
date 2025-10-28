@@ -16,6 +16,9 @@ function initFeaturesRealtime() {
   const riskLabel = document.getElementById("risk-label");
   const riskPercentage = document.getElementById("risk-percentage");
   const recommendationsList = document.getElementById("recommendations-list");
+  const liveTempBadge = document.getElementById("live-temp");
+  const liveHumidityBadge = document.getElementById("live-humidity");
+  const livePhBadge = document.getElementById("live-ph");
 
   // Ensure elements exist only on Features page
   if (!tempSlider || !phSlider || !moistSlider || !gaugeFill || !gaugeNeedle) {
@@ -42,6 +45,11 @@ function initFeaturesRealtime() {
     if (phValue) phValue.textContent = `${p.toFixed ? p.toFixed(1) : p}`;
     if (moistValue) moistValue.textContent = `${m}%`;
 
+    // Update badges
+    if (liveTempBadge) liveTempBadge.textContent = `Temp: ${t}°C`;
+    if (liveHumidityBadge) liveHumidityBadge.textContent = `Humidity: ${m}%`;
+    if (livePhBadge) livePhBadge.textContent = `pH: ${p.toFixed ? p.toFixed(1) : p}`;
+
     // Risk meter visuals
     const { percent, level } = computeRisk(t, p, m);
     if (riskPercentage) riskPercentage.textContent = `${percent}%`;
@@ -65,17 +73,64 @@ function initFeaturesRealtime() {
 
   // Subscribe to Firebase realtime data if available, fallback to mock
   try {
-    const sensorRef = ref(db, "sensor");
-    onValue(sensorRef, (snapshot) => {
-      const data = snapshot.val();
-      if (!data) return;
-      const t = data.temperature ?? data.suhu ?? 28;
-      const p = data.ph ?? 6.5;
-      const m = data.moisture ?? data.kelembapan ?? 65;
-      updateUI(Number(t), Number(p), Number(m));
-    }, (err) => {
-      console.warn("Firebase onValue error:", err);
-    });
+    // State aggregator agar sumber berbeda tetap menyatu
+    let state = { t: 28, p: 6.5, m: 65 };
+
+    function pushUpdate(partial) {
+      state = { ...state, ...partial };
+      updateUI(Number(state.t), Number(state.p), Number(state.m));
+    }
+
+    function asNum(v) {
+      if (v === null || v === undefined) return null;
+      if (typeof v === 'string' && v.trim() === '') return null;
+      const n = Number(v);
+      return Number.isFinite(n) ? n : null;
+    }
+
+    // Sumber 1: node 'sensor' (umum)
+    try {
+      const sensorRef = ref(db, "sensor");
+      onValue(sensorRef, (snapshot) => {
+        const data = snapshot.val();
+        if (!data) return;
+        const t = asNum(data.temperature ?? data.suhu);
+        const p = asNum(data.ph);
+        const m = asNum(data.moisture ?? data.kelembapan);
+        pushUpdate({
+          ...(t !== null ? { t } : {}),
+          ...(p !== null ? { p } : {}),
+          ...(m !== null ? { m } : {}),
+        });
+      });
+    } catch (_) {}
+
+    // Sumber 2: node 'dht' (temp & humidity)
+    try {
+      const dhtRef = ref(db, "dht");
+      onValue(dhtRef, (snapshot) => {
+        const d = snapshot.val();
+        if (!d) return;
+        const t = asNum(d.temp ?? d.temperature);
+        const h = asNum(d.humidityValue ?? d.humidity ?? d.humidityLevel);
+        pushUpdate({
+          ...(t !== null ? { t } : {}),
+          ...(h !== null ? { m: h } : {}),
+        });
+      });
+    } catch (_) {}
+
+    // Sumber 3: node 'ph' (pH level)
+    try {
+      const phRef = ref(db, "ph");
+      onValue(phRef, (snapshot) => {
+        const p = snapshot.val();
+        if (p === null || p === undefined) return;
+        const level = (p && p.level !== undefined ? p.level : p);
+        const pn = asNum(level);
+        if (pn !== null) pushUpdate({ p: pn });
+      });
+    } catch (_) {}
   } catch (e) {
     console.warn("Firebase not available, using mock realtime data.", e);
     // Mock: gently vary values around baseline
