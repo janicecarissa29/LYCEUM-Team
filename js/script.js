@@ -373,7 +373,7 @@ if (imageSlider) {
     }
 
     imageSlider.addEventListener('mouseenter', stopAutoSlide); 
-    // Mulai lagi saat mouse keluar
+ 
     imageSlider.addEventListener('mouseleave', startAutoSlide);  
 
 
@@ -419,11 +419,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabPanels = Array.from(featuresTabs.querySelectorAll('.tab-panel'));
 
   function activateTab(tabName) {
-    // Deactivate all
     tabButtons.forEach(btn => btn.classList.remove('active'));
     tabPanels.forEach(panel => panel.classList.remove('active'));
 
-    // Activate selected
     const targetBtn = tabButtons.find(btn => btn.dataset.tab === tabName);
     const targetPanel = featuresTabs.querySelector(`#${tabName}`);
     if (targetBtn) targetBtn.classList.add('active');
@@ -681,4 +679,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     turnFanOff(); 
+});
+
+//scroll foto di about us
+document.addEventListener('DOMContentLoaded', function() {
+   
+    const groupPhotoWrapper = document.getElementById('groupPhotoWrapper');
+    const profilesContainer = document.getElementById('profilesContainer');
+
+    if (groupPhotoWrapper && profilesContainer) {
+        groupPhotoWrapper.style.cursor = 'pointer'; 
+        
+        groupPhotoWrapper.addEventListener('click', function() {
+            
+            const isProfilesVisible = profilesContainer.classList.contains('show');
+            
+            if (isProfilesVisible) {
+               
+                profilesContainer.classList.remove('show');
+                groupPhotoWrapper.classList.remove('clicked');
+               
+                groupPhotoWrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start' 
+                });
+                
+            } else {
+                profilesContainer.classList.add('show');
+                groupPhotoWrapper.classList.add('clicked'); 
+
+                setTimeout(() => {
+                    profilesContainer.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' 
+                    });
+                }, 100); 
+            }
+        });
+        
+        groupPhotoWrapper.addEventListener('dblclick', function() {
+             window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
