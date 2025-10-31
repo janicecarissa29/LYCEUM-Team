@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Configuration
     const PARTICLE_COUNT = 500;
-    const PARTICLE_SIZE = 1.8; // smaller shining particles
+    const PARTICLE_SIZE = 4.8;
     const PARTICLE_SPEED = 0.1;
     let CENTER_X = canvas.width / 2;
     let CENTER_Y = canvas.height / 2;
@@ -32,22 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
     let mouseInfluence = 0;
     let particles = [];
     let mode = 'magnetic';
-    let frameCounter = 0; // throttle depth sorting to reduce CPU cost
     
     const CENTER_Z = 0;
 
     const colorPalette = [
-        'rgba(149, 199, 170, 0.75)',  // #95c7aa
-        'rgba(129, 189, 160, 0.72)',
-        'rgba(105, 175, 145, 0.70)',
-        'rgba(170, 210, 190, 0.70)',
-        'rgba(90, 160, 135, 0.68)'
+        'rgba(144, 238, 144, 0.4)',  // Light green
+        'rgba(152, 251, 152, 0.35)', // Pale green
+        'rgba(240, 255, 240, 0.3)',  // Honeydew
+        'rgba(245, 255, 250, 0.35)', // Mint cream
+        'rgba(255, 255, 255, 0.25)', // White
+        'rgba(240, 255, 255, 0.3)',  // Azure
+        'rgba(248, 255, 248, 0.2)',  // Ghost white with green tint
     ];
     
     const mouseColors = [
-        'rgba(149, 199, 170, 0.95)',
-        'rgba(130, 205, 165, 0.90)',
-        'rgba(180, 230, 205, 0.85)'
+        'rgba(50, 205, 50, 0.6)',    
+        'rgba(34, 139, 34, 0.5)', 
+        'rgba(144, 238, 144, 0.4)',  
+        'rgba(152, 251, 152, 0.5)',
     ];
 
     function blendColors(color1, color2, ratio) {
@@ -95,18 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
   
     function drawParticles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Additive blending and soft glow for shining effect
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.shadowColor = 'rgba(255,255,255,0.6)';
-        ctx.shadowBlur = 3; // lighter blur for performance
-
-        // Throttle depth sorting to every 4 frames
-        if ((frameCounter++ & 3) === 0) {
-            particles.sort((a, b) => b.z - a.z);
-        }
+       
+        particles.sort((a, b) => b.z - a.z);
         
         particles.forEach(p => {
+            // Apply perspective
             const scale = 400 / (400 + p.z);
             const x2d = (p.x - CENTER_X) * scale + CENTER_X;
             const y2d = (p.y - CENTER_Y) * scale + CENTER_Y;
@@ -116,10 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.fillStyle = p.color;
             ctx.fill();
         });
-
-        // Reset blend mode for potential other drawings
-        ctx.globalCompositeOperation = 'source-over';
-        ctx.shadowBlur = 0;
     }
 
     function updateParticles() {
@@ -382,7 +373,7 @@ if (imageSlider) {
     }
 
     imageSlider.addEventListener('mouseenter', stopAutoSlide); 
-    // Mulai lagi saat mouse keluar
+ 
     imageSlider.addEventListener('mouseleave', startAutoSlide);  
 
 
@@ -428,11 +419,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const tabPanels = Array.from(featuresTabs.querySelectorAll('.tab-panel'));
 
   function activateTab(tabName) {
-    // Deactivate all
     tabButtons.forEach(btn => btn.classList.remove('active'));
     tabPanels.forEach(panel => panel.classList.remove('active'));
 
-    // Activate selected
     const targetBtn = tabButtons.find(btn => btn.dataset.tab === tabName);
     const targetPanel = featuresTabs.querySelector(`#${tabName}`);
     if (targetBtn) targetBtn.classList.add('active');
@@ -500,9 +489,6 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
       audio.setAttribute('playsinline',''); 
       audio.style.display = 'none';
       document.body.appendChild(audio);
-      audio.addEventListener('error', (e) => {
-        console.warn('[Audio] Failed to load or play:', AUDIO_SRC, e);
-      });
     }
 
     // Ambil state dari sessionStorage
@@ -562,19 +548,16 @@ function openWhatsApp(number = '6281809185655', text = 'Halo Lyceum') {
    });
 })();
 document.addEventListener('DOMContentLoaded', function() {
+
     const tempSlider = document.getElementById('temp-slider');
     const phSlider = document.getElementById('ph-slider');
     const moistureSlider = document.getElementById('moisture-slider');
+                                                                
     const recommendationsList = document.getElementById('recommendations-list');
-
-    // Guard: feature exists only on pages that include the sliders and list
-    if (!tempSlider || !phSlider || !moistureSlider || !recommendationsList) {
-      return;
-    }
-
+ 
     tempSlider.disabled = false;
     phSlider.disabled = false;
-    moistureSlider.disabled = false;
+    moistureSlider.disabled = false;                                   
 
     function calculateRisk(temp, ph, moisture) {
         let tempRisk = 0;
@@ -631,9 +614,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let recs = [];
         
         if (temp < 25) {
-            recs.push(`🌡 Suhu Rendah: Tambahkan mulsa organik (jerami/sekam) untuk menjaga panas dan isolasi.`);
+            recs.push(`🌡️ Suhu Rendah: Tambahkan mulsa organik (jerami/sekam) untuk menjaga panas dan isolasi.`);
         } else if (temp > 30) {
-            recs.push(`🌡 Suhu Tinggi: Gunakan mulsa anorganik (plastik/jaring), lakukan penyiraman di sore hari.`);
+            recs.push(`🌡️ Suhu Tinggi: Gunakan mulsa anorganik (plastik/jaring), lakukan penyiraman di sore hari.`);
         } else {
             recs.push(`✅ Suhu Optimal: Pertahankan di ${temp}°C`);
         }
@@ -659,7 +642,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const sliders = [tempSlider, phSlider, moistureSlider];
     sliders.forEach(slider => {
-        if (slider) slider.addEventListener('input', updateDemo);
+        slider.addEventListener('input', updateDemo);
     });
 
     updateDemo();
@@ -672,11 +655,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const fanControlPanel = document.querySelector('.fan-control-panel'); 
     
     const fanIcon = document.getElementById('fanIcon'); 
-
-    // Guard: only run on pages where the fan panel exists
-    if (!fanStatusIndicator || !fanControlPanel) {
-        return;
-    }
 
     function turnFanOn() {
         fanStatusIndicator.textContent = 'ON';
@@ -701,4 +679,49 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     turnFanOff(); 
+});
+
+//scroll foto di about us
+document.addEventListener('DOMContentLoaded', function() {
+   
+    const groupPhotoWrapper = document.getElementById('groupPhotoWrapper');
+    const profilesContainer = document.getElementById('profilesContainer');
+
+    if (groupPhotoWrapper && profilesContainer) {
+        groupPhotoWrapper.style.cursor = 'pointer'; 
+        
+        groupPhotoWrapper.addEventListener('click', function() {
+            
+            const isProfilesVisible = profilesContainer.classList.contains('show');
+            
+            if (isProfilesVisible) {
+               
+                profilesContainer.classList.remove('show');
+                groupPhotoWrapper.classList.remove('clicked');
+               
+                groupPhotoWrapper.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start' 
+                });
+                
+            } else {
+                profilesContainer.classList.add('show');
+                groupPhotoWrapper.classList.add('clicked'); 
+
+                setTimeout(() => {
+                    profilesContainer.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' 
+                    });
+                }, 100); 
+            }
+        });
+        
+        groupPhotoWrapper.addEventListener('dblclick', function() {
+             window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });

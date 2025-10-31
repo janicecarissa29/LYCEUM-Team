@@ -1,0 +1,53 @@
+/* Input Spinner Styles */
+.input-spinner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-spinner .form-input {
+  flex: 1;
+  text-align: center;
+  border-radius: 0;
+  margin: 0;
+  appearance: textfield; /* Standard property for cross-browser compatibility */
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.input-spinner .form-input::-webkit-outer-spin-button,
+.input-spinner .form-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.spinner-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: var(--card-bg, #1e4e5c);
+  border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+  color: var(--text-light, #ffffff);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.spinner-down {
+  border-radius: 6px 0 0 6px;
+  border-right: none;
+}
+
+.spinner-up {
+  border-radius: 0 6px 6px 0;
+  border-left: none;
+}
+
+.spinner-btn:hover {
+  background-color: var(--accent-2, #4b8f60);
+}
+
+.spinner-btn:active {
+  background-color: var(--accent, #71b280);
+  transform: scale(0.95);
+}

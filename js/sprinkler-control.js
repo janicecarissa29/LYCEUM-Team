@@ -1,116 +1,94 @@
-// sprinkler-control.js — Integrasi kontrol sprinkler via Firebase Realtime Database
-import { db } from './firebase.js';
-import { ref, onValue, set } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js';
+// sprinkler-control.js
+// Menggunakan Firebase RTDB untuk sinkronisasi
+import { db } from "./firebase.js";
+import { ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
 
-// Mendukung beberapa variasi path di Firebase, termasuk Pump agar kontrol manual sprinkler
-// juga dapat mengubah state perangkat yang membaca dari /Pump
-function sprinklerPaths() {
-  return [
-    // Sprinkler variants
-    'sprinkler1/state', 'sprinkler/state', 'Sprinkler/state', 'Sprinkler',
-    // Pump variants (firmware mungkin memakai ini)
-    'pump/state', 'pump1/state', 'Pump/state', 'Pump'
-  ];
-}
+// Ganti jalur ini sesuai dengan lokasi data sprinkler Anda yang sebenarnya di Firebase
+const SPRINKLER_PATH = 'sprinkler/state'; 
 
-function applySprinklerStatusUI(status) {
-  const statusIndicator = document.getElementById('sprinklerStatus');
-  const panel = document.querySelector('#sprinklerIcon')?.closest('.feature-card')?.querySelector('.fan-control-panel') || document.querySelector('.fan-control-panel');
-  const icon = document.getElementById('sprinklerIcon');
-  const toggle = document.getElementById('sprinklerToggle');
-  const toggleText = document.getElementById('sprinklerToggleText');
-  const rawBadge = document.getElementById('sprinklerRaw');
-  const isOn = String(status).toUpperCase() === 'ON';
+function initSprinklerControl() {
+    const panel = document.querySelectorAll(".fan-control-panel")[1]; 
+    const statusEl = document.getElementById("sprinklerStatus");
+    const toggle = document.getElementById("sprinklerToggle");
+    const toggleText = document.getElementById("sprinklerToggleText");
+    const rawBadge = document.getElementById("sprinklerRaw");
+    const icon = document.getElementById("sprinklerIcon");
 
-  if (statusIndicator) {
-    statusIndicator.textContent = isOn ? 'ON' : 'OFF';
-    statusIndicator.classList.toggle('active', isOn);
-    statusIndicator.setAttribute('aria-live', 'polite');
-  }
-  if (panel) {
-    panel.classList.toggle('is-on', isOn);
-  }
-  if (icon) {
-    icon.classList.toggle('spinning', isOn);
-  }
-  if (toggle) {
-    toggle.checked = isOn;
-  }
-  if (toggleText) {
-    toggleText.textContent = isOn ? 'ON' : 'OFF';
-  }
-  if (rawBadge && rawBadge.dataset.lastRaw) {
-    rawBadge.textContent = `Raw: ${rawBadge.dataset.lastRaw}` + (rawBadge.dataset.path ? ` @ ${rawBadge.dataset.path}` : '');
-  }
-}
+    if (!panel || !statusEl || !toggle) return;
 
-function sendSprinklerCommand(cmd) {
-  try {
-    // Tulis ON=1, OFF=0 untuk kompatibilitas umum
-    const value = String(cmd).toUpperCase() === 'ON' ? 1 : 0;
-    const writes = sprinklerPaths().map((p) => set(ref(db, p), value).catch((e) => console.warn('Sprinkler write failed for', p, e)));
-    return Promise.all(writes);
-  } catch (e) {
-    console.error('Failed to send sprinkler command:', e);
-  }
-}
+    const sprinklerRef = ref(db, SPRINKLER_PATH);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const btnOn = document.getElementById('sprinklerOn');
-  const btnOff = document.getElementById('sprinklerOff');
-  const toggle = document.getElementById('sprinklerToggle');
-  const unsubscribers = [];
-  let activePath = null;
+    const updateUI = (value) => {
+        // Interpretasi: 0 = ON, 1 = OFF
+        const isOn = (value === 0 || value === '0'); 
+        
+        statusEl.textContent = isOn ? "ON" : "OFF";
+        toggle.checked = isOn;
+        if (toggleText) toggleText.textContent = isOn ? "ON" : "OFF";
+        panel.classList.toggle("is-on", isOn);
+        if (icon) icon.classList.toggle("spinning", isOn);
+        
+        // Perubahan warna label status (OFF/ON) 
+        // Anda perlu memastikan CSS Anda memiliki class 'active' atau logika warna lain untuk statusEl
+        statusEl.classList.toggle('active', isOn); 
+        statusEl.classList.toggle('off', !isOn); 
 
-  function interpretOn(raw) {
-    const s = typeof raw === 'string' ? raw.trim().toUpperCase() : raw;
-    if (s === 'ON') return true;
-    if (s === 'OFF') return false;
-    if (s === true) return true;
-    if (s === false) return false;
-    if (s === '1' || s === 1) return true;
-    if (s === '0' || s === 0) return false;
-    return Boolean(s);
-  }
+        if (rawBadge) {
+            const rawValue = isOn ? 100 : 0; // Nilai Raw sesuai dengan status ON/OFF
+            rawBadge.textContent = `Raw: ${rawValue}`;
+        }
+    };
 
-  function attachStatusListeners() {
-    while (unsubscribers.length) {
-      const u = unsubscribers.pop();
-      try { typeof u === 'function' && u(); } catch (_) {}
-    }
-    sprinklerPaths().forEach((p) => {
-      try {
-        const un = onValue(ref(db, p), (snapshot) => {
-          const raw = snapshot.val();
-          if (raw === null || raw === undefined) return;
-          const isOn = interpretOn(raw);
-          const rawBadge = document.getElementById('sprinklerRaw');
-          if (rawBadge) {
-            rawBadge.dataset.lastRaw = String(raw);
-            rawBadge.dataset.path = p;
-          }
-          activePath = p;
-          applySprinklerStatusUI(isOn ? 'ON' : 'OFF');
+    // 1. MEMBACA STATUS DARI FIREBASE (onValue)
+    try {
+        onValue(sprinklerRef, (snapshot) => {
+            const value = snapshot.val();
+            if (value !== null) {
+                updateUI(value);
+            } else {
+                // Jika data belum ada, set default ke OFF
+                updateUI(1); 
+            }
+        }, (error) => {
+            console.error("Error membaca status sprinkler dari Firebase:", error);
         });
-        unsubscribers.push(un);
-      } catch (e) {
-        console.warn('Failed to listen sprinkler status for', p, e);
-      }
-    });
-  }
+    } catch (e) {
+        console.error("Firebase connection error:", e);
+    }
 
-  if (btnOn) { btnOn.addEventListener('click', () => { sendSprinklerCommand('ON'); }); }
-  if (btnOff) { btnOff.addEventListener('click', () => { sendSprinklerCommand('OFF'); }); }
-  if (toggle) {
-    toggle.addEventListener('change', (e) => {
-      const wantOn = !!e.target.checked;
-      // Optimistic UI update agar status terlihat langsung
-      applySprinklerStatusUI(wantOn ? 'ON' : 'OFF');
-      sendSprinklerCommand(wantOn ? 'ON' : 'OFF');
-    });
-  }
+    // 2. MENULIS PERINTAH KE FIREBASE (set)
+    toggle.addEventListener("change", () => {
+        const isOn = !!toggle.checked;
+        
+        // Firmware Anda: ON = 0, OFF = 1
+        const valueToSend = isOn ? 0 : 1; 
 
-  attachStatusListeners();
-  // Default aman jika belum ada status dari perangkat
-  applySprinklerStatusUI('OFF');
-});
+        // 🟢 PERBAIKAN: Perbarui UI secara lokal SEGERA untuk responsivitas instan
+        updateUI(valueToSend); 
+        console.log(`Perintah sprinkler sedang dikirim: ${isOn ? 'ON (0)' : 'OFF (1)'}`);
+
+        // Tulis nilai ke Firebase Realtime Database
+        set(sprinklerRef, valueToSend)
+            .then(() => {
+                // Penulisan berhasil. onValue listener akan mengonfirmasi.
+            })
+            .catch((error) => {
+                console.error("Gagal menulis perintah sprinkler ke Firebase:", error);
+                
+                // 🔴 PENANGANAN KEGAGALAN: Kembalikan UI ke status semula
+                const originalValue = isOn ? 1 : 0; // Nilai yang seharusnya ada jika gagal
+                
+                // Balikkan kembali status toggle dan perbarui UI
+                toggle.checked = !isOn; 
+                updateUI(originalValue); 
+                
+                alert("Perintah gagal dikirim. Periksa izin Firebase atau koneksi Anda.");
+            });
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSprinklerControl);
+} else {
+    initSprinklerControl();
+}
