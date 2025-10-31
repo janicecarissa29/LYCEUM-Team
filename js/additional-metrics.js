@@ -28,6 +28,7 @@ function initAdditionalMetrics() {
   const recurrenceText = document.getElementById('recurrenceText');
   const recurrenceEveryInput = document.getElementById('recurrenceEvery');
   const recurrenceUnitSelect = document.getElementById('recurrenceUnit');
+  const recurrenceUnitGroup = document.getElementById('recurrenceUnitGroup');
   const saveRecurrenceBtn = document.getElementById('saveRecurrenceBtn');
   const recurrenceStatus = document.getElementById('recurrenceStatus');
   const testLinkBtn = document.getElementById('testLinkBtn');
@@ -261,7 +262,14 @@ function initAdditionalMetrics() {
           if (recurrenceStatus) recurrenceStatus.textContent = v.enabled ? 'AKTIF' : 'NONAKTIF';
           if (recurrenceStatus) recurrenceStatus.style.color = v.enabled ? '#4CAF50' : '#FF9800';
           if (recurrenceEveryInput && v.every != null) recurrenceEveryInput.value = v.every;
-          if (recurrenceUnitSelect && v.unit) recurrenceUnitSelect.value = v.unit;
+          if (recurrenceUnitSelect && v.unit) {
+            recurrenceUnitSelect.value = v.unit;
+            // Reflect to segmented control
+            if (recurrenceUnitGroup) {
+              const btn = recurrenceUnitGroup.querySelector(`.segment[data-value="${v.unit}"]`);
+              recurrenceUnitGroup.querySelectorAll('.segment').forEach(b => b.classList.toggle('active', b === btn));
+            }
+          }
         });
       } catch (e) { console.warn('Recurrence listen error:', e); }
 
@@ -293,7 +301,29 @@ function initAdditionalMetrics() {
         recurrenceEveryInput.addEventListener('change', () => writeRecurrence({ changed: 'every' }));
       }
       if (recurrenceUnitSelect) {
-        recurrenceUnitSelect.addEventListener('change', () => writeRecurrence({ changed: 'unit' }));
+        recurrenceUnitSelect.addEventListener('change', () => {
+          // Keep segmented control in sync
+          if (recurrenceUnitGroup) {
+            const unit = recurrenceUnitSelect.value;
+            const btn = recurrenceUnitGroup.querySelector(`.segment[data-value="${unit}"]`);
+            recurrenceUnitGroup.querySelectorAll('.segment').forEach(b => b.classList.toggle('active', b === btn));
+          }
+          writeRecurrence({ changed: 'unit' });
+        });
+      }
+
+      // Segmented control interactions
+      if (recurrenceUnitGroup) {
+        recurrenceUnitGroup.querySelectorAll('.segment').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const val = btn.dataset.value || 'months';
+            if (recurrenceUnitSelect) {
+              recurrenceUnitSelect.value = val;
+              const ev = new Event('change', { bubbles: true });
+              recurrenceUnitSelect.dispatchEvent(ev);
+            }
+          });
+        });
       }
     }
 

@@ -85,35 +85,31 @@
       </div>
       
       <div class="tab-content">
-    <div class="tab-panel active" id="monitoring">
-        <div class="feature-detail">
+        <div class="tab-panel active" id="monitoring">
+          <div class="feature-detail">
             <div class="feature-visual">
-                <div class="data-flow-animation">
-                    <div class="sensor-node">
-                        <i class="fa-solid fa-microchip"></i>
-                        <span>Sensor IoT</span>
-                    </div>
-                    
-                    <div class="data-transmission">
-                        <div class="signal-pulse"></div>
-                        <div class="signal-pulse delay-1"></div>
-                        <div class="signal-pulse delay-2"></div>
-                    </div>
-                    
-                    <div class="cloud-node">
-                        <i class="fa-solid fa-cloud"></i>
-                        <span>Cloud Platform</span>
-                    </div>
-                    
-                    <div class="data-transmission">
-                        <div class="signal-pulse"></div>
-                        <div class="signal-pulse delay-1"></div>
-                        <div class="signal-pulse delay-2"></div>
-                    </div>
-                    
-                    <div class="dashboard-node">
-                        <i class="fa-solid fa-display"></i>
-                        <span>Dashboard</span>
+              <div class="data-flow-animation">
+                <div class="sensor-node">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Sensor IoT</span>
+                </div>
+                <div class="data-transmission">
+                  <div class="signal-pulse"></div>
+                  <div class="signal-pulse delay-1"></div>
+                  <div class="signal-pulse delay-2"></div>
+                </div>
+                <div class="cloud-node">
+                  <i class="fa-solid fa-cloud"></i>
+                  <span>Cloud Platform</span>
+                </div>
+                <div class="data-transmission reverse">
+                  <div class="signal-pulse-reverse"></div>
+                  <div class="signal-pulse-reverse delay-1"></div>
+                  <div class="signal-pulse-reverse delay-2"></div>
+                </div>
+                <div class="dashboard-node">
+                  <i class="fa-solid fa-display"></i>
+                  <span>Dashboard</span>
                     </div>
                 </div>
             </div>
@@ -181,7 +177,7 @@
               <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
               <ul class="feature-benefits">
                <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
-                <li><i class="fa-solid fa-check"></i> notifikasi  warning ketika terjadi eskalasi bakteri</li>
+                <li><i class="fa-solid fa-check"></i> Dapat mengetahui kemunculan bakteri Ralstonia Solanacearum</li>
                 <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
               </ul>
             </div>
@@ -253,17 +249,35 @@
                 </div>
               </div>
               
-              <div style="display:flex; gap:8px; align-items:center; margin-bottom:10px;">
-                <span>Setiap</span>
-                <input id="recurrenceEvery" type="number" min="1" max="30" value="1" style="width:60px; padding:4px; text-align:center; border:1px solid #ddd; border-radius:4px;" />
-                <select id="recurrenceUnit" style="padding:4px; border:1px solid #ddd; border-radius:4px;">
+              <div class="cycle-controls">
+                <span class="cycle-label">Setiap</span>
+
+                <!-- Numeric stepper -->
+                <div class="input-spinner">
+                  <button type="button" class="spinner-btn spinner-down" data-target="recurrenceEvery" aria-label="Kurangi">−</button>
+                  <input id="recurrenceEvery" class="form-input" type="number" min="1" max="30" value="1" />
+                  <button type="button" class="spinner-btn spinner-up" data-target="recurrenceEvery" aria-label="Tambah">+</button>
+                </div>
+
+                <!-- Unit segmented control -->
+                <div class="segmented-control" id="recurrenceUnitGroup" role="group" aria-label="Unit Interval">
+                  <button type="button" class="segment" data-value="minutes">Menit</button>
+                  <button type="button" class="segment" data-value="hours">Jam</button>
+                  <button type="button" class="segment" data-value="days">Hari</button>
+                  <button type="button" class="segment" data-value="weeks">Minggu</button>
+                  <button type="button" class="segment active" data-value="months">Bulan</button>
+                </div>
+
+                <!-- Hidden select for data persistence and Firebase sync -->
+                <select id="recurrenceUnit" class="sr-only" aria-hidden="true">
                   <option value="minutes">Menit</option>
                   <option value="hours">Jam</option>
                   <option value="days">Hari</option>
                   <option value="weeks">Minggu</option>
                   <option value="months" selected>Bulan</option>
                 </select>
-                <button type="button" id="saveRecurrenceBtn" style="background-color:#FF9800; color:white; border:none; border-radius:4px; padding:6px 12px; font-size:14px;">
+
+                <button type="button" id="saveRecurrenceBtn" class="btn-save">
                   Simpan
                 </button>
               </div>
@@ -418,6 +432,7 @@
         <div class="risk-meter">
           <div class="meter-gauge">
             <div class="gauge-fill" id="gauge-fill"></div>
+            <div class="gauge-highlight" id="gauge-highlight"></div>
             <div class="gauge-needle" id="gauge-needle"></div>
           </div>
           <div class="risk-label" id="risk-label">Medium Risk</div>

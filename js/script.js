@@ -608,8 +608,34 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         document.getElementById('risk-label').textContent = riskText;
-        document.getElementById('gauge-needle').style.transform = `rotate(${needleRotation}deg)`;
-        document.getElementById('gauge-fill').style.backgroundColor = fillColor;
+        const needleEl = document.getElementById('gauge-needle');
+        const fillEl = document.getElementById('gauge-fill');
+        const highlightEl = document.getElementById('gauge-highlight');
+        const sectorEl = document.getElementById('gauge-sector');
+        if (needleEl) {
+            needleEl.style.transform = `translateX(-50%) rotate(${needleRotation}deg)`;
+        }
+        if (fillEl) {
+            // Pastikan gradient mengikuti posisi jarum dan warna aktif sesuai level
+            const clampedRisk = Math.max(0, Math.min(100, risk));
+            fillEl.style.setProperty('--pos', `${clampedRisk}%`);
+            fillEl.style.setProperty('--highlight', fillColor);
+        }
+        if (highlightEl) {
+            // Map rotasi jarum (-90..+90) ke sudut conic (180..0)
+            const conicAngle = 90 - needleRotation;
+            highlightEl.style.setProperty('--angle', `${conicAngle}deg`);
+            highlightEl.style.setProperty('--highlight', fillColor);
+        }
+        if (sectorEl) {
+            const conicAngle = 90 - needleRotation;
+            sectorEl.style.setProperty('--angle', `${conicAngle}deg`);
+            const filledDeg = Math.max(0, Math.min(180, 90 + needleRotation));
+            sectorEl.style.setProperty('--filled', `${filledDeg}deg`);
+            sectorEl.style.setProperty('--low', '#3cb371');
+            sectorEl.style.setProperty('--mid', '#ffa502');
+            sectorEl.style.setProperty('--high', '#ff4757');
+        }
        
         let recs = [];
         

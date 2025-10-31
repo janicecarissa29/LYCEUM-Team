@@ -1153,14 +1153,14 @@ body{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 500px;
+    max-width: 500px;
 }
 
 .sensor-node, .cloud-node, .dashboard-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
 }
 
 .sensor-node i, .cloud-node i, .dashboard-node i {
@@ -1171,7 +1171,7 @@ body{
 
 .data-transmission {
   position: relative;
-  width: 100px;
+  width: 100px; /* Asumsi lebar jalur transmisi */
   height: 4px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
@@ -1179,6 +1179,7 @@ body{
   margin: 0 5px;
 }
 
+/* Sinyal Standar (Kiri ke Kanan): Digunakan untuk Sensor IoT ke Cloud */
 .signal-pulse {
   position: absolute !important;
   top: 0 !important;
@@ -1186,34 +1187,63 @@ body{
   height: 4px !important;
   background: var(--bio-light);
   border-radius: 2px;
-  animation: pulse 2s infinite linear;
+  
+  /* Menggunakan animasi standar (Kiri -> Kanan) */
   -webkit-animation: data-flow-pulse 2s infinite linear; 
   animation: data-flow-pulse 2s infinite linear; 
 }
 
-.signal-pulse.delay-1 {
+/* Sinyal Terbalik (Kanan ke Kiri): Digunakan untuk Cloud ke Dashboard */
+.signal-pulse-reverse {
+  position: absolute !important;
+  top: 0 !important;
+  width: 20px !important;
+  height: 4px !important;
+  background: var(--bio-light);
+  border-radius: 2px;
+  
+  /* Menggunakan animasi terbalik (Kanan -> Kiri) */
+ -webkit-animation: data-flow-pulse-reverse 2s infinite linear; 
+  animation: data-flow-pulse-reverse 2s infinite linear;
+}
+
+
+/* Penundaan (delay) untuk variasi sinyal */
+.delay-1 {
   animation-delay: 0.5s;
 }
 
-.signal-pulse.delay-2 {
+.delay-2 {
   animation-delay: 1s;
 }
 
-/* Tambahkan Keyframes lengkap ini */
+/* ----------------------------- */
+/* @KEYFRAMES YANG DIPERBAIKI */
+/* ----------------------------- */
+
+/* Keyframes Standar: KIRI -> KANAN (Contoh: Sensor ke Cloud) */
 @-webkit-keyframes data-flow-pulse { 
     0% { -webkit-transform: translateX(-20px); opacity: 0; }
     50% { opacity: 1; }
-    100% { -webkit-transform: translateX(100px); opacity: 0; }
+    100% { -webkit-transform: translateX(100px); opacity: 0; } /* Pindah ke KANAN */
 }
 @keyframes data-flow-pulse {
     0% { transform: translateX(-20px); opacity: 0; }
     50% { opacity: 1; }
-    100% { transform: translateX(100px); opacity: 0; } 
+    100% { transform: translateX(100px); opacity: 0; } /* Pindah ke KANAN */
 }
 
-@keyframes pulse-reverse { /* Terbalik: Kanan -> Kiri */
-    0% { transform: translateX(100px); opacity: 0; } /* Mulai dari kanan (lebar jalur 100px) */
-    100% { transform: translateX(-20px); opacity: 0; } /* Berakhir di kiri */
+
+/* Keyframes Baru: KANAN -> KIRI (Contoh: Cloud ke Dashboard) */
+@-webkit-keyframes data-flow-pulse-reverse { 
+    0% { -webkit-transform: translateX(100px); opacity: 0; } /* Mulai dari KANAN */
+    50% { opacity: 1; }
+    100% { -webkit-transform: translateX(-20px); opacity: 0; } /* Pindah ke KIRI */
+}
+@keyframes data-flow-pulse-reverse {
+    0% { transform: translateX(100px); opacity: 0; } /* Mulai dari KANAN */
+    50% { opacity: 1; }
+    100% { transform: translateX(-20px); opacity: 0; } /* Pindah ke KIRI */
 }
 
 /* Pastikan Keyframes default data-flow-pulse sudah diterapkan pada .signal-pulse */
@@ -1560,13 +1590,50 @@ body{
 }
 
 .meter-gauge {
-  width: 200px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 100px 100px 0 0;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 15px;
+    width: 200px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.meter-gauge::after { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Ukuran yang sama dengan container, karena mask yang akan memotong */
+    width: 100%; 
+    height: 100%;
+    
+    /* 1. Gradien Kerucut Statis (Periksa ulang sudutnya: 180 derajat setengah lingkaran) */
+    background: conic-gradient(
+        transparent 0deg,
+        var(--low) 0deg, 
+        var(--low) 63deg, 
+        var(--mid) 63deg, 
+        var(--mid) 126deg, 
+        var(--high) 126deg, 
+        var(--high) 180deg, 
+        transparent 180deg 
+    );
+    
+    /* Rotasi 270 derajat untuk memposisikan 0% di kiri bawah */
+    transform: rotate(270deg); 
+    z-index: 1; 
+
+    /* 2. Masking (Kunci untuk mengisi sesuai jarum) */
+    mask: conic-gradient(
+        white var(--filled, 0deg), /* Default 0deg jika belum diinisialisasi */
+        transparent 0% 
+    );
+    /* Penting: Setel posisi mask agar mulai dari titik pusat putaran jarum */
+    mask-position: center bottom;
+    /* Ukuran mask 200%x200% membuat bentuk lingkaran mask yang tepat memotong setengah lingkaran */
+    mask-size: 200% 200%; 
+    mask-repeat: no-repeat;
 }
 
 .gauge-fill {
@@ -1580,15 +1647,17 @@ body{
 }
 
 .gauge-needle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  height: 90%;
-  background: white;
-  transform-origin: bottom center;
-  transform: translateX(-50%) rotate(0deg);
-  transition: transform 0.5s ease;
+    /* Tetap seperti yang ada */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 90%;
+    background: white;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(0deg);
+    transition: transform 0.5s ease;
+    z-index: 2;
 }
 
 .risk-label {
@@ -3447,6 +3516,60 @@ h1, h2, .section-header h2, .bio-title {
 
 .metric-bar {
   height: 10px;
+}
+
+/* Cycle controls — improved UI for "Setiap" & unit */
+.cycle-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.cycle-label {
+  font-weight: 600;
+  color: #fff;
+}
+.feature-card .input-spinner {
+  border: 1px solid var(--surface-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  box-shadow: var(--shadow-sm);
+}
+.feature-card .input-spinner .form-input {
+  width: 64px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 700;
+}
+.btn-save {
+  background: linear-gradient(135deg, #FFB74D, #FF9800);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-smooth), box-shadow var(--dur-fast) var(--ease-smooth);
+}
+.btn-save:hover { transform: translateY(-1px); }
+.btn-save:active { transform: translateY(0); box-shadow: var(--shadow-md); }
+
+/* Visually hidden but accessible */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 .feature-card-footer {

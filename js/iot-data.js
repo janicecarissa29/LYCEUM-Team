@@ -13,6 +13,8 @@ function initFeaturesRealtime() {
 
   const gaugeFill = document.getElementById("gauge-fill");
   const gaugeNeedle = document.getElementById("gauge-needle");
+  const gaugeHighlight = document.getElementById("gauge-highlight");
+  const gaugeSector = document.getElementById("gauge-sector");
   const riskLabel = document.getElementById("risk-label");
   const riskPercentage = document.getElementById("risk-percentage");
   const recommendationsList = document.getElementById("recommendations-list");
@@ -55,6 +57,37 @@ function initFeaturesRealtime() {
     if (gaugeNeedle) {
       const deg = -90 + (clamped * 180) / 100;
       gaugeNeedle.style.transform = `translateX(-50%) rotate(${deg}deg)`;
+      // Map needle rotation (-90..+90) to conic angle (180..0)
+      const conicAngle = 90 - deg; // -90 -> 180deg, +90 -> 0deg
+      if (gaugeHighlight) {
+        gaugeHighlight.style.setProperty('--angle', `${conicAngle}deg`);
+      }
+      if (gaugeSector) {
+        gaugeSector.style.setProperty('--angle', `${conicAngle}deg`);
+        const filledDeg = Math.max(0, Math.min(180, 90 + deg));
+        gaugeSector.style.setProperty('--filled', `${filledDeg}deg`);
+      }
+    }
+
+    // Dynamic color that follows needle position
+    function getRiskColor(p) {
+      if (p < 30) return "#3cb371";     // Low
+      if (p < 70) return "#ffa502";     // Medium
+      return "#ff4757";                 // High
+    }
+    if (gaugeFill) {
+      // Set CSS variables so gradient center aligns to needle
+      gaugeFill.style.setProperty('--pos', `${clamped}%`);
+      gaugeFill.style.setProperty('--highlight', getRiskColor(clamped));
+    }
+    if (gaugeHighlight) {
+      gaugeHighlight.style.setProperty('--highlight', getRiskColor(clamped));
+    }
+    if (gaugeSector) {
+      // Optionally tweak gradient hues via CSS vars (kept same as fill)
+      gaugeSector.style.setProperty('--low', '#3cb371');
+      gaugeSector.style.setProperty('--mid', '#ffa502');
+      gaugeSector.style.setProperty('--high', '#ff4757');
     }
 
     // Generate recommendations
