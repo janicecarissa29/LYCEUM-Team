@@ -47,9 +47,9 @@ function createParticles() {
         positions[ix + 2] = (Math.random() - 0.5) * bounds * 2;
         
         // Snow-like velocities (mostly downward with some drift)
-        velocities[ix] = (Math.random() - 0.5) * 0.3;     // horizontal drift
-        velocities[ix + 1] = -Math.random() * 0.5 - 0.1;  // falling down
-        velocities[ix + 2] = (Math.random() - 0.5) * 0.3; // depth drift
+        velocities[ix] = (Math.random() - 0.5) * 0.08;     // horizontal drift (sangat lambat)
+        velocities[ix + 1] = -Math.random() * 0.12 - 0.03;  // falling down (sangat lambat)
+        velocities[ix + 2] = (Math.random() - 0.5) * 0.08; // depth drift
     }
     
     geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
