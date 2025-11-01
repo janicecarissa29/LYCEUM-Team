@@ -716,38 +716,60 @@ document.addEventListener('DOMContentLoaded', function() {
     if (groupPhotoWrapper && profilesContainer) {
         groupPhotoWrapper.style.cursor = 'pointer'; 
         
-        groupPhotoWrapper.addEventListener('click', function() {
-            
-            const isProfilesVisible = profilesContainer.classList.contains('show');
-            
-            if (isProfilesVisible) {
-               
-                profilesContainer.classList.remove('show');
-                groupPhotoWrapper.classList.remove('clicked');
-               
-                groupPhotoWrapper.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start' 
-                });
-                
-            } else {
-                profilesContainer.classList.add('show');
-                groupPhotoWrapper.classList.add('clicked'); 
+        // Tampilkan profil secara otomatis saat halaman dibuka
+        profilesContainer.classList.add('show');
+        groupPhotoWrapper.classList.add('clicked');
+        
+        // Helper untuk menampilkan kartu dan menggulir ke posisinya dengan offset navbar
+        const scrollToCardsWithOffset = () => {
+            const navbar = document.querySelector('.navbar');
+            const navH = navbar ? navbar.offsetHeight : 0;
+            const targetTop = profilesContainer.getBoundingClientRect().top + window.pageYOffset - navH - 12; // sedikit jarak
+            window.scrollTo({ top: targetTop, behavior: 'smooth' });
+        };
 
-                setTimeout(() => {
-                    profilesContainer.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start' 
-                    });
-                }, 100); 
-            }
+        const revealCards = () => {
+            profilesContainer.classList.add('show');
+            groupPhotoWrapper.classList.add('clicked');
+            scrollToCardsWithOffset();
+        };
+
+        groupPhotoWrapper.addEventListener('click', function(event) {
+            // Selalu tampilkan kartu
+            event.preventDefault();
+            event.stopPropagation();
+            revealCards();
         });
         
-        groupPhotoWrapper.addEventListener('dblclick', function() {
-             window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+        // Pastikan double-click berperilaku sama seperti klik
+        groupPhotoWrapper.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            revealCards();
         });
+
+        // Klik di area section foto tim juga memunculkan kartu
+        const teamPhotoSection = document.querySelector('.team-photo-section');
+        if (teamPhotoSection) {
+            teamPhotoSection.addEventListener('click', function(event) {
+                // Abaikan klik yang terjadi langsung pada kartu agar tidak mengganggu interaksi
+                if (event.target.closest('#profilesContainer')) return;
+                event.preventDefault();
+                event.stopPropagation();
+                revealCards();
+            });
+
+            // Pastikan klik pada overlay atau foto juga memicu perilaku yang sama
+            const overlay = teamPhotoSection.querySelector('.photo-overlay');
+            const teamImg = teamPhotoSection.querySelector('.team-group-photo');
+            [overlay, teamImg].forEach(el => {
+                if (!el) return;
+                el.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    revealCards();
+                });
+            });
+        }
     }
 });
