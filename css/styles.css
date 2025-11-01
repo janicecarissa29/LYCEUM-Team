@@ -3198,7 +3198,7 @@ h1, h2, .section-header h2, .bio-title {
   width: auto;
 }
 #checkCycleIntervalGroup .segment {
-  flex: 0 0 auto;
+  flex: 1;
   min-width: auto;
 }
 
