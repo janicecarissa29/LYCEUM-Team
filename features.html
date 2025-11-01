@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyceum - Data Sensor IoT Live</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/spinner-buttons.css">
+
+</head>
+<body>
+
+  
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
+      <button class="navbar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="navbar-menu">
+        <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="preview.html">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+        <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html" class="active">Features</a></li>
+        <li><a href="preview.html">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
+
+      </ul>
+    </div>
+
+  </nav>
+
+  <div class="layer-blur"></div>
+
+  <section class="features-showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2>Synbio Features</h2>
+      <p>Explore the powerful capabilities of our IoT monitoring system</p>
+    </div>
+    
+    <div class="features-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="monitoring">Sistem Real-time</button>
+        <button class="tab-btn" data-tab="analytics">Analisis Data</button>
+        <button class="tab-btn" data-tab="alerts">Smart Alerts</button>
+      </div>
+      
+      <div class="tab-content">
+        <div class="tab-panel active" id="monitoring">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="data-flow-animation">
+                <div class="sensor-node">
+                  <i class="fa-solid fa-microchip"></i>
+                  <span>Sensor IoT</span>
+                </div>
+                <div class="data-transmission">
+                  <div class="signal-pulse"></div>
+                  <div class="signal-pulse delay-1"></div>
+                  <div class="signal-pulse delay-2"></div>
+                </div>
+                <div class="cloud-node">
+                  <i class="fa-solid fa-cloud"></i>
+                  <span>Cloud Platform</span>
+                </div>
+                <div class="data-transmission reverse">
+                  <div class="signal-pulse-reverse"></div>
+                  <div class="signal-pulse-reverse delay-1"></div>
+                  <div class="signal-pulse-reverse delay-2"></div>
+                </div>
+                <div class="dashboard-node">
+                  <i class="fa-solid fa-display"></i>
+                  <span>Dashboard</span>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-description">
+              <h3>Real-time Data Monitoring</h3>
+              <p> Sistem kami akan mengambil data secara terus-menerus dan menampilkan sensor data secara real, agar pengguna dapat mendapatkan informasi secara langsung</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i> Pembaruan setiap 5 detik</li>
+                <li><i class="fa-solid fa-check"></i> Visualisasi live dashboard interaktif</li>
+                <li><i class="fa-solid fa-check"></i> Export data in multiple formats</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-panel" id="analytics">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="analytics-chart">
+                <div class="chart-container">
+                  <div class="chart-bar" style="height: 70%">
+                    <span class="chart-value">70%</span>
+                    <span class="chart-label">Akurasi Resiko</span>
+                  </div>
+                  <div class="chart-bar" style="height: 85%">
+                    <span class="chart-value">85%</span>
+                    <span class="chart-label">Ketepatan Data</span>
+                  </div>
+                  <div class="chart-bar" style="height: 90%">
+                    <span class="chart-value">90%</span>
+                    <span class="chart-label">Keunggulan Model</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Advanced Data Analytics</h3>
+              <p>Sistem analitik mesin kami memproses data yang diproses dari sensor IoT untuk meningkatkan wawasan yang dapat ditindaklanjuti dan tindakan pencegahan bakteri yang menyebar.</p>
+              <ul class="feature-benefits">
+                <li><i class="fa-solid fa-check"></i>Prediksi penyebaran bakteri</li>
+                <li><i class="fa-solid fa-check"></i> Penyemprotan otomatis</li>
+                <li><i class="fa-solid fa-check"></i> Mengkontrol sistem kerja jarak jauh</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-panel" id="alerts">
+          <div class="feature-detail">
+            <div class="feature-visual">
+              <div class="alert-system">
+
+                <div class="alert-indicator warning">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                  <span>Warning</span>
+                </div>
+                <div class="alert-indicator info">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <span>Information</span>
+                </div>
+              </div>
+            </div>
+            <div class="feature-description">
+              <h3>Smart Alert System</h3>
+              <p>Menerima notifikasi data secara berskala ketika terjadi perubahan yang tidak diinginkan, membantu kita mendeteksi dan mengontrol perubahan yang terjadi sebelum menjadi tidak terkontrol.</p>
+              <ul class="feature-benefits">
+               <li><i class="fa-solid fa-check"></i> Multi-notification (Email, WebApp)</li>
+                <li><i class="fa-solid fa-check"></i> Dapat mengetahui kemunculan bakteri Ralstonia solanacearum</li>
+                <li><i class="fa-solid fa-check"></i> Riwayat dan analitik peringatan</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+        
+
+<section class="feature-cards-section">
+  <div class="container">
+    <h2 class="section-title">Additional Capabilities</h2>
+    <div class="feature-cards-grid">
+      <div class="feature-card wide">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3>Siklus Pengecekan</h3>
+        <p>Atur jadwal pengecekan rutin dengan mudah.</p>
+        <!-- Metrics: Check cycle times - SIMPLIFIED -->
+        <div class="metrics-panel">
+          <div class="metric">
+            <i class="fa-solid fa-rotate"></i>
+            <span class="metric-label">Interval</span>
+            <span id="checkCycleInterval" class="metric-value">--m</span>
+          </div>
+          <div class="metric-sub">
+            <i class="fa-solid fa-clock"></i>
+            <span class="metric-label">Terakhir</span>
+            <span id="lastCheckTime" class="metric-value">--:--</span>
+            <span class="sep">•</span>
+            <span class="metric-label">Berikutnya</span>
+            <span id="nextCheckETA" class="metric-value">--m</span>
+          </div>
+        </div>
+        <!-- Controls: Simplified UI -->
+        <div class="fan-controls" style="margin-top:10px;">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Simplified interval selector with labels -->
+            <div class="segmented-control" id="checkCycleIntervalGroup" role="group" aria-label="Interval Check" style="margin-bottom:5px;">
+              <button type="button" class="segment" data-value="7">1 Minggu</button>
+              <button type="button" class="segment active" data-value="14">2 Minggu</button>
+              <button type="button" class="segment" data-value="28">1 Bulan</button>
+            </div>
+            
+            <!-- Action buttons with clearer labels -->
+            <div style="display:flex; gap:8px;">
+              <button type="button" class="segment" id="runCheckNowBtn" style="background-color:#4CAF50; color:white;">
+                <i class="fa-solid fa-play"></i> Jalankan Sekarang
+              </button>
+              <button type="button" class="segment" id="scheduleCheckBtn" style="background-color:#2196F3; color:white;">
+                <i class="fa-solid fa-calendar-check"></i> Jadwalkan
+              </button>
+            </div>
+
+            <!-- Pengulangan Otomatis - Model Awal -->
+            <div style="margin-top:16px;">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                <span style="font-weight:600;">Pengulangan Otomatis:</span>
+                <div class="toggle-control">
+                  <label class="toggle-switch" aria-label="Toggle Recurrence">
+                    <input type="checkbox" id="recurrenceToggle" />
+                    <span class="switch-track"></span>
+                    <span class="switch-thumb"></span>
+                  </label>
+                  <span class="switch-text" id="recurrenceText">OFF</span>
+                </div>
+              </div>
+              
+              <div class="cycle-controls">
+                <span class="cycle-label">Setiap</span>
+
+                <!-- Numeric stepper -->
+                <div class="input-spinner">
+                  <button type="button" class="spinner-btn spinner-down" data-target="recurrenceEvery" aria-label="Kurangi">−</button>
+                  <input id="recurrenceEvery" class="form-input" type="number" min="1" max="30" value="1" />
+                  <button type="button" class="spinner-btn spinner-up" data-target="recurrenceEvery" aria-label="Tambah">+</button>
+                </div>
+
+                <!-- Unit segmented control -->
+                <div class="segmented-control" id="recurrenceUnitGroup" role="group" aria-label="Unit Interval">
+                  <button type="button" class="segment" data-value="minutes">Menit</button>
+                  <button type="button" class="segment" data-value="hours">Jam</button>
+                  <button type="button" class="segment" data-value="days">Hari</button>
+                  <button type="button" class="segment" data-value="weeks">Minggu</button>
+                  <button type="button" class="segment active" data-value="months">Bulan</button>
+                </div>
+
+                <!-- Hidden select for data persistence and Firebase sync -->
+                <select id="recurrenceUnit" class="sr-only" aria-hidden="true">
+                  <option value="minutes">Menit</option>
+                  <option value="hours">Jam</option>
+                  <option value="days">Hari</option>
+                  <option value="weeks">Minggu</option>
+                  <option value="months" selected>Bulan</option>
+                </select>
+
+                <button type="button" id="saveRecurrenceBtn" class="btn-save">
+                  Simpan
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Advanced</span>
+        </div>
+      </div>
+
+      
+
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h3>Sinyal & Integritas Data</h3>
+        <p>Pantau kekuatan sinyal dan validasi integritas data untuk koneksi yang andal.</p>
+        <!-- Metrics: Signal strength & data integrity -->
+        <div class="metrics-panel">
+          <div class="metric">
+            <i class="fa-solid fa-signal"></i>
+            <span class="metric-label">Signal</span>
+            <span id="signalStrength" class="metric-value">--%</span>
+          </div>
+          <div class="metric">
+            <i class="fa-solid fa-shield"></i>
+            <span class="metric-label">Integrity</span>
+            <span id="dataIntegrity" class="metric-value">--</span>
+          </div>
+        </div>
+        <!-- Controls: Test link + data validation toggle -->
+        <div class="fan-controls" style="margin-top:10px;">
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+            <button type="button" class="segment" id="testLinkBtn">Test Link</button>
+            <div class="toggle-control">
+              <label class="toggle-switch" aria-label="Toggle Data Validation">
+                <input type="checkbox" id="dataValidationToggle" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+              <span class="switch-text" id="dataValidationText">OFF</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Essential</span>
+        </div>
+      </div>
+      
+      
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-fan" id="fanIcon"></i>
+        </div>
+        <h3>Kontrol Panel Kipas</h3>
+          <p>Memungkinkan pengguna untuk mengontrol status kipas secara manual.</p>
+          <div class="fan-control-panel">
+            <div class="fan-target">
+              <span class="fan-target-label">Fan:</span>
+              <div class="segmented-control" id="fanSelectorGroup" role="group" aria-label="Pilih Kipas">
+                <button type="button" class="segment active" data-value="fan1">Fan 1</button>
+                <button type="button" class="segment" data-value="fan2">Fan 2</button>
+              </div>
+            </div>
+            <div class="fan-status">
+              <span class="status-label">Status:</span>
+              <span class="status-indicator" id="fanStatus">OFF</span>
+            </div>
+            <div class="fan-controls">
+              <div class="toggle-control">
+                <label class="toggle-switch" aria-label="Toggle fan">
+                  <input type="checkbox" id="fanToggle" />
+                  <span class="switch-track"></span>
+                  <span class="switch-thumb"></span>
+                </label>
+                <span class="switch-text" id="fanToggleText">OFF</span>
+              </div>
+            </div>
+          </div>
+          <div class="feature-card-footer">
+           <span class="feature-tag">Control</span>
+          </div>
+      </div>
+
+      <!-- Kontrol Sprinkler -->
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-shower" id="sprinklerIcon"></i>
+        </div>
+        <h3>Kontrol Sprinkler</h3>
+        <p>Menampilkan status sprinkler.</p>
+        <div class="fan-control-panel">
+          <div class="fan-status">
+            <span class="status-label">Status:</span>
+            <span class="status-indicator" id="sprinklerStatus">OFF</span>
+          </div>
+          <div class="fan-controls">
+            <div class="toggle-control">
+              <label class="toggle-switch" aria-label="Toggle sprinkler">
+                <input type="checkbox" id="sprinklerToggle" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+              <span class="switch-text" id="sprinklerToggleText">OFF</span>
+              <span class="badge" id="sprinklerRaw">Raw: --</span>
+            </div>
+          </div>
+        </div>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Control</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="interactive-demo">
+  <div class="container">
+    <h2 class="section-title">IoT Live Monitoring</h2>
+    <div class="demo-container">
+      <div class="demo-controls">
+        <h3>Simulasi Data Sensor</h3>
+        
+        <div class="slider-control">
+          <label for="temp-slider">Temperature (°C)</label>
+          <input type="range" id="temp-slider" min="15" max="40" value="28" class="slider" disabled>
+          <span id="temp-value">28°C</span>
+        </div>
+        
+        <div class="slider-control">
+          <label for="ph-slider">pH Level</label>
+          <input type="range" id="ph-slider" min="4" max="9" value="6.5" step="0.1" class="slider" disabled>
+          <span id="ph-value">6.5</span>
+        </div>
+        
+        <div class="slider-control">
+          <label for="moisture-slider">Moisture (%)</label>
+          <input type="range" id="moisture-slider" min="20" max="90" value="65" class="slider" disabled>
+          <span id="moisture-value">65%</span>
+        </div>
+        
+        <!-- Tambahkan indikator live -->
+        <div class="live-badges">
+          <span class="live-badge">🟢 Live Data</span>
+          <span class="badge">Auto Update: 5s</span>
+        </div>
+      </div>
+      
+      <div class="demo-result">
+        <div class="risk-meter">
+          <div class="meter-gauge">
+            <div class="gauge-fill" id="gauge-fill"></div>
+            <div class="gauge-highlight" id="gauge-highlight"></div>
+            <div class="gauge-needle" id="gauge-needle"></div>
+          </div>
+          <div class="risk-label" id="risk-label">Medium Risk</div>
+          <div class="risk-percentage" id="risk-percentage">45%</div>
+        </div>
+        
+        <div class="recommendations">
+          <h4>Recommendations</h4>
+          <ul id="recommendations-list">
+            <li>Loading recommendations...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <div id="loginSignupModal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="tabs">
+          <button id="loginTab" class="tab-btn active" onclick="showForm('login')">Log In</button>
+          <button id="signupTab" class="tab-btn" onclick="showForm('signup')">Sign Up</button>
+      </div>
+      
+      <div id="loginForm" class="form-container">
+          <h3>Log In</h3>
+          <form id="loginFormElement">
+              <input type="email" id="loginEmail" placeholder="Email" required>
+              <input type="password" id="loginPassword" placeholder="Password" required>
+              <button type="submit">Log In</button>
+          </form>
+      </div>
+
+      <div id="signupForm" class="form-container hidden">
+          <h3>Sign Up</h3>
+         <form id="signupFormElement">
+              <input type="email" id="signupEmail" placeholder="Email" required />
+              <div class="password-wrapper">
+                <input type="password" id="signupPassword" placeholder="Password" required autocomplete="new-password" />
+              </div>
+              <button type="submit" id="signupBtn">Sign Up</button>
+          </form>
+      </div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3> About Lyceum</h3>
+          <p style="color:#314432; margin-bottom:20px;">Lyceum adalah tempat perkumpulan para pemikir dan pelajar untuk bertukar dan mengembangkan ilmu pengetahuan dan filsafat.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-location-dot"></i> <span>Jl.DR.Sutomo,Bukit Cermin,Kec.Tanjungpinang Bar.,Kota Tanjungpinang,Kepulauan Riau</span></li>
+            <li><i class="fa-solid fa-envelope"></i> <span>lyceumsmansa@gmail.com</span></li>
+            <li><i class="fa-solid fa-clock"></i><span> Mon-Fri: 7am - 3pm</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2025 Lyceum.co
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/login.js"></script>
+  <script type="module" src="../js/auth-check.js"></script>
+  <script type="module" src="../js/fan-control.js"></script>
+  <script type="module" src="../js/sprinkler-control.js"></script>
+  <script type="module" src="../js/iot-data.js"></script>
+  <script type="module" src="../js/additional-metrics.js"></script>
+  <script src="../js/spinner-controls.js"></script>
+  <script src="../js/script.js"></script>
+
+</body>
+</html>
+
+<!-- Support Modal (consistent across pages) -->
+<div class="support-modal-overlay hidden" id="supportModal">
+  <div class="support-modal-content">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <h3>Need Assistance?</h3>
+    <p>We're here to help you understand Lyceum's project!</p>
+    
+    <div class="support-contact-links">
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <h4>Call Us</h4>
+        <p>+62 818-0918-5655</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <h4>Email Us</h4>
+        <a href="mailto:Lyceum.co@email.com">lyceumsmansa@email.com</a>
+      </div>
+    </div>
+
+    <h4>Connect With Us</h4>
+    <div class="social-links-modal">
+      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </div>
+</div>
