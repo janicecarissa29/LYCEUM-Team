@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +9,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
+
+  
 
   <nav class="navbar">
     <div class="navbar-container">
@@ -64,7 +68,9 @@
   <div class="layer-blur"></div>
 
 <section class="preview-section">
-        <div class="preview-container">
+  <div id="sand-fluida-container" class="sand-fluida-container"></div>
+  <!-- Partikel mirip Home, tanpa mengubah background sand-fluida -->
+    <div class="preview-container">
             <div class="orientation">
                 <h3>Latar Belakang</h3>
                 <p>Ralstonia Solanacearum adalah patogen yang dikenal sebagai agen penyebab layu bakteri, patogen ini menyerang lebih dari 450 spesies tanaman dari 54 famili botani, termasuk tomat, cabai, dan kentang.
@@ -79,10 +85,10 @@
                             <img src="../assets/images/image2.jpg" alt="Tanaman Terinfeksi">
                         </div>
                          <div class="slide">
-                            <img src="../assets/images/image3.jpg" alt="Bakteri">
+                            <img src="../assets/images/image3.jpg" alt="Bakteri Myxococcus Xanthus">
                         </div>
                         <div class="slide">
-                            <img src="../assets/images/profile11.jpeg" alt="Penelitian Laboratorium">
+                            <img src="../assets/images/image4.jpeg" alt="3D Designer">
                         </div>
                     </div>
                     
@@ -100,10 +106,11 @@
         </div>
     </section>
 
-</section>
+ </section>
 
 
 <section class="prv">
+  <div id="sand-fluida-container"></div>
   <div class="prv-container">
 
     <div class="preview-card" onclick="toggleCardAnimation(this)">
@@ -148,15 +155,15 @@
 </section>
 
 
- <footer>
+  <footer>
     <div class="container">
       <div class="footer-content">
         <div class="footer-column">
           <h3> About Lyceum</h3>
           <p style="color:#314432; margin-bottom:20px;">Lyceum adalah tempat perkumpulan para pemikir dan pelajar untuk bertukar dan mengembangkan ilmu pengetahuan dan filsafat.</p>
           <div class="social-links">
-            <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank"><i class="fa-brands fa-github"></i></a>
             <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
@@ -177,7 +184,7 @@
     </div>
   </footer>
 
-  <div class="support-modal-overlay hidden" id="supportModal">
+ <div class="support-modal-overlay hidden" id="supportModal">
   <div class="support-modal-content">
     <button class="close-btn" id="closeModal">&times;</button>
     <h3>Need Assistance?</h3>
@@ -199,16 +206,17 @@
 
     <h4>Connect With Us</h4>
     <div class="social-links-modal">
-      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank"><i class="fa-brands fa-github"></i></a>
       
     </div>
   </div>
 </div>
 
-        
-   <script type="module" src="../js/firebase.js"></script>
- <script type="module" src="../js/auth-check.js"></script>
- <script src="../js/script.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="../js/sand-fluida.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/auth-check.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 </html>
