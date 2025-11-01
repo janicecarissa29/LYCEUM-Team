@@ -14,8 +14,7 @@
 Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluorescent Protein (GFP)** untuk deteksi dini penyakit dan teknologi gene editing untuk mengembangkan solusi biologis yang ramah lingkungan.
 
 ### 🎯 Tujuan Utama
-- Mendeteksi dan mengendalikan penyakit tanaman secara real-time
-- Mengurangi penggunaan pestisida kimia berbahaya
+- Mendeteksi dan mengendalikan penyakit Ralstonia Solanacearum secara real-time
 - Meningkatkan produktivitas pertanian melalui teknologi precision farming
 - Menyediakan platform monitoring yang mudah digunakan untuk petani
 
@@ -24,15 +23,23 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 ### Core Development Team
 | Nama | Role | Expertise | Contact |
 |------|------|-----------|---------|
-| **Aidil Baihaqi** | Project Lead & Full-Stack Developer | Web Development, System Architecture | - |
-| **[Team Member 2]** | Biotechnology Specialist | Synthetic Biology, Gene Editing | - |
-| **[Team Member 3]** | IoT Engineer | Hardware Integration, Sensor Networks | - |
-| **[Team Member 4]** | UI/UX Designer | User Interface, User Experience | - |
-| **[Team Member 5]** | Data Scientist | Machine Learning, Data Analysis | - |
+| **Elga Elvis** | Project Lead & IoT Engineer | Hardware Integration | - |
+| **Wildan Rizqi Syahputra** | Biotech Developer | Synthetic Biology  | - |
+| **Edbert Andrisen Ng** | IoT Engineer |3D Simulation Engineer, Sensor Networks | - |
+| **Faustino Fernando** |  IoT Engineer |  Hardware Integration | - |
+| **Eric** | Backend Developer | UI/UX Developer | - |
+| **Nathaniel Judika Harefa** | Plasmid Designer | - | | - |
+| **Syarif Rahmat Akbar** | Researcher | - | | - |
+| **Janice Carissa** | UI/UX Designer | - | | - |
+| **Francisca Viola** | Biology Developer | - | | - |
+| **Violetta Augustia Renata** | Video Producer & Editor | - | | - |
+
 
 ### Advisors & Mentors
-- **[Advisor Name]** - Agricultural Technology Expert
-- **[Advisor Name]** - Biotechnology Research Supervisor
+- **Kennis Rozana S.Pd.,M.Si** -  Biotechnology Research Supervisor
+- **Ezra Harvey Pongarrang** - Biotechnology Research Supervisor
+- **Aidil Baihaqi** - Informatics Supervisor
+- **Jeffry** - Biology Supervisor
 
 ## 🚀 Fitur Utama
 
@@ -49,7 +56,7 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 
 ### 📊 Analisis Data
 - **Environmental Monitoring**: Suhu, kelembaban, pH tanah
-- **Disease Detection**: Identifikasi dini gejala penyakit
+- **Disease Detection**: Identifikasi dini penyakit Ralstonia Solanacearum pada tanaman
 - **Predictive Analytics**: Prediksi risiko penyakit berdasarkan data historis
 
 ## 🛠️ Teknologi yang Digunakan
@@ -80,20 +87,24 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 
 ```
 LYCEUM-Team/
-├── 📄 README.md                 # Dokumentasi project
-├── 🏠 index.html               # Homepage utama
-├── 📁 assets/                  # Asset files
-│   └── 📁 images/             # Gambar dan foto tim
-├── 📁 css/                    # Stylesheet files
-│   └── 🎨 styles.css          # Main stylesheet
-├── 📁 js/                     # JavaScript files
-│   ├── 🔐 auth-check.js       # Authentication logic
-│   ├── 🔥 firebase.js         # Firebase configuration
-│   ├── ⚙️ firebaseConfig.js   # Firebase settings
-│   ├── 📊 iot-data.js         # IoT data handling
-│   ├── 🔄 iot-sync.js         # Data synchronization
-│   ├── 👤 login.js            # Login functionality
-│   └── 📜 script.js           # Main JavaScript
+├── 📄 README.md                    # Dokumentasi project
+├── 🏠 index.html                   # Homepage utama
+├── 📁 assets/                      # Asset files
+│   └── 📁 images/                  # Gambar dan foto tim
+├── 📁 css/                         # Stylesheet files
+│   └── 🎨 styles.css               # Main stylesheet
+├── 📁 js/                          # JavaScript files
+│   ├── 🔐 auth-check.js            # Authentication logic
+│   ├── 🔥 firebase.js              # Firebase configuration
+│   ├── ⚙️ firebaseConfig.js        # Firebase settings
+│   ├── 📊 iot-data.js              # IoT data handling
+│   ├── 🔄 iot-sync.js              # Data synchronization
+│   ├── 📈 Additional-metrics.js    # Metric sistem
+|   ├── 🎮 home-3d.js               # 3D animation
+|   ├── ❄️ sand-fluida.js           # Sand fluid sistem
+|   ├── ⏳ spinner-control.js       # Spinner control
+|   ├── 🚿 sprinkler-control.js     # Sprinkler control
+│   └── 📜 script.js  
 └── 📁 pages/                  # HTML pages
     ├── ℹ️ about.html          # About page
     ├── ⭐ features.html       # Features page
@@ -197,18 +208,14 @@ Project ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE
 ## 📞 Kontak & Support
 
 ### Tim LYCEUM
-- **Email**: lyceum.team@example.com
-- **Website**: [https://lyceum-project.com](https://lyceum-project.com)
+- **Email**: lyceum.smansa@email.com
+- **contact**: +62 818-0918-5655
 - **GitHub**: [https://github.com/lyceum-team](https://github.com/lyceum-team)
 
 ### Social Media
-- **LinkedIn**: [LYCEUM Project](https://linkedin.com/company/lyceum-project)
-- **Twitter**: [@LyceumProject](https://twitter.com/LyceumProject)
-- **Instagram**: [@lyceum.project](https://instagram.com/lyceum.project)
+- **Instagram**: [@lyceum.co](https://instagram.com/lyceum.co)
 
 ## 🙏 Acknowledgments
-
-- **Universitas/Institusi**: Dukungan penelitian dan fasilitas
 - **Mentor & Advisor**: Bimbingan teknis dan akademis
 - **Open Source Community**: Library dan tools yang digunakan
 - **Firebase Team**: Platform backend yang reliable
