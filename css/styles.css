@@ -49,7 +49,6 @@ body{
   background: linear-gradient(to bottom,#134e5e, #71b280);
 }
 
-/* Scroll reveal utility */
 .reveal {
   opacity: 0;
   transform: translateY(14px);
@@ -652,7 +651,7 @@ body{
     left: 100%;
 }
 
-/* Enhanced Form Container */
+
 .form-container {
     text-align: center;
 }
@@ -665,15 +664,14 @@ body{
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Enhanced Input Fields with Better Spacing */
 .input-group {
     position: relative;
-    margin-bottom:25px; /* Increased from 20px to 25px */
+    margin-bottom:25px; 
 }
 
 .form-container input {
     width: 100%;
-    padding: 16px 20px; /* Slightly increased padding for better height */
+    padding: 16px 20px; 
     margin-bottom: 20px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
@@ -699,7 +697,7 @@ body{
 
 .form-container button[type="submit"] {
     width: 100%;
-    padding: 16px; /* Increased padding for better proportion */
+    padding: 16px; 
     background: linear-gradient(135deg, var(--bio-medium), var(--bio-accent));
     color: white;
     border: none;
@@ -707,7 +705,7 @@ body{
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-top: 25px; /* Increased from 20px to 25px */
+    margin-top: 25px;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -724,7 +722,6 @@ body{
     transform: translateY(-1px);
 }
 
-/* Inline form message for login/signup */
 .form-message {
   margin-top: 8px;
   font-size: 0.9rem;
@@ -732,10 +729,10 @@ body{
   display: none;
 }
 .form-message[data-type="error"] {
-  color: #e74c3c; /* Lyceum theme danger */
+  color: #e74c3c; 
 }
 .form-message[data-type="success"] {
-  color: #2ecc71; /* Lyceum theme success */
+  color: #2ecc71; 
 }
 
 .close-modal {
@@ -774,7 +771,7 @@ body{
     font-size: 0.9rem;
     transition: color 0.3s ease;
     display: block;
-    margin-bottom: 8px; /* Added spacing between links */
+    margin-bottom: 8px; 
 }
 
 .form-links a:hover {
@@ -790,19 +787,19 @@ body{
 
 .social-login p {
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 18px; /* Increased from 15px to 18px */
+    margin-bottom: 18px; 
     font-size: 0.9rem;
 }
 
 .social-buttons {
     display: flex;
-    gap: 12px; /* Increased from 10px to 12px */
+    gap: 12px; 
     justify-content: center;
 }
 
 .social-btn {
     flex: 1;
-    padding: 14px; /* Increased from 12px to 14px */
+    padding: 14px; 
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
@@ -812,7 +809,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Increased from 8px to 10px */
+    gap: 10px; 
     font-size: 0.9rem;
 }
 
@@ -833,16 +830,16 @@ body{
     
     .tabs {
         flex-direction: column;
-        gap: 8px; /* Increased from 5px to 8px */
+        gap: 8px; 
     }
     
     .social-buttons {
         flex-direction: column;
-        gap: 10px; /* Added gap for mobile */
+        gap: 10px; 
     }
     
     .input-group {
-        margin-bottom: 20px; /* Slightly reduced for mobile */
+        margin-bottom: 20px;
     }
 }
 
@@ -877,7 +874,6 @@ body{
    text-overflow: ellipsis;
  }
  
- /* Menu actions styling inside dropdown */
 .menu-actions {
   display: flex;
   flex-direction: column;
@@ -914,7 +910,6 @@ body{
   color: white;
 }
 
-/* Desktop Action Buttons */
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -981,16 +976,16 @@ body{
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive behavior for desktop actions */
+
 @media (max-width: 1024px) {
   .navbar-actions {
     display: none;
   }
-  /* Ensure main nav links only appear in hamburger on small screens */
+ 
   .navbar-menu {
     display: none !important;
   }
-  /* Move user email slightly to the right on small screens */
+  
   .user-info {
     margin-left: auto;
     margin-right: 20px;
@@ -1158,14 +1153,14 @@ body{
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 500px;
+    max-width: 500px;
 }
 
 .sensor-node, .cloud-node, .dashboard-node {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
 }
 
 .sensor-node i, .cloud-node i, .dashboard-node i {
@@ -1176,41 +1171,88 @@ body{
 
 .data-transmission {
   position: relative;
-  width: 80px;
+  width: 100px; /* Asumsi lebar jalur transmisi */
   height: 4px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 2px;
   overflow: hidden;
+  margin: 0 5px;
 }
 
+/* Sinyal Standar (Kiri ke Kanan): Digunakan untuk Sensor IoT ke Cloud */
 .signal-pulse {
-  position: absolute;
-  width: 20px;
-  height: 4px;
+  position: absolute !important;
+  top: 0 !important;
+  width: 20px !important;
+  height: 4px !important;
   background: var(--bio-light);
   border-radius: 2px;
-  animation: pulse 2s infinite linear;
+  
+  /* Menggunakan animasi standar (Kiri -> Kanan) */
+  -webkit-animation: data-flow-pulse 2s infinite linear; 
+  animation: data-flow-pulse 2s infinite linear; 
 }
 
-.signal-pulse.delay-1 {
+/* Sinyal Terbalik (Kanan ke Kiri): Digunakan untuk Cloud ke Dashboard */
+.signal-pulse-reverse {
+  position: absolute !important;
+  top: 0 !important;
+  width: 20px !important;
+  height: 4px !important;
+  background: var(--bio-light);
+  border-radius: 2px;
+  
+  /* Menggunakan animasi terbalik (Kanan -> Kiri) */
+ -webkit-animation: data-flow-pulse-reverse 2s infinite linear; 
+  animation: data-flow-pulse-reverse 2s infinite linear;
+}
+
+
+/* Penundaan (delay) untuk variasi sinyal */
+.delay-1 {
   animation-delay: 0.5s;
 }
 
-.signal-pulse.delay-2 {
+.delay-2 {
   animation-delay: 1s;
 }
 
-.data-transmission.reverse .signal-pulse {
-  animation-direction: reverse;
+/* ----------------------------- */
+/* @KEYFRAMES YANG DIPERBAIKI */
+/* ----------------------------- */
+
+/* Keyframes Standar: KIRI -> KANAN (Contoh: Sensor ke Cloud) */
+@-webkit-keyframes data-flow-pulse { 
+    0% { -webkit-transform: translateX(-20px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { -webkit-transform: translateX(100px); opacity: 0; } /* Pindah ke KANAN */
+}
+@keyframes data-flow-pulse {
+    0% { transform: translateX(-20px); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100px); opacity: 0; } /* Pindah ke KANAN */
 }
 
-@keyframes pulse {
-  0% {
-    left: -20px;
-  }
-  100% {
-    left: 100%;
-  }
+
+/* Keyframes Baru: KANAN -> KIRI (Contoh: Cloud ke Dashboard) */
+@-webkit-keyframes data-flow-pulse-reverse { 
+    0% { -webkit-transform: translateX(100px); opacity: 0; } /* Mulai dari KANAN */
+    50% { opacity: 1; }
+    100% { -webkit-transform: translateX(-20px); opacity: 0; } /* Pindah ke KIRI */
+}
+@keyframes data-flow-pulse-reverse {
+    0% { transform: translateX(100px); opacity: 0; } /* Mulai dari KANAN */
+    50% { opacity: 1; }
+    100% { transform: translateX(-20px); opacity: 0; } /* Pindah ke KIRI */
+}
+
+/* Pastikan Keyframes default data-flow-pulse sudah diterapkan pada .signal-pulse */
+
+/* Ini menimpa animasi untuk jalur kedua */
+.reverse-flow .signal-pulse {
+    /* Gunakan Keyframes yang bergerak ke kiri */
+    animation: pulse-reverse 2s infinite linear !important;
+    -webkit-animation: pulse-reverse 2s infinite linear !important; 
 }
 
 .analytics-chart {
@@ -1420,12 +1462,12 @@ body{
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 600;
-  background: #dc3545; /* Default red for OFF */
+  background: #dc3545; 
   color: white;
 }
 
 .status-indicator.active {
-  background: #28a745; /* Green for ON */
+  background: #28a745; 
 }
 
 .fan-controls {
@@ -1548,13 +1590,50 @@ body{
 }
 
 .meter-gauge {
-  width: 200px;
-  height: 100px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 100px 100px 0 0;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 15px;
+    width: 200px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100px 100px 0 0;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.meter-gauge::after { 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Ukuran yang sama dengan container, karena mask yang akan memotong */
+    width: 100%; 
+    height: 100%;
+    
+    /* 1. Gradien Kerucut Statis (Periksa ulang sudutnya: 180 derajat setengah lingkaran) */
+    background: conic-gradient(
+        transparent 0deg,
+        var(--low) 0deg, 
+        var(--low) 63deg, 
+        var(--mid) 63deg, 
+        var(--mid) 126deg, 
+        var(--high) 126deg, 
+        var(--high) 180deg, 
+        transparent 180deg 
+    );
+    
+    /* Rotasi 270 derajat untuk memposisikan 0% di kiri bawah */
+    transform: rotate(270deg); 
+    z-index: 1; 
+
+    /* 2. Masking (Kunci untuk mengisi sesuai jarum) */
+    mask: conic-gradient(
+        white var(--filled, 0deg), /* Default 0deg jika belum diinisialisasi */
+        transparent 0% 
+    );
+    /* Penting: Setel posisi mask agar mulai dari titik pusat putaran jarum */
+    mask-position: center bottom;
+    /* Ukuran mask 200%x200% membuat bentuk lingkaran mask yang tepat memotong setengah lingkaran */
+    mask-size: 200% 200%; 
+    mask-repeat: no-repeat;
 }
 
 .gauge-fill {
@@ -1568,15 +1647,17 @@ body{
 }
 
 .gauge-needle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 2px;
-  height: 90%;
-  background: white;
-  transform-origin: bottom center;
-  transform: translateX(-50%) rotate(0deg);
-  transition: transform 0.5s ease;
+    /* Tetap seperti yang ada */
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 90%;
+    background: white;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(0deg);
+    transition: transform 0.5s ease;
+    z-index: 2;
 }
 
 .risk-label {
@@ -1595,6 +1676,7 @@ body{
   display: flex;
   gap: 10px;
   margin-top: 8px;
+  justify-content: center;
 }
 
 .live-badge, .live-badges .badge {
@@ -1623,6 +1705,8 @@ body{
 
 .recommendations ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .recommendations li {
@@ -1737,7 +1821,6 @@ p {
   justify-content:center;
   align-items:center;
   position:relative;
-  /* background reverted to inherit (no override) */
 }
 
 .preview-container{
@@ -1748,23 +1831,23 @@ p {
   z-index:1;
 }
 
-/* Fluid sand background memenuhi seluruh halaman kecuali navbar dan footer */
+/* Fluid sand */
 .sand-fluida-container{
   position:fixed;
-  top: 80px; /* Height of navbar */
+  top: 80px; 
   left: 0;
   right: 0;
-  bottom: 60px; /* Height of footer */
+  bottom: 60px;
   width: 100vw;
-  height: calc(100vh - 140px); /* Full viewport minus navbar and footer */
+  height: calc(100vh - 140px); 
   min-width: 100vw;
   min-height: calc(100vh - 140px);
   display:flex;
   justify-content:center;
   align-items:center;
-  pointer-events:none; /* keep interactions on content */
+  pointer-events:none; 
   z-index:0;
-  opacity: 0.8; /* Make it more visible */
+  opacity: 0.8; 
 }
 
 .sand-fluida-container canvas {
@@ -1816,7 +1899,7 @@ p {
   .image-slider {
    position: relative;
    width: 80%;
-   height: 400px;
+   height: 550px;
    border-radius: 15px;
    overflow: hidden;
    box-shadow: 0 8px 25px rgba(149, 199, 170, 0.4);
@@ -1905,21 +1988,21 @@ p {
 
   @media (max-width: 768px) {
     .orientation {
-      padding: 25px;
+      padding: 30px;
       }
   
     .image-slider {
-       height: 250px;
+       height: 350px;
             }
           }
 
  @media (max-width: 480px) {
  .orientation {
-   padding: 20px;
+   padding: 25px;
     }
             
  .image-slider {
-  height: 200px;
+  height: 250px;
    }
             
   h3 {
@@ -1942,7 +2025,7 @@ p {
     display: flex;
     flex-direction: column;
     overflow: hidden; 
-    height:450px;
+    height:500px;
 }
 
 
@@ -2354,6 +2437,187 @@ background:#76c799;
     margin-top: 0px;
 }
 
+.about-bg {
+    position: relative;
+    min-height: 100vh;
+    cursor: pointer;
+}
+
+body.no-scroll {
+    overflow: hidden;
+    height: 80vh;
+}
+
+.about-bg .team-photo-container {
+   position: relative; z-index: 1; 
+  }
+
+.about-bg .team-photo-wrapper {
+    margin-top: 77px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.about-bg .team-photo-wrapper:hover {
+    transform: none;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+}
+
+.about-bg::before {
+    content: "";
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background-image: url('../assets/images/groupprofile2.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+    transition: none !important;
+}
+
+.about-bg::before:hover,
+.about-bg::before:active,
+.about-bg::before:focus {
+    opacity: 0.5 !important;
+    background: none !important;
+    filter: none !important;
+}
+
+.team-group-photo {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.photo-overlay .photo-caption {
+    opacity: 0;
+    transform: translateY(10px); 
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: transparent !important;
+    padding: 40px 30px 30px;
+    transform: translateY(0) !important;
+    transition: background 0.4s ease, opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.team-photo-wrapper:hover .photo-caption,
+.team-photo-wrapper:hover .click-indicator {
+    opacity: 1;
+    transform: translateY(0); /* Kembalikan pergerakan */
+}
+
+.photo-caption h3 {
+    font-family: 'Playfair', serif;
+    font-size: 1.8rem;
+    color: white;
+    margin-bottom: 20px; 
+    font-weight: 600;
+}
+
+.click-me-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(87, 150, 114, 0.8);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-top: 10px;
+    display: inline-block;
+    animation: pulse 2s infinite;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.click-indicator {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(87, 150, 114, 0.8);
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin-top: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.click-indicator .click-text {
+    letter-spacing: 0.5px;
+}
+
+.arrow-down {
+    display: inline-block;
+    animation: arrowBounce 1.2s infinite ease-in-out;
+}
+
+/* Arrow bounce animation */
+@keyframes arrowBounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.profiles-container {
+    opacity: 0;
+    max-height:0;
+    overflow:hidden;
+    transform: translateY(50px);
+    transition: max-height 1s ease-in-out, opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+    z-index:1;
+    
+}
+
+.profiles-container.show {
+    opacity: 1;
+    max-height: 3000px;
+    overflow:visible;
+    transform: translateY(0);
+    margin-top:3rem;
+    pointer-events: auto;
+}
+
+.profiles-container.show .profile-card {
+    animation: popIn 0.5s ease forwards;
+}
+
+.profile-card {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
 .team-photo-container {
     max-width: 1900px;
     margin: 0 auto;
@@ -2366,10 +2630,10 @@ background:#76c799;
 
 .team-photo-title {
     font-family: 'Playfair', serif;
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     font-weight: 700;
     color: var(--bio-accent);
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -2380,7 +2644,7 @@ background:#76c799;
     font-weight: 400;
     max-width: 600px;
     margin: 0 auto;
-    line-height: 1.6;
+    line-height: 1.4;
 }
 
 .team-photo-wrapper {
@@ -2407,27 +2671,18 @@ background:#76c799;
     border-radius: 20px;
 }
 
-.photo-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    padding: 40px 30px 30px;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
-}
-
 .team-photo-wrapper:hover .photo-overlay {
-    transform: translateY(0);
+   background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.75) 0%, 
+        rgba(0, 0, 0, 0.5) 40%,  
+        rgba(0, 0, 0, 0) 100%   
+    ) !important;
 }
 
-.photo-caption h3 {
-    font-family: 'Playfair', serif;
-    font-size: 1.8rem;
-    color: white;
-    margin-bottom: 8px;
-    font-weight: 600;
+.team-photo-wrapper:hover .photo-caption h3 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .photo-caption p {
@@ -2438,7 +2693,6 @@ background:#76c799;
     font-weight: 300;
 }
 
-/* Responsive Design for Team Photo */
 @media (max-width: 768px) {
     .team-photo-section {
         padding: 15px 15px 40px;
@@ -2471,23 +2725,18 @@ background:#76c799;
     }
 }
 
-/* Improve profiles layout spacing */
 .profiles-container {
      display: flex;
      flex-wrap: wrap;
-     gap: 100px;
+     gap: 28px; 
      justify-content: center;
      align-items:flex-start;
-     margin: 100px auto 100px;
+     margin: 24px auto 40px;
      justify-content: center;
-     max-width: 1400px;
+     max-width: 1300px;
      width: 100%;
-     row-gap: 100px;
-     /* background reverted to inherit (no override) */
+     row-gap: 50px; 
  }
-
-/* Decorative overlays similar to Home */
-/* Decorative overlays removed to restore original About */
 
 .profile-card {
     background: rgba(255, 255, 255, 0.15);
@@ -2496,10 +2745,13 @@ background:#76c799;
     box-shadow: 0 10px 30px rgba(183, 236, 206, 0.3);
     min-width: 250px;
     max-width: 350px;
+    height: 500px; 
     overflow: hidden;
     transition: all 0.4s ease;
     border: 1px solid rgba(87, 150, 114, 0.2);
     flex: 1 1 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile-card:hover {
@@ -2517,7 +2769,7 @@ background:#76c799;
 
 .profile-image {
     width: 180px;
-    height: 180px;
+    height: 200px;
     border-radius: 35%;
     border: 5px solid rgba(255, 255, 255, 0.3);
     object-fit: cover;
@@ -2536,6 +2788,7 @@ background:#76c799;
     text-align: center;
     color: white;
     z-index: 2;
+    flex-grow: 1;
 }
 
 .profile-name {
@@ -2602,7 +2855,6 @@ canvas {
   opacity: 0.6;
 }
 
-/* Keyframes for animations */
 @keyframes rotate {
   from {
     transform: rotate(0deg);
@@ -2651,6 +2903,7 @@ canvas {
   -webkit-backdrop-filter: blur(6px);
   z-index: 2000;
 }
+
 .auth-loading-content {
   display: flex;
   flex-direction: column;
@@ -2662,6 +2915,7 @@ canvas {
   border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
+
 .auth-loading .spinner {
   width: 56px;
   height: 56px;
@@ -2671,12 +2925,13 @@ canvas {
   box-shadow: 0 0 24px rgba(113, 178, 128, 0.55);
   animation: auth-spin 800ms linear infinite;
 }
+
 .auth-loading .message {
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
-/* Keyframes for auth spinner */
+
 @keyframes auth-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -2718,9 +2973,6 @@ canvas {
 }
 
 /* 3D Home Container */
-/* --------------------------------------------
-   UI Polish Overrides (non-breaking enhancements)
-   -------------------------------------------- */
 
 /* Typography refinements */
 h1, h2, .section-header h2, .bio-title {
@@ -2733,7 +2985,6 @@ h1, h2, .section-header h2, .bio-title {
   text-shadow: 0 1px 12px rgba(0,0,0,0.15);
 }
 
-/* Buttons: consistent radius and hover softness */
 .btn-primary {
   border-radius: var(--radius-sm);
   border-color: var(--accent);
@@ -2759,7 +3010,6 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: var(--shadow-md);
 }
 
-/* Fan control card refresh */
 .fan-control-panel {
   background: var(--surface);
   border-radius: var(--radius-md);
@@ -2781,7 +3031,6 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2), 0 4px 12px rgba(40,167,69,0.35);
 }
 
-/* Fan icon spin animation and active state styling */
 #fanIcon {
   transition: color var(--dur-fast) var(--ease-smooth), filter var(--dur-fast) var(--ease-smooth);
 }
@@ -2797,7 +3046,6 @@ h1, h2, .section-header h2, .bio-title {
   to { transform: rotate(360deg); }
 }
 
-/* Fan buttons: modern pill gradients and soft motion */
 .fan-controls {
   gap: 0;
   display: flex;
@@ -2868,7 +3116,6 @@ h1, h2, .section-header h2, .bio-title {
   cursor: not-allowed;
 }
 
-/* Active state emphasis based on device status */
 .fan-control-panel.is-on .fan-on {
   box-shadow: inset 0 0 0 2px var(--ring), var(--shadow-md);
 }
@@ -2882,7 +3129,6 @@ h1, h2, .section-header h2, .bio-title {
   opacity: 0.85;
 }
 
-/* Ripple interaction */
 .fan-btn::after {
   content: '';
   position: absolute;
@@ -2904,7 +3150,6 @@ h1, h2, .section-header h2, .bio-title {
   100% { transform: translate(-50%,-50%) scale(18); opacity: 0; }
 }
 
-/* Fan target selector — modern pill select */
 .fan-target {
   display: flex;
   align-items: center;
@@ -2917,7 +3162,6 @@ h1, h2, .section-header h2, .bio-title {
   color: var(--bio-light);
 }
 
-/* Segmented control for Fan selection */
 .segmented-control {
   display: inline-flex;
   align-items: center;
@@ -2927,6 +3171,7 @@ h1, h2, .section-header h2, .bio-title {
   background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.18));
   border: 1px solid var(--surface-strong);
   box-shadow: var(--shadow-sm);
+  justify-content: flex-start;
 }
 
 .segment {
@@ -2949,7 +3194,19 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: var(--shadow-md);
 }
 
-/* Toggle Switch (Windows-like) */
+#checkCycleIntervalGroup {
+  width: auto;
+}
+#checkCycleIntervalGroup .segment {
+  flex: 0 0 auto;
+  min-width: auto;
+}
+
+#runCheckNowBtn, #scheduleCheckBtn {
+  flex: 0 0 auto;
+  min-width: auto;
+}
+
 .toggle-control {
   display: inline-flex;
   align-items: center;
@@ -3011,7 +3268,6 @@ h1, h2, .section-header h2, .bio-title {
   letter-spacing: 0.3px;
 }
 
-/* Profile cards: subtle lift and glow */
 .profile-card {
   border-radius: var(--radius-md);
   background: rgba(255,255,255,0.12);
@@ -3026,7 +3282,6 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: var(--shadow-md);
 }
 
-/* Preview cards: premium glass look */
 .preview-card {
   border-radius: var(--radius-md);
   background: rgba(255,255,255,0.10);
@@ -3041,7 +3296,6 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: var(--shadow-md);
 }
 
-/* Navbar links: softer hover */
 .navbar-container .navbar-menu li a {
   border-radius: var(--radius-sm);
 }
@@ -3050,12 +3304,10 @@ h1, h2, .section-header h2, .bio-title {
   box-shadow: inset 0 0 0 1px var(--ring);
 }
 
-/* Navbar links: refined hover motion */
 .navbar-container .navbar-menu li a {
   transition: background-color var(--dur-fast) var(--ease-smooth), transform var(--dur-fast) var(--ease-smooth), box-shadow var(--dur-fast) var(--ease-smooth);
 }
 
-/* Floating Action Buttons */
 .floating-buttons-container {
   position: fixed;
   bottom: 80px;
@@ -3120,7 +3372,295 @@ h1, h2, .section-header h2, .bio-title {
   display: none;
 }
 
-/* Responsive untuk mobile */
+.metrics-panel {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.metric i {
+  color: #71b280;
+}
+
+.metric-label {
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.metric-value {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.metric-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.metric-sub .sep {
+  opacity: 0.6;
+}
+
+.metric-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+.metric-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #71b280, #4b8f60);
+  transition: width 300ms ease;
+}
+
+
+/* --------------------------------------------
+   Feature Cards — Visual Polish (Additional Capabilities)
+   -------------------------------------------- */
+.feature-cards-grid .feature-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.07));
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  overflow: hidden; /* prevent inner overflow visual bleeding */
+}
+
+/* Make the first card wider on larger screens */
+@media (min-width: 992px) {
+  .feature-cards-grid .feature-card.wide {
+    grid-column: 1 / -1; /* bentang penuh baris */
+  }
+}
+
+/* On mobile, keep single-column layout */
+@media (max-width: 768px) {
+  .feature-cards-grid .feature-card.wide {
+    grid-column: auto;
+  }
+}
+
+.feature-cards-grid .feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.32);
+}
+
+.feature-card .feature-card-icon {
+  position: relative;
+  background: radial-gradient(circle at 50% 50%, #71b280 0%, #4b8f60 60%);
+  box-shadow: 0 8px 18px rgba(113,178,128,0.35), inset 0 0 0 2px rgba(255,255,255,0.25);
+}
+
+.feature-card .feature-card-icon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 60%);
+  opacity: 0.35;
+}
+
+.feature-card h3 {
+  font-size: 1.6rem;
+  letter-spacing: 0.2px;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  opacity: 0.92;
+}
+
+.feature-card .fan-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: flex-start; 
+}
+
+.feature-card .segmented-control {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.feature-card .segment {
+  font-size: 0.9rem;
+  padding: 8px 14px;
+  min-width: 64px;
+  text-align: center;
+}
+
+.metrics-panel .metric-value {
+  font-size: 1.05rem;
+}
+
+.metric-bar {
+  height: 10px;
+}
+
+/* Cycle controls — improved UI for "Setiap" & unit */
+.cycle-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.cycle-label {
+  font-weight: 600;
+  color: #fff;
+}
+.feature-card .input-spinner {
+  border: 1px solid var(--surface-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.08);
+  box-shadow: var(--shadow-sm);
+}
+.feature-card .input-spinner .form-input {
+  width: 64px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-weight: 700;
+}
+.btn-save {
+  background: linear-gradient(135deg, #FFB74D, #FF9800);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease-smooth), box-shadow var(--dur-fast) var(--ease-smooth);
+}
+.btn-save:hover { transform: translateY(-1px); }
+.btn-save:active { transform: translateY(0); box-shadow: var(--shadow-md); }
+
+/* Visually hidden but accessible */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.feature-card-footer {
+  margin-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  padding-top: 12px;
+}
+
+.feature-tag {
+  background: linear-gradient(135deg, #71b280, #4b8f60);
+  box-shadow: 0 6px 16px rgba(113,178,128,0.35);
+  border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* --------------------------------------------
+   Form polish for Custom Schedule & Recurrence
+   -------------------------------------------- */
+.form-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 10px 12px;
+  align-items: end;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  letter-spacing: 0.2px;
+  color: rgba(255,255,255,0.85);
+}
+
+.form-input,
+.form-select {
+  height: 36px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.16);
+  color: #fff;
+  outline: none;
+  transition: box-shadow 160ms var(--ease-smooth), background 160ms var(--ease-smooth), transform 160ms var(--ease-smooth);
+}
+
+.form-input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.form-input:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 3px rgba(113,178,128,0.35);
+  background: rgba(255,255,255,0.16);
+}
+
+/* Ensure dropdown options are readable on Windows/Chrome */
+.form-select option,
+.form-select optgroup,
+select option,
+select optgroup {
+  color: #162530;
+  background: #ffffff;
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+}
+
+.form-actions .segment {
+  padding: 10px 16px;
+}
+
+.form-note {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+.custom-schedule .form-input,
+.recurrence-controls .form-input,
+.recurrence-controls .form-select {
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .floating-buttons-container {
     bottom: 60px;
