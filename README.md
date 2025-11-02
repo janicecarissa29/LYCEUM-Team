@@ -163,7 +163,7 @@ LYCEUM-Team/
 ## 🔬 Konsep Ilmiah
 
 ### Ralstonia solanacearum
-- *Patogen*: Bakteri gram-negatif penyebab penyakit layu bakteri
+- *Patogen*: Bakteri Ralstonia Solanacearum penyebab penyakit layu bakteri
 - *Host Range*: Kentang, tomat, terong, dan tanaman solanaceae lainnya
 - *Impact*: Kerugian ekonomi signifikan di sektor pertanian
 
@@ -173,13 +173,13 @@ LYCEUM-Team/
 - *Advantage*: Non-invasive, real-time detection
 
 ### Gene Editing Technology
-- *Target*: Modifikasi gen resistensi pada tanaman host
+- *Target*: Modifikasi gen mikroba tanah untuk mendeteksi dan melawan patogen target secara spesifik
 - *Benefit*: Solusi berkelanjutan dan ramah lingkungan
 
 ## 🌐 Demo & Preview
 
 ### Screenshots
-- *Homepage*: Interface utama dengan navigasi intuitif
+- *Home page*: Interface utama dengan navigasi intuitif
 - *Features Page*: Penjelasan detail fitur-fitur & kontrol sistem
 - *Preview Page*: Penjelasan detail tentang smart agriculture
 - *About Page*: Informasi tim dan foto bersama
@@ -191,7 +191,7 @@ Project ini dilisensikan di bawah *MIT License* - lihat file [LICENSE](LICENSE) 
 ## 📞 Kontak & Support
 
 ### Tim LYCEUM
-- Email: lyceum.team@example.com
+- Email: lyceum.smansa@email.com
 - contact: +62 818-0918-5655
 - GitHub: [https://github.com/lyceum-team](https://github.com/lyceum-team)
 
