@@ -137,7 +137,7 @@ LYCEUM-Team/
    # Menggunakan Python
    python -m http.server 8000
    
-   # Atau menggunakan Node.js
+   # Menggunakan Node.js
    npx http-server
    
 
