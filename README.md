@@ -86,6 +86,7 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 ## 📁 Struktur Project
 
 ```
+
 LYCEUM-Team/
 ├── 📄 README.md                   # Dokumentasi project
 ├── 🏠 index.html                  # Homepage utama
@@ -110,6 +111,7 @@ LYCEUM-Team/
     ├── ℹ about.html               # About page
     ├── ⭐ features.html            # Features page
     └── 👁 preview.html             # Preview page
+
 ```
 
 ## 🚀 Instalasi dan Setup
