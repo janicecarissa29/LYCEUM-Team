@@ -184,23 +184,6 @@ LYCEUM-Team/
 - *Preview Page*: Penjelasan detail tentang smart agriculture
 - *About Page*: Informasi tim dan foto bersama
 
-## 🤝 Kontribusi
-
-Kami menyambut kontribusi dari komunitas! Berikut cara berkontribusi:
-
-### Cara Berkontribusi
-1. *Fork* repository ini
-2. *Create branch* untuk fitur baru (git checkout -b feature/AmazingFeature)
-3. *Commit* perubahan (git commit -m 'Add some AmazingFeature')
-4. *Push* ke branch (git push origin feature/AmazingFeature)
-5. *Open Pull Request*
-
-### Guidelines
-- Ikuti coding standards yang ada
-- Tulis commit message yang jelas
-- Test semua perubahan sebelum submit
-- Update dokumentasi jika diperlukan
-
 ## 📄 Lisensi
 
 Project ini dilisensikan di bawah *MIT License* - lihat file [LICENSE](LICENSE) untuk detail.
