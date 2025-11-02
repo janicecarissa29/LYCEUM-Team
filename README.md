@@ -9,7 +9,7 @@
 
 ## 📋 Overview
 
-*LYCEUM* adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan *Synthetic Biology, **Gene Editing, dan **IoT (Internet of Things)* untuk mengendalikan bakteri Ralstonia solanacearum yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
+*LYCEUM* adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan Synthetic Biology, Gene Editing, dan IoT *(Internet of Things)* untuk mengendalikan bakteri Ralstonia solanacearum yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
 
 Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescent Protein (GFP)* untuk deteksi dini penyakit dan teknologi gene editing untuk mengembangkan solusi biologis yang ramah lingkungan.
 
