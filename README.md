@@ -123,7 +123,7 @@ LYCEUM-Team/
 
 1. *Clone Repository*
    bash
-   git clone https://github.com/your-username/LYCEUM-Team.git
+   git clone [https://github.com/janicecarissa29/bios2025_LyceumTeam_Smart-Agriculture..git]
    cd LYCEUM-Team
    
 
