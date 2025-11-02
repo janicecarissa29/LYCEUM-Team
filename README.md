@@ -9,13 +9,12 @@
 
 ## 📋 Overview
 
-**LYCEUM** adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan **Synthetic Biology**, **Gene Editing**, dan **IoT (Internet of Things)** untuk mengendalikan bakteri *Ralstonia solanacearum* yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
+*LYCEUM* adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan *Synthetic Biology, **Gene Editing, dan **IoT (Internet of Things)* untuk mengendalikan bakteri Ralstonia solanacearum yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
 
-Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluorescent Protein (GFP)** untuk deteksi dini penyakit dan teknologi gene editing untuk mengembangkan solusi biologis yang ramah lingkungan.
+Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescent Protein (GFP)* untuk deteksi dini penyakit dan teknologi gene editing untuk mengembangkan solusi biologis yang ramah lingkungan.
 
 ### 🎯 Tujuan Utama
-- Mendeteksi dan mengendalikan penyakit tanaman secara real-time
-- Mengurangi penggunaan pestisida kimia berbahaya
+- Mendeteksi dan mengendalikan penyakit Ralstonia Solanacearum secara real-time
 - Meningkatkan produktivitas pertanian melalui teknologi precision farming
 - Menyediakan platform monitoring yang mudah digunakan untuk petani
 
@@ -24,81 +23,94 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan **Green Fluoresce
 ### Core Development Team
 | Nama | Role | Expertise | Contact |
 |------|------|-----------|---------|
-| **Aidil Baihaqi** | Project Lead & Full-Stack Developer | Web Development, System Architecture | - |
-| **[Team Member 2]** | Biotechnology Specialist | Synthetic Biology, Gene Editing | - |
-| **[Team Member 3]** | IoT Engineer | Hardware Integration, Sensor Networks | - |
-| **[Team Member 4]** | UI/UX Designer | User Interface, User Experience | - |
-| **[Team Member 5]** | Data Scientist | Machine Learning, Data Analysis | - |
+| *Elga Elvis* | Project Lead & IoT Engineer | Hardware Integration | - |
+| *Wildan Rizqi Syahputra* | Biotech Developer | Synthetic Biology  | - |
+| *Edbert Andrisen Ng* | IoT Engineer |3D Simulation Engineer, Sensor Networks | - |
+| *Faustino Fernando* |  IoT Engineer |  Hardware Integration | - |
+| *Eric* | Backend Developer | UI/UX Developer | - |
+| *Nathaniel Judika Harefa* | Plasmid Designer | - | | - |
+| *Syarif Rahmat Akbar* | Researcher | - | | - |
+| *Janice Carissa* | UI/UX Designer | - | | - |
+| *Francisca Viola* | Biology Developer | - | | - |
+| *Violetta Augustia Renata* | Video Producer & Editor | - | | - |
+
 
 ### Advisors & Mentors
-- **[Advisor Name]** - Agricultural Technology Expert
-- **[Advisor Name]** - Biotechnology Research Supervisor
+- *Kennis Rozana S.Pd.,M.Si* -  Biotechnology Research Supervisor
+- *Ezra Harvey Pongarrang* - Biotechnology Research Supervisor
+- *Aidil Baihaqi* - Informatics Supervisor
+- *Jeffry* - Biology Supervisor
 
 ## 🚀 Fitur Utama
 
 ### 🔬 Teknologi Biologis
-- **Gene Editing Technology**: Modifikasi genetik untuk resistensi penyakit
-- **GFP Detection System**: Deteksi fluoresen untuk identifikasi bakteri
-- **Synthetic Biology**: Pengembangan organisme rekayasa untuk kontrol biologis
+- *Gene Editing Technology*: Modifikasi genetik untuk resistensi penyakit
+- *GFP Detection System*: Deteksi fluoresen untuk identifikasi bakteri
+- *Synthetic Biology*: Pengembangan organisme rekayasa untuk kontrol biologis
 
 ### 📱 Platform Digital
-- **Real-time Monitoring**: Dashboard untuk monitoring kondisi tanaman
-- **IoT Integration**: Sensor networks untuk data collection
-- **User Authentication**: Sistem login yang aman dengan Firebase
-- **Responsive Design**: Akses optimal di berbagai perangkat
+- *Real-time Monitoring*: Dashboard untuk monitoring kondisi tanaman
+- *IoT Integration*: Sensor networks untuk data collection
+- *User Authentication*: Sistem login yang aman dengan Firebase
+- *Responsive Design*: Akses optimal di berbagai perangkat
 
 ### 📊 Analisis Data
-- **Environmental Monitoring**: Suhu, kelembaban, pH tanah
-- **Disease Detection**: Identifikasi dini gejala penyakit
-- **Predictive Analytics**: Prediksi risiko penyakit berdasarkan data historis
+- *Environmental Monitoring*: Suhu, kelembaban, pH tanah
+- *Disease Detection*: Identifikasi dini penyakit Ralstonia Solanacearum pada tanaman
+- *Predictive Analytics*: Prediksi risiko penyakit berdasarkan data historis
 
-## 🛠️ Teknologi yang Digunakan
+## 🛠 Teknologi yang Digunakan
 
 ### Frontend
-- **HTML5** - Struktur halaman web
-- **CSS3** - Styling dan responsive design
-- **JavaScript (ES6+)** - Interaktivitas dan logika frontend
-- **Font Awesome** - Icon library
-- **Google Fonts** - Typography
+- *HTML5* - Struktur halaman web
+- *CSS3* - Styling dan responsive design
+- *JavaScript (ES6+)* - Interaktivitas dan logika frontend
+- *Font Awesome* - Icon library
+- *Google Fonts* - Typography
 
 ### Backend & Database
-- **Firebase Authentication** - Sistem autentikasi pengguna
-- **Firebase Realtime Database** - Database real-time untuk IoT data
-- **Firebase Hosting** - Platform hosting
+- *Firebase Authentication* - Sistem autentikasi pengguna
+- *Firebase Realtime Database* - Database real-time untuk IoT data
+- *Firebase Hosting* - Platform hosting
 
 ### IoT & Hardware
-- **Sensor Networks** - Environmental monitoring
-- **Microcontrollers** - Data collection dan transmission
-- **Communication Protocols** - Data transfer ke cloud
+- *Sensor Networks* - Environmental monitoring
+- *Microcontrollers* - Data collection dan transmission
+- *Communication Protocols* - Data transfer ke cloud
 
 ### Development Tools
-- **Git** - Version control
-- **VS Code** - Code editor
-- **Chrome DevTools** - Debugging dan testing
+- *Git* - Version control
+- *VS Code* - Code editor
+- *Chrome DevTools* - Debugging dan testing
 
 ## 📁 Struktur Project
 
-```
+
 LYCEUM-Team/
-├── 📄 README.md                 # Dokumentasi project
-├── 🏠 index.html               # Homepage utama
-├── 📁 assets/                  # Asset files
-│   └── 📁 images/             # Gambar dan foto tim
-├── 📁 css/                    # Stylesheet files
-│   └── 🎨 styles.css          # Main stylesheet
-├── 📁 js/                     # JavaScript files
-│   ├── 🔐 auth-check.js       # Authentication logic
-│   ├── 🔥 firebase.js         # Firebase configuration
-│   ├── ⚙️ firebaseConfig.js   # Firebase settings
-│   ├── 📊 iot-data.js         # IoT data handling
-│   ├── 🔄 iot-sync.js         # Data synchronization
-│   ├── 👤 login.js            # Login functionality
-│   └── 📜 script.js           # Main JavaScript
-└── 📁 pages/                  # HTML pages
-    ├── ℹ️ about.html          # About page
-    ├── ⭐ features.html       # Features page
-    └── 👁️ preview.html        # Preview page
-```
+├── 📄 README.md                   # Dokumentasi project
+├── 🏠 index.html                  # Homepage utama
+├── 📁 assets/                     # Asset files
+│   └── 📁 images/                 # Gambar dan foto tim
+├── 📁 css/                        # Stylesheet files
+│   └── 🎨 styles.css              # Main stylesheet
+├── 📁 js/                         # JavaScript files
+│   ├── 🔐 auth-check.js           # Authentication logic
+│   ├── 🔥 firebase.js              # Firebase configuration
+│   ├── ⚙ firebaseConfig.js        # Firebase settings
+│   ├── 📊 iot-data.js              # IoT data handling
+│   ├── 🔄 iot-sync.js              # Data synchronization
+│   ├── 👤 login.js                  # Login functionality
+│   ├── 📈 Additional-metrics.js    # Metric sistem
+|   ├── 🎮 home-3d.js               # 3D animation
+|   ├── ❄ sand-fluida.js           # Sand fluid sistem
+|   ├── ⏳ spinner-control.js        # Spinner control
+|   ├── 🚿 sprinkler-control.js     # Sprinkler control
+│   └── 📜 script.js                # Main JavaScript
+└── 📁 pages/                       # HTML pages
+    ├── ℹ about.html               # About page
+    ├── ⭐ features.html            # Features page
+    └── 👁 preview.html             # Preview page
+
 
 ## 🚀 Instalasi dan Setup
 
@@ -109,79 +121,77 @@ LYCEUM-Team/
 
 ### Langkah Instalasi
 
-1. **Clone Repository**
-   ```bash
+1. *Clone Repository*
+   bash
    git clone https://github.com/your-username/LYCEUM-Team.git
    cd LYCEUM-Team
-   ```
+   
 
-2. **Setup Firebase Configuration**
+2. *Setup Firebase Configuration*
    - Buat project baru di [Firebase Console](https://console.firebase.google.com/)
    - Enable Authentication dan Realtime Database
-   - Copy configuration ke `js/firebaseConfig.js`
+   - Copy configuration ke js/firebaseConfig.js
 
-3. **Jalankan Local Server**
-   ```bash
+3. *Jalankan Local Server*
+   bash
    # Menggunakan Python
    python -m http.server 8000
    
    # Atau menggunakan Node.js
    npx http-server
-   ```
+   
 
-4. **Akses Aplikasi**
-   - Buka browser dan kunjungi `http://localhost:8000`
+4. *Akses Aplikasi*
+   - Buka browser dan kunjungi http://localhost:8000
 
 ## 📖 Panduan Penggunaan
 
 ### Untuk Pengguna (Petani)
-1. **Registrasi/Login**: Buat akun atau masuk ke sistem
-2. **Dashboard Monitoring**: Lihat data real-time dari sensor
-3. **Alert System**: Terima notifikasi jika terdeteksi anomali
-4. **Historical Data**: Analisis trend data historis
+1. *Registrasi/Login*: Buat akun atau masuk ke sistem
+2. *Dashboard Monitoring*: Lihat data real-time dari sensor
+3. *Alert System*: Terima notifikasi jika terdeteksi anomali
+4. *Historical Data*: Analisis trend data historis
 
 ### Untuk Developer
-1. **Development Setup**: Ikuti langkah instalasi di atas
-2. **Code Structure**: Pahami struktur folder dan file
-3. **Firebase Integration**: Konfigurasi Firebase untuk fitur backend
-4. **Testing**: Gunakan browser developer tools untuk debugging
+1. *Development Setup*: Ikuti langkah instalasi di atas
+2. *Code Structure*: Pahami struktur folder dan file
+3. *Firebase Integration*: Konfigurasi Firebase untuk fitur backend
+4. *Testing*: Gunakan browser developer tools untuk debugging
 
 ## 🔬 Konsep Ilmiah
 
 ### Ralstonia solanacearum
-- **Patogen**: Bakteri gram-negatif penyebab penyakit layu bakteri
-- **Host Range**: Kentang, tomat, terong, dan tanaman solanaceae lainnya
-- **Impact**: Kerugian ekonomi signifikan di sektor pertanian
+- *Patogen*: Bakteri gram-negatif penyebab penyakit layu bakteri
+- *Host Range*: Kentang, tomat, terong, dan tanaman solanaceae lainnya
+- *Impact*: Kerugian ekonomi signifikan di sektor pertanian
 
 ### Green Fluorescent Protein (GFP)
-- **Function**: Protein fluoresen untuk deteksi dan tracking
-- **Application**: Marker biologis untuk identifikasi bakteri
-- **Advantage**: Non-invasive, real-time detection
+- *Function*: Protein fluoresen untuk deteksi dan tracking
+- *Application*: Marker biologis untuk identifikasi bakteri
+- *Advantage*: Non-invasive, real-time detection
 
 ### Gene Editing Technology
-- **Target**: Modifikasi gen resistensi pada tanaman host
-- **Benefit**: Solusi berkelanjutan dan ramah lingkungan
+- *Target*: Modifikasi gen resistensi pada tanaman host
+- *Benefit*: Solusi berkelanjutan dan ramah lingkungan
 
 ## 🌐 Demo & Preview
 
-**Live Demo**: [https://lyceum-demo.web.app](https://lyceum-demo.web.app)
-
 ### Screenshots
-- **Homepage**: Interface utama dengan navigasi intuitif
-- **Features Page**: Penjelasan detail fitur-fitur sistem
-- **About Page**: Informasi tim dan visi misi project
-- **Preview Page**: Demo interaktif sistem monitoring
+- *Homepage*: Interface utama dengan navigasi intuitif
+- *Features Page*: Penjelasan detail fitur-fitur & kontrol sistem
+- *Preview Page*: Penjelasan detail tentang smart agriculture
+- *About Page*: Informasi tim dan foto bersama
 
 ## 🤝 Kontribusi
 
 Kami menyambut kontribusi dari komunitas! Berikut cara berkontribusi:
 
 ### Cara Berkontribusi
-1. **Fork** repository ini
-2. **Create branch** untuk fitur baru (`git checkout -b feature/AmazingFeature`)
-3. **Commit** perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** ke branch (`git push origin feature/AmazingFeature`)
-5. **Open Pull Request**
+1. *Fork* repository ini
+2. *Create branch* untuk fitur baru (git checkout -b feature/AmazingFeature)
+3. *Commit* perubahan (git commit -m 'Add some AmazingFeature')
+4. *Push* ke branch (git push origin feature/AmazingFeature)
+5. *Open Pull Request*
 
 ### Guidelines
 - Ikuti coding standards yang ada
@@ -191,30 +201,26 @@ Kami menyambut kontribusi dari komunitas! Berikut cara berkontribusi:
 
 ## 📄 Lisensi
 
-Project ini dilisensikan di bawah **MIT License** - lihat file [LICENSE](LICENSE) untuk detail.
+Project ini dilisensikan di bawah *MIT License* - lihat file [LICENSE](LICENSE) untuk detail.
 
 ## 📞 Kontak & Support
 
 ### Tim LYCEUM
-- **Email**: lyceum.team@example.com
-- **Website**: [https://lyceum-project.com](https://lyceum-project.com)
-- **GitHub**: [https://github.com/lyceum-team](https://github.com/lyceum-team)
+- Email: lyceum.team@example.com
+- contact: +62 818-0918-5655
+- GitHub: [https://github.com/lyceum-team](https://github.com/lyceum-team)
 
 ### Social Media
-- **LinkedIn**: [LYCEUM Project](https://linkedin.com/company/lyceum-project)
-- **Twitter**: [@LyceumProject](https://twitter.com/LyceumProject)
-- **Instagram**: [@lyceum.project](https://instagram.com/lyceum.project)
+- *Instagram*: [@lyceum.co](https://instagram.com/lyceum.co)
 
 ## 🙏 Acknowledgments
-
-- **Universitas/Institusi**: Dukungan penelitian dan fasilitas
-- **Mentor & Advisor**: Bimbingan teknis dan akademis
-- **Open Source Community**: Library dan tools yang digunakan
-- **Firebase Team**: Platform backend yang reliable
+- *Mentor & Advisor*: Bimbingan teknis dan akademis
+- *Open Source Community*: Library dan tools yang digunakan
+- *Firebase Team*: Platform backend yang reliable
 
 ---
 
 <div align="center">
   <p><strong>🧬 LYCEUM - Revolutionizing Agriculture Through Biotechnology 🌱</strong></p>
-  <p>Made with ❤️ by LYCEUM Team</p>
+  <p>Made with ❤ by LYCEUM Team</p>
 </div>
