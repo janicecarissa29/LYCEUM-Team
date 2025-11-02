@@ -57,7 +57,6 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 ### 📊 Analisis Data
 - *Environmental Monitoring*: Suhu, kelembaban, pH tanah
 - *Disease Detection*: Identifikasi dini penyakit Ralstonia Solanacearum pada tanaman
-- *Predictive Analytics*: Prediksi risiko penyakit berdasarkan data historis
 
 ## 🛠 Teknologi yang Digunakan
 
