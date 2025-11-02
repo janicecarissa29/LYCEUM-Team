@@ -96,20 +96,20 @@ LYCEUM-Team/
 ├── 📁 js/                         # JavaScript files
 │   ├── 🔐 auth-check.js           # Authentication logic
 │   ├── 🔥 firebase.js              # Firebase configuration
-│   ├── ⚙ firebaseConfig.js        # Firebase settings
+│   ├── ⚙️ firebaseConfig.js        # Firebase settings
 │   ├── 📊 iot-data.js              # IoT data handling
 │   ├── 🔄 iot-sync.js              # Data synchronization
 │   ├── 👤 login.js                  # Login functionality
 │   ├── 📈 Additional-metrics.js    # Metric sistem
 |   ├── 🎮 home-3d.js               # 3D animation
-|   ├── ❄ sand-fluida.js           # Sand fluid sistem
+|   ├── ❄️ sand-fluida.js           # Sand fluid sistem
 |   ├── ⏳ spinner-control.js        # Spinner control
 |   ├── 🚿 sprinkler-control.js     # Sprinkler control
 │   └── 📜 script.js                # Main JavaScript
 └── 📁 pages/                       # HTML pages
-    ├── ℹ about.html               # About page
+    ├── ℹ️ about.html               # About page
     ├── ⭐ features.html            # Features page
-    └── 👁 preview.html             # Preview page
+    └── 👁️ preview.html             # Preview page
 
 
 ## 🚀 Instalasi dan Setup
