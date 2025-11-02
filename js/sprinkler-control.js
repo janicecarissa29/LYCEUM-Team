@@ -22,16 +22,31 @@ function initSprinklerControl() {
         // Interpretasi: 0 = ON, 1 = OFF
         const isOn = (value === 0 || value === '0'); 
         
-        statusEl.textContent = isOn ? "ON" : "OFF";
+        // Update text content while preserving the icon
+        const statusIcon = statusEl.querySelector('.status-icon');
+        statusEl.innerHTML = '';
+        if (statusIcon) {
+            statusEl.appendChild(statusIcon);
+        } else {
+            statusEl.innerHTML = '<span class="status-icon"></span>';
+        }
+        statusEl.appendChild(document.createTextNode(isOn ? 'ON' : 'OFF'));
+        
         toggle.checked = isOn;
-        if (toggleText) toggleText.textContent = isOn ? "ON" : "OFF";
+        if (toggleText) {
+            toggleText.textContent = isOn ? "ON" : "OFF";
+            toggleText.classList.toggle('active', isOn);
+        }
         panel.classList.toggle("is-on", isOn);
-        if (icon) icon.classList.toggle("spinning", isOn);
+        if (icon) {
+            icon.classList.toggle("spinning", isOn);
+            icon.classList.toggle("active", isOn);
+        }
         
         // Perubahan warna label status (OFF/ON) 
-        // Anda perlu memastikan CSS Anda memiliki class 'active' atau logika warna lain untuk statusEl
         statusEl.classList.toggle('active', isOn); 
         statusEl.classList.toggle('off', !isOn); 
+        statusEl.setAttribute('aria-live', 'polite');
 
         if (rawBadge) {
             const rawValue = isOn ? 100 : 0; // Nilai Raw sesuai dengan status ON/OFF

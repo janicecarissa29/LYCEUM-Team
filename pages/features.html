@@ -193,6 +193,51 @@
   <div class="container">
     <h2 class="section-title">Additional Capabilities</h2>
     <div class="feature-cards-grid">
+      <!-- Feature Card: Main System Control -->
+      <div class="feature-card">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-power-off"></i>
+        </div>
+        <h3>Kontrol Sistem Utama</h3>
+        <p>Mengontrol status sistem utama secara keseluruhan.</p>
+        
+        <div class="main-system-panel">
+          <div class="status-section">
+            <div class="status-label">Status Sistem:</div>
+            <div class="status-indicator" id="mainSystemStatus">
+              <span class="status-icon"><i class="fa-solid fa-power-off"></i></span>
+              <span class="status-text" id="mainSystemStatusText">OFF</span>
+            </div>
+          </div>
+          
+          <div class="toggle-control main-toggle">
+            <label class="toggle-switch" aria-label="Toggle Main System">
+              <input type="checkbox" id="mainSystemToggle" />
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+            <span class="switch-text" id="mainSystemToggleText">OFF</span>
+          </div>
+          
+          <div class="system-metrics">
+            <div class="metric">
+              <i class="fa-solid fa-microchip"></i>
+              <span class="metric-label">Perangkat Aktif</span>
+              <span id="activeDevicesCount" class="metric-value">0/3</span>
+            </div>
+            <div class="metric">
+              <i class="fa-solid fa-clock"></i>
+              <span class="metric-label">Uptime</span>
+              <span id="systemUptime" class="metric-value">00:00:00</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feature-card-footer">
+          <span class="feature-tag">Essential</span>
+          <button id="mainSystemControlBtn" class="control-btn">Control</button>
+        </div>
+      </div>
       <div class="feature-card wide">
         <div class="feature-card-icon">
           <i class="fa-solid fa-chart-line"></i>
@@ -346,7 +391,10 @@
             </div>
             <div class="fan-status">
               <span class="status-label">Status:</span>
-              <span class="status-indicator" id="fanStatus">OFF</span>
+              <span class="status-indicator" id="fanStatus">
+                <span class="status-icon"></span>
+                OFF
+              </span>
             </div>
             <div class="fan-controls">
               <div class="toggle-control">
@@ -374,7 +422,10 @@
         <div class="fan-control-panel">
           <div class="fan-status">
             <span class="status-label">Status:</span>
-            <span class="status-indicator" id="sprinklerStatus">OFF</span>
+            <span class="status-indicator" id="sprinklerStatus">
+              <span class="status-icon"></span>
+              OFF
+            </span>
           </div>
           <div class="fan-controls">
             <div class="toggle-control">
@@ -509,15 +560,16 @@
     </div>
   </footer>
 
-  <script type="module" src="../js/firebase.js"></script>
-  <script type="module" src="../js/login.js"></script>
-  <script type="module" src="../js/auth-check.js"></script>
-  <script type="module" src="../js/fan-control.js"></script>
-  <script type="module" src="../js/sprinkler-control.js"></script>
-  <script type="module" src="../js/iot-data.js"></script>
-  <script type="module" src="../js/additional-metrics.js"></script>
+  <script src="../js/firebase.js"></script>
+  <script src="../js/login.js"></script>
+  <script src="../js/auth-check.js"></script>
+  <script src="../js/fan-control.js"></script>
+  <script src="../js/sprinkler-control.js"></script>
+  <script src="../js/iot-data.js"></script>
+  <script src="../js/additional-metrics.js"></script>
   <script src="../js/spinner-controls.js"></script>
   <script src="../js/script.js"></script>
+  <script src="../js/main-system-control.js"></script>
 
 </body>
 </html>

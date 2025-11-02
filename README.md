@@ -9,7 +9,7 @@
 
 ## 📋 Overview
 
-*LYCEUM* adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan Synthetic Biology, Gene Editing, dan IoT *(Internet of Things)* untuk mengendalikan bakteri Ralstonia solanacearum yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
+*LYCEUM* adalah sistem kontrol penyakit tanaman berbasis teknologi canggih yang menggabungkan *Synthetic Biology, **Gene Editing, dan **IoT (Internet of Things)* untuk mengendalikan bakteri Ralstonia solanacearum yang menyerang tanaman kentang, tomat, dan tanaman solanaceae lainnya.
 
 Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescent Protein (GFP)* untuk deteksi dini penyakit dan teknologi gene editing untuk mengembangkan solusi biologis yang ramah lingkungan.
 
@@ -57,6 +57,7 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 ### 📊 Analisis Data
 - *Environmental Monitoring*: Suhu, kelembaban, pH tanah
 - *Disease Detection*: Identifikasi dini penyakit Ralstonia Solanacearum pada tanaman
+- *Predictive Analytics*: Prediksi risiko penyakit berdasarkan data historis
 
 ## 🛠 Teknologi yang Digunakan
 
@@ -84,7 +85,7 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 
 ## 📁 Struktur Project
 
-```
+
 LYCEUM-Team/
 ├── 📄 README.md                   # Dokumentasi project
 ├── 🏠 index.html                  # Homepage utama
@@ -95,21 +96,21 @@ LYCEUM-Team/
 ├── 📁 js/                         # JavaScript files
 │   ├── 🔐 auth-check.js           # Authentication logic
 │   ├── 🔥 firebase.js              # Firebase configuration
-│   ├── ⚙️ firebaseConfig.js        # Firebase settings
+│   ├── ⚙ firebaseConfig.js        # Firebase settings
 │   ├── 📊 iot-data.js              # IoT data handling
 │   ├── 🔄 iot-sync.js              # Data synchronization
 │   ├── 👤 login.js                  # Login functionality
 │   ├── 📈 Additional-metrics.js    # Metric sistem
 |   ├── 🎮 home-3d.js               # 3D animation
-|   ├── ❄️ sand-fluida.js           # Sand fluid sistem
+|   ├── ❄ sand-fluida.js           # Sand fluid sistem
 |   ├── ⏳ spinner-control.js        # Spinner control
 |   ├── 🚿 sprinkler-control.js     # Sprinkler control
 │   └── 📜 script.js                # Main JavaScript
 └── 📁 pages/                       # HTML pages
-    ├── ℹ️ about.html               # About page
+    ├── ℹ about.html               # About page
     ├── ⭐ features.html            # Features page
-    └── 👁️ preview.html             # Preview page
-```
+    └── 👁 preview.html             # Preview page
+
 
 ## 🚀 Instalasi dan Setup
 
@@ -136,7 +137,7 @@ LYCEUM-Team/
    # Menggunakan Python
    python -m http.server 8000
    
-   # Menggunakan Node.js
+   # Atau menggunakan Node.js
    npx http-server
    
 

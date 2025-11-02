@@ -19,7 +19,15 @@ function applyFanStatusUI(status) {
     const isOn = String(status).toUpperCase() === 'ON';
 
     if (fanStatusIndicator) {
-        fanStatusIndicator.textContent = isOn ? 'ON' : 'OFF';
+        // Update text content while preserving the icon
+        const statusIcon = fanStatusIndicator.querySelector('.status-icon');
+        fanStatusIndicator.innerHTML = '';
+        if (statusIcon) {
+            fanStatusIndicator.appendChild(statusIcon);
+        } else {
+            fanStatusIndicator.innerHTML = '<span class="status-icon"></span>';
+        }
+        fanStatusIndicator.appendChild(document.createTextNode(isOn ? 'ON' : 'OFF'));
         fanStatusIndicator.classList.toggle('active', isOn);
         fanStatusIndicator.setAttribute('aria-live', 'polite');
     }
@@ -28,12 +36,14 @@ function applyFanStatusUI(status) {
     }
     if (fanIcon) {
         fanIcon.classList.toggle('spinning', isOn);
+        fanIcon.classList.toggle('active', isOn);
     }
     if (fanToggle) {
         fanToggle.checked = isOn;
     }
     if (fanToggleText) {
         fanToggleText.textContent = isOn ? 'ON' : 'OFF';
+        fanToggleText.classList.toggle('active', isOn);
     }
 }
 
