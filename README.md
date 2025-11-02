@@ -76,7 +76,7 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 ### IoT & Hardware
 - *Sensor Networks* - Environmental monitoring
 - *Microcontrollers* - Data collection dan transmission
-- *Communication Protocols* - Data transfer ke cloud
+- *Communication Protocols* - Data transfer ke firebase
 
 ### Development Tools
 - *Git* - Version control
