@@ -125,7 +125,7 @@ LYCEUM-Team/
 
 1. *Clone Repository*
    bash
-   git clone [https://github.com/janicecarissa29/bios2025_LyceumTeam_Smart-Agriculture..git]
+   git clone [https://github.com/janicecarissa29/bios2025_LyceumTeam_Smart-Agriculture.git]
    cd LYCEUM-Team
    
 
@@ -134,17 +134,9 @@ LYCEUM-Team/
    - Enable Authentication dan Realtime Database
    - Copy configuration ke js/firebaseConfig.js
 
-3. *Jalankan Local Server*
-   bash
-   # Menggunakan Python
-   python -m http.server 8000
-   
-   # Atau menggunakan Node.js
-   npx http-server
-   
-
-4. *Akses Aplikasi*
-   - Buka browser dan kunjungi http://localhost:8000
+3. *Akses File Index.html*
+   - Buka browser dan kunjungi [path/to/LYCEUM-Team/index.html]
+   - Contoh: file:///C:/Users/Aidil%20Baihaqi/Desktop/bios2025_LyceumTeam_Smart-Agriculture/index.html
 
 ## 📖 Panduan Penggunaan
 
