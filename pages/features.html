@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lyceum - Data Sensor IoT Live</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
@@ -192,8 +192,52 @@
 <section class="feature-cards-section">
   <div class="container">
     <h2 class="section-title">Additional Capabilities</h2>
-    <div class="feature-cards-grid">
-      <div class="feature-card wide">
+    <div class="feature-cards-grid fixed-3">
+      <!-- Kontrol Perangkat Utama (diposisikan di atas Siklus Pengecekan) -->
+      <div class="feature-card medium wide">
+        <div class="feature-card-icon">
+          <i class="fa-solid fa-brain" id="mainDeviceIcon"></i>
+        </div>
+        <h3>Kontrol Perangkat Utama</h3>
+        <p>Menampilkan status aktivasi sistem perangkat utama.</p>
+        <div class="fan-control-panel" id="mainSystemPanel">
+          <div class="fan-status">
+            <span class="status-label">Status:</span>
+            <span class="status-indicator" id="mainSystemStatus"><span id="mainSystemStatusText">OFF</span></span>
+          </div>
+          <div class="control-status-row">
+            <span class="status-label">Perangkat Aktif:</span>
+            <span class="status-indicator badge" id="activeDevicesCount">0/3</span>
+          </div>
+          <div class="control-status-row">
+            <span class="status-label">Uptime:</span>
+            <span class="status-indicator badge" id="systemUptime">00:00:00</span>
+          </div>
+          <div class="control-status-row">
+            <span class="status-label">Aktivitas Sistem:</span>
+            <span class="working-indicator" id="systemWorking"><i class="fa-solid fa-circle-notch"></i> IDLE</span>
+          </div>
+          
+          <div class="fan-controls">
+            <div class="toggle-control">
+              <label class="toggle-switch" aria-label="Toggle main system">
+                <input type="checkbox" id="mainSystemToggle" />
+                <span class="switch-track"></span>
+                <span class="switch-thumb"></span>
+              </label>
+              <span class="switch-text" id="mainSystemToggleText">OFF</span>
+            </div>
+            <button type="button" class="segment" id="mainSystemControlBtn" style="margin-left:8px;">
+              <i class="fa-solid fa-sliders"></i> Panel
+            </button>
+          </div>
+        </div>
+        <div class="feature-card-footer">
+          <span class="feature-tag">Control</span>
+        </div>
+      </div>
+
+      <div class="feature-card semi wide">
         <div class="feature-card-icon">
           <i class="fa-solid fa-chart-line"></i>
         </div>
@@ -202,11 +246,6 @@
         <!-- Metrics: Check cycle times - SIMPLIFIED -->
         <div class="metrics-panel">
           <div class="metric">
-            <i class="fa-solid fa-rotate"></i>
-            <span class="metric-label">Interval</span>
-            <span id="checkCycleInterval" class="metric-value">--m</span>
-          </div>
-          <div class="metric-sub">
             <i class="fa-solid fa-clock"></i>
             <span class="metric-label">Terakhir</span>
             <span id="lastCheckTime" class="metric-value">--:--</span>
@@ -214,31 +253,20 @@
             <span class="metric-label">Berikutnya</span>
             <span id="nextCheckETA" class="metric-value">--m</span>
           </div>
+          <div class="metric-sub">
+            <i class="fa-solid fa-repeat"></i>
+            <span class="metric-label">Status Pengulangan</span>
+            <span id="recurrenceSummary" class="metric-value">NONAKTIF</span>
+          </div>
         </div>
-        <!-- Controls: Simplified UI -->
+        <!-- Controls: Unified Simplified UI -->
         <div class="fan-controls" style="margin-top:10px;">
           <div style="display:flex; flex-direction:column; gap:12px;">
-            <!-- Simplified interval selector with labels -->
-            <div class="segmented-control" id="checkCycleIntervalGroup" role="group" aria-label="Interval Check" style="margin-bottom:5px;">
-              <button type="button" class="segment" data-value="7">1 Minggu</button>
-              <button type="button" class="segment active" data-value="14">2 Minggu</button>
-              <button type="button" class="segment" data-value="28">1 Bulan</button>
-            </div>
-            
-            <!-- Action buttons with clearer labels -->
-            <div style="display:flex; gap:8px;">
-              <button type="button" class="segment" id="runCheckNowBtn" style="background-color:#4CAF50; color:white;">
-                <i class="fa-solid fa-play"></i> Jalankan Sekarang
-              </button>
-              <button type="button" class="segment" id="scheduleCheckBtn" style="background-color:#2196F3; color:white;">
-                <i class="fa-solid fa-calendar-check"></i> Jadwalkan
-              </button>
-            </div>
-
-            <!-- Pengulangan Otomatis - Model Awal -->
-            <div style="margin-top:16px;">
+            <!-- Pengaturan Pengulangan - Model Baru yang Disederhanakan -->
+            <div style="margin-top:8px;">
               <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
-                <span style="font-weight:600;">Pengulangan Otomatis:</span>
+                <span style="font-weight:600;">Pengulangan:</span>
+                <span id="recurrenceStatus" class="metric-value" style="font-weight:600; color:#FF9800;">NONAKTIF</span>
                 <div class="toggle-control">
                   <label class="toggle-switch" aria-label="Toggle Recurrence">
                     <input type="checkbox" id="recurrenceToggle" />
@@ -276,11 +304,17 @@
                   <option value="weeks">Minggu</option>
                   <option value="months" selected>Bulan</option>
                 </select>
-
-                <button type="button" id="saveRecurrenceBtn" class="btn-save">
-                  Simpan
-                </button>
               </div>
+            </div>
+
+            <!-- Action buttons with clearer labels -->
+            <div style="display:flex; gap:8px; margin-top:10px;">
+              <button type="button" class="segment" id="runCheckNowBtn" style="background-color:#4CAF50; color:white;">
+                <i class="fa-solid fa-play"></i> Jalankan Sekarang
+              </button>
+              <button type="button" class="segment" id="saveRecurrenceBtn" style="background-color:#FF9800; color:white; flex-grow:1;">
+                <i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan
+              </button>
             </div>
           </div>
         </div>
@@ -290,108 +324,77 @@
       </div>
 
       
+      
 
-      <div class="feature-card">
-        <div class="feature-card-icon">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <h3>Sinyal & Integritas Data</h3>
-        <p>Pantau kekuatan sinyal dan validasi integritas data untuk koneksi yang andal.</p>
-        <!-- Metrics: Signal strength & data integrity -->
-        <div class="metrics-panel">
-          <div class="metric">
-            <i class="fa-solid fa-signal"></i>
-            <span class="metric-label">Signal</span>
-            <span id="signalStrength" class="metric-value">--%</span>
-          </div>
-          <div class="metric">
-            <i class="fa-solid fa-shield"></i>
-            <span class="metric-label">Integrity</span>
-            <span id="dataIntegrity" class="metric-value">--</span>
-          </div>
-        </div>
-        <!-- Controls: Test link + data validation toggle -->
-        <div class="fan-controls" style="margin-top:10px;">
-          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-            <button type="button" class="segment" id="testLinkBtn">Test Link</button>
-            <div class="toggle-control">
-              <label class="toggle-switch" aria-label="Toggle Data Validation">
-                <input type="checkbox" id="dataValidationToggle" />
-                <span class="switch-track"></span>
-                <span class="switch-thumb"></span>
-              </label>
-              <span class="switch-text" id="dataValidationText">OFF</span>
-            </div>
-          </div>
-        </div>
-        <div class="feature-card-footer">
-          <span class="feature-tag">Essential</span>
-        </div>
-      </div>
       
       
-      <div class="feature-card">
-        <div class="feature-card-icon">
-          <i class="fa-solid fa-fan" id="fanIcon"></i>
-        </div>
-        <h3>Kontrol Panel Kipas</h3>
-          <p>Memungkinkan pengguna untuk mengontrol status kipas secara manual.</p>
-          <div class="fan-control-panel">
-            <div class="fan-target">
-              <span class="fan-target-label">Fan:</span>
-              <div class="segmented-control" id="fanSelectorGroup" role="group" aria-label="Pilih Kipas">
-                <button type="button" class="segment active" data-value="fan1">Fan 1</button>
-                <button type="button" class="segment" data-value="fan2">Fan 2</button>
+      
+      <!-- Baris dua kolom untuk kipas & sprinkler -->
+      <div class="two-up-row">
+        <div class="feature-card semi">
+          <div class="feature-card-icon">
+            <i class="fa-solid fa-fan" id="fanIcon"></i>
+          </div>
+          <h3>Kontrol Panel Kipas</h3>
+            <p>Memungkinkan pengguna untuk mengontrol status kipas secara manual.</p>
+            <div class="fan-control-panel">
+              <div class="fan-target">
+                <span class="fan-target-label">Fan:</span>
+                <div class="segmented-control" id="fanSelectorGroup" role="group" aria-label="Pilih Kipas">
+                  <button type="button" class="segment active" data-value="fan1">Fan 1</button>
+                  <button type="button" class="segment" data-value="fan2">Fan 2</button>
+                </div>
+              </div>
+              <div class="fan-status">
+                <span class="status-label">Status:</span>
+                <span class="status-indicator" id="fanStatus">OFF</span>
+              </div>
+              <div class="fan-controls">
+                <div class="toggle-control">
+                  <label class="toggle-switch" aria-label="Toggle fan">
+                    <input type="checkbox" id="fanToggle" />
+                    <span class="switch-track"></span>
+                    <span class="switch-thumb"></span>
+                  </label>
+                  <span class="switch-text" id="fanToggleText">OFF</span>
+                </div>
               </div>
             </div>
+            <div class="feature-card-footer">
+             <span class="feature-tag">Control</span>
+            </div>
+        </div>
+
+        <!-- Kontrol Sprinkler -->
+        <div class="feature-card semi">
+          <div class="feature-card-icon">
+            <i class="fa-solid fa-shower" id="sprinklerIcon"></i>
+          </div>
+          <h3>Kontrol Sprinkler</h3>
+          <p>Menampilkan status sprinkler.</p>
+          <div class="fan-control-panel">
             <div class="fan-status">
               <span class="status-label">Status:</span>
-              <span class="status-indicator" id="fanStatus">OFF</span>
+              <span class="status-indicator" id="sprinklerStatus">OFF</span>
             </div>
             <div class="fan-controls">
               <div class="toggle-control">
-                <label class="toggle-switch" aria-label="Toggle fan">
-                  <input type="checkbox" id="fanToggle" />
+                <label class="toggle-switch" aria-label="Toggle sprinkler">
+                  <input type="checkbox" id="sprinklerToggle" />
                   <span class="switch-track"></span>
                   <span class="switch-thumb"></span>
                 </label>
-                <span class="switch-text" id="fanToggleText">OFF</span>
+                <span class="switch-text" id="sprinklerToggleText">OFF</span>
+                <span class="badge" id="sprinklerRaw">Raw: --</span>
               </div>
             </div>
           </div>
           <div class="feature-card-footer">
-           <span class="feature-tag">Control</span>
+            <span class="feature-tag">Control</span>
           </div>
+        </div>
       </div>
 
-      <!-- Kontrol Sprinkler -->
-      <div class="feature-card">
-        <div class="feature-card-icon">
-          <i class="fa-solid fa-shower" id="sprinklerIcon"></i>
-        </div>
-        <h3>Kontrol Sprinkler</h3>
-        <p>Menampilkan status sprinkler.</p>
-        <div class="fan-control-panel">
-          <div class="fan-status">
-            <span class="status-label">Status:</span>
-            <span class="status-indicator" id="sprinklerStatus">OFF</span>
-          </div>
-          <div class="fan-controls">
-            <div class="toggle-control">
-              <label class="toggle-switch" aria-label="Toggle sprinkler">
-                <input type="checkbox" id="sprinklerToggle" />
-                <span class="switch-track"></span>
-                <span class="switch-thumb"></span>
-              </label>
-              <span class="switch-text" id="sprinklerToggleText">OFF</span>
-              <span class="badge" id="sprinklerRaw">Raw: --</span>
-            </div>
-          </div>
-        </div>
-        <div class="feature-card-footer">
-          <span class="feature-tag">Control</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -516,6 +519,7 @@
   <script type="module" src="../js/sprinkler-control.js"></script>
   <script type="module" src="../js/iot-data.js"></script>
   <script type="module" src="../js/additional-metrics.js"></script>
+  <script src="../js/main-system-control.js"></script>
   <script src="../js/spinner-controls.js"></script>
   <script src="../js/script.js"></script>
 

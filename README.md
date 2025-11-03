@@ -21,18 +21,18 @@ Sistem ini menggunakan pendekatan inovatif dengan memanfaatkan *Green Fluorescen
 ## 👥 Tim Pengembang
 
 ### Core Development Team
-| Nama | Role | Expertise | Contact |
-|------|------|-----------|---------|
-| *Elga Elvis* | Project Lead & IoT Engineer | Hardware Integration | - |
-| *Wildan Rizqi Syahputra* | Biotech Developer | Synthetic Biology  | - |
-| *Edbert Andrisen Ng* | IoT Engineer |3D Simulation Engineer, Sensor Networks | - |
-| *Faustino Fernando* |  IoT Engineer |  Hardware Integration | - |
-| *Eric* | Backend Developer | UI/UX Developer | - |
-| *Nathaniel Judika Harefa* | Plasmid Designer | - | | - |
-| *Syarif Rahmat Akbar* | Researcher | - | | - |
-| *Janice Carissa* | UI/UX Designer | - | | - |
-| *Francisca Viola* | Biology Developer | - | | - |
-| *Violetta Augustia Renata* | Video Producer & Editor | - | | - |
+| Nama | Role | Expertise |
+|------|------|-----------|
+| *Elga Elvis* | Project Lead & IoT Engineer | Hardware Integration |
+| *Wildan Rizqi Syahputra* | Biotech Developer | Synthetic Biology  |
+| *Edbert Andrisen Ng* | IoT Engineer |3D Simulation Engineer, Sensor Networks |
+| *Faustino Fernando* |  IoT Engineer |  Hardware Integration |
+| *Eric* | Backend Developer | UI/UX Developer |
+| *Nathaniel Judika Harefa* | Plasmid Designer | - |
+| *Syarif Rahmat Akbar* | Researcher | - |
+| *Janice Carissa* | UI/UX Designer | - |
+| *Francisca Viola* | Biology Developer | - |
+| *Violetta Augustia Renata* | Video Producer & Editor | - |
 
 
 ### Advisors & Mentors
@@ -93,20 +93,25 @@ LYCEUM-Team/
 ├── 📁 assets/                     # Asset files
 │   └── 📁 images/                 # Gambar dan foto tim
 ├── 📁 css/                        # Stylesheet files
-│   └── 🎨 styles.css              # Main stylesheet
+│   ├── 🎨 styles.css              # Main stylesheet
+│   ├── 🎭 animation.css           # Animasi CSS
+│   └── 🔄 spinner-buttons.css     # Styling untuk spinner buttons
 ├── 📁 js/                         # JavaScript files
 │   ├── 🔐 auth-check.js           # Authentication logic
-│   ├── 🔥 firebase.js              # Firebase configuration
+│   ├── 🔥 firebase.js             # Firebase configuration
 │   ├── ⚙ firebaseConfig.js        # Firebase settings
-│   ├── 📊 iot-data.js              # IoT data handling
-│   ├── 🔄 iot-sync.js              # Data synchronization
-│   ├── 👤 login.js                  # Login functionality
-│   ├── 📈 Additional-metrics.js    # Metric sistem
-|   ├── 🎮 home-3d.js               # 3D animation
-|   ├── ❄ sand-fluida.js           # Sand fluid sistem
-|   ├── ⏳ spinner-control.js        # Spinner control
-|   ├── 🚿 sprinkler-control.js     # Sprinkler control
-│   └── 📜 script.js                # Main JavaScript
+│   ├── 📊 additional-metrics.js   # Metrik tambahan untuk monitoring
+│   ├── 🎬 animations.js           # Animasi JavaScript
+│   ├── 💨 fan-control.js          # Kontrol kipas
+│   ├── 🏠 home-3d.js              # Visualisasi 3D untuk homepage
+│   ├── 📡 iot-data.js             # Pengelolaan data IoT
+│   ├── 🔄 iot-sync.js             # Sinkronisasi data IoT
+│   ├── 🔑 login.js                # Logika login
+│   ├── 🎛️ main-system-control.js  # Kontrol sistem utama
+│   ├── 🏝️ sand-fluida.js          # Efek fluida pasir
+│   ├── 📜 script.js               # Script utama
+│   ├── 🔄 spinner-controls.js     # Kontrol untuk spinner
+│   └── 💦 sprinkler-control.js    # Kontrol sprinkler
 └── 📁 pages/                       # HTML pages
     ├── ℹ about.html               # About page
     ├── ⭐ features.html            # Features page
@@ -125,7 +130,7 @@ LYCEUM-Team/
 
 1. *Clone Repository*
    bash
-   git clone [https://github.com/janicecarissa29/bios2025_LyceumTeam_Smart-Agriculture..git]
+   git clone [https://github.com/janicecarissa29/bios2025_LyceumTeam_Smart-Agriculture.git]
    cd LYCEUM-Team
    
 
@@ -134,17 +139,9 @@ LYCEUM-Team/
    - Enable Authentication dan Realtime Database
    - Copy configuration ke js/firebaseConfig.js
 
-3. *Jalankan Local Server*
-   bash
-   # Menggunakan Python
-   python -m http.server 8000
-   
-   # Atau menggunakan Node.js
-   npx http-server
-   
-
-4. *Akses Aplikasi*
-   - Buka browser dan kunjungi http://localhost:8000
+3. *Akses File Index.html*
+   - Buka browser dan kunjungi [path/to/LYCEUM-Team/index.html]
+   - Contoh: file:///C:/Users/Aidil%20Baihaqi/Desktop/bios2025_LyceumTeam_Smart-Agriculture/index.html
 
 ## 📖 Panduan Penggunaan
 

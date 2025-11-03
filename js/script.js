@@ -552,9 +552,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const tempSlider = document.getElementById('temp-slider');
     const phSlider = document.getElementById('ph-slider');
     const moistureSlider = document.getElementById('moisture-slider');
-                                                                
     const recommendationsList = document.getElementById('recommendations-list');
- 
+
+    // Jalankan hanya di halaman yang memiliki kontrol slider demo
+    if (!tempSlider || !phSlider || !moistureSlider || !recommendationsList) {
+        return;
+    }
+
     tempSlider.disabled = false;
     phSlider.disabled = false;
     moistureSlider.disabled = false;                                   
@@ -679,14 +683,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const fanOnButton = document.getElementById('fanOn');
     const fanOffButton = document.getElementById('fanOff');
     const fanControlPanel = document.querySelector('.fan-control-panel'); 
-    
     const fanIcon = document.getElementById('fanIcon'); 
+
+    // Jalankan hanya jika elemen fan control ada di halaman ini
+    if (!fanStatusIndicator || !fanControlPanel) {
+        return;
+    }
 
     function turnFanOn() {
         fanStatusIndicator.textContent = 'ON';
         fanStatusIndicator.classList.add('active'); 
         fanControlPanel.classList.add('is-on');    
-    
     }
 
     function turnFanOff() {

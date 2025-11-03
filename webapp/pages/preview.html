@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lyceum</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  
+
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="../index.html" class="navbar-logo"> <i class="fa-solid fa-bacteria logo-icon"></i> <span>L Y C E U M</span></a>
+      <div class="user-info" id="userInfo">
+        <i class="fa-solid fa-user"></i>
+        <span id="userEmail"></span>
+      </div>
+      <button class="navbar-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <ul class="navbar-menu">
+       <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html">Features</a></li>
+        <li><a href="preview.html" class="active">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+      
+      <!-- Desktop Action Buttons -->
+      <div class="navbar-actions">
+        <a href="#" id="openLoginBtnDesktop" class="action-btn login-btn">
+          <i class="fa-solid fa-sign-in-alt"></i>
+          <span>Login</span>
+        </a>
+        <a href="#" id="logoutBtnDesktop" class="action-btn logout-btn hidden">
+          <i class="fa-solid fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+        <a href="#" id="supportBtnDesktop" class="action-btn support-btn">
+          <i class="fa-solid fa-headset"></i>
+          <span>Support</span>
+        </a>
+      </div>
+      <ul class="navbar-dropdown">
+       <li><a href="../index.html">Home</a></li> 
+        <li><a href="features.html">Features</a></li>
+        <li><a href="preview.html" class="active">Preview</a></li> 
+        <li><a href="about.html">About Us</a></li>
+        <li class="menu-actions">
+          <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
+          <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
+          <a href="#" id="supportBtn" class="btn-secondary">Support</a>
+        </li>
+      </ul>
+    </div>
+    
+  </nav>
+
+  <div class="layer-blur"></div>
+
+<section class="preview-section">
+  <div id="sand-fluida-container" class="sand-fluida-container"></div>
+  <!-- Partikel mirip Home, tanpa mengubah background sand-fluida -->
+    <div class="preview-container">
+            <div class="orientation">
+                <h3>Latar Belakang</h3>
+                <p>Ralstonia Solanacearum adalah patogen yang dikenal sebagai agen penyebab layu bakteri, patogen ini menyerang lebih dari 450 spesies tanaman dari 54 famili botani, termasuk tomat, cabai, dan kentang.
+                   Patogen ini berkembang optimal pada suhu 28°C-30°C dan mampu bertahan di tanah maupun air. Bahan tanaman yang terinfeksi lebih dari dua tahun, dengan kemampuan beradaptasi yang tinggi dan ketahanan terhadap lingkungan yang ekstrim, Ralstonia Solanacearum menjadi ancaman serius bagi sistem pertanian tropis. Infeksi ini menimbulkan kerugian ekonomi global mencapai ratusan juta dollar per tahunnya. Selain itu, berbagai metode pengendalian Ralstonia Solanacearum seperti rotasi tanaman, penggunaan fungisida kimia, sanitasi lahan dan pemulihan varietas telah diterapkan untuk menekan infeksi Ralstonia Solanacearum. akan tetapi, pengendalian ini masih terbatas dan belum menghilangkan Ralstonia Solanacearum secara maksimal.</p>
+                
+                <div class="image-slider">
+                    <div class="slider-container">
+                        <div class="slide">
+                            <img src="../assets/images/image1.jpg" alt="Patogen Jahat">
+                        </div>
+                        <div class="slide">
+                            <img src="../assets/images/image2.jpg" alt="Tanaman Terinfeksi">
+                        </div>
+                         <div class="slide">
+                            <img src="../assets/images/image3.jpg" alt="Bakteri Myxococcus Xanthus">
+                        </div>
+                        <div class="slide">
+                            <img src="../assets/images/image4.jpeg" alt="3D Designer">
+                        </div>
+                    </div>
+                    
+                    <button class="slider-nav prev">❮</button>
+                    <button class="slider-nav next">❯</button>
+                    
+                    <div class="slider-indicators">
+                        <div class="indicator active" data-index="0"></div>
+                        <div class="indicator" data-index="1"></div>
+                        <div class="indicator" data-index="2"></div>
+                        <div class="indicator" data-index="3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ </section>
+
+
+<section class="prv">
+  <div id="sand-fluida-container"></div>
+  <div class="prv-container">
+
+    <div class="preview-card" onclick="toggleCardAnimation(this)">
+      <div class="card-content">
+        <h3>Masalah Utama</h3>
+        <p>Ralstonia Solanacearum merupakan penyebab utama penyakit kelayuan tanaman, yang dapat menurunkan potensi hasil tanaman penting seperti cabai, tomat, dan kentang. Deteksi dini sangat krusial.</p>
+      </div>
+    <div class="card-image">
+      <div class="image-placeholder slide-right">
+         <i class="fa-solid fa-bug logo-icon"></i> 
+      </div>
+    </div>
+  </div>
+
+<div class="preview-card" onclick="toggleCardAnimation(this)">
+  <div class="card-content">
+    <h3>IoT</h3>
+    <p>Pengembangan BioSensor berbasis rekayasa genetik yang terintegrasi dengan sistem IoT untuk mendeteksi Ralstonia Solanacearum secara spesifik, serta mengirim sinyal kepada pengguna untuk melakukan penyemprotan myxobacteria yang udah dimodifikasi, akan mengeluarkan antibiotik myxovirescin A1 milik myxobacteria dan penyemprotan secara otomatis ke tanaman.</p>
+  </div>
+  <div class="card-image">
+    <div class="image-placeholder slide-right delay-1">
+      <i class="fa-solid fa-microchip logo-icon"></i>
+
+    </div>
+  </div>
+ </div>
+
+<div class="preview-card" onclick="toggleCardAnimation(this)">
+  <div class="card-content">
+    <h3>Solusi patogen</h3>
+    <p>Modifikasi dilakukan pada gen pengkode antibiotik myxovirescin A1 pada bakteri myxobacteria agar produksinya menjadi terkontrol. </p>
+  </div>
+  <div class="card-image">
+    
+    <div class="image-placeholder slide-right ">
+      <i class="fa-solid fa-shield-halved"></i>
+      
+    </div>
+  </div>
+ </div>
+</div>
+</section>
+
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3> About Lyceum</h3>
+          <p style="color:#314432; margin-bottom:20px;">Lyceum adalah tempat perkumpulan para pemikir dan pelajar untuk bertukar dan mengembangkan ilmu pengetahuan dan filsafat.</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://wa.me/6281809185655" aria-label="WhatsApp" onclick="return openWhatsApp('6281809185655','Halo Lyceum')" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact Us</h3>
+          <ul class="footer-links">
+            <li><i class="fa-solid fa-location-dot"></i> <span>Jl.DR.Sutomo,Bukit Cermin,Kec.Tanjungpinang Bar.,Kota Tanjungpinang,Kepulauan Riau</span></li>
+            <li><i class="fa-solid fa-envelope"></i> <span>lyceumsmansa@gmail.com</span></li>
+            <li><i class="fa-solid fa-clock"></i><span> Mon-Fri: 7am - 3pm</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="copyright">
+        &copy; 2025  Lyceum.co
+      </div>
+    </div>
+  </footer>
+
+ <div class="support-modal-overlay hidden" id="supportModal">
+  <div class="support-modal-content">
+    <button class="close-btn" id="closeModal">&times;</button>
+    <h3>Need Assistance?</h3>
+    <p>We're here to help you understand Lyceum's project!</p>
+    
+    <div class="support-contact-links">
+      <div class="contact-item">
+        <i class="fa-solid fa-phone"></i>
+        <h4>Call Us</h4>
+        <p>+62 818-0918-5655</p>
+      </div>
+      
+      <div class="contact-item">
+        <i class="fa-solid fa-envelope"></i>
+        <h4>Email Us</h4>
+        <a href="mailto:Lyceum.co@email.com">lyceumsmansa@email.com</a>
+      </div>
+    </div>
+
+    <h4>Connect With Us</h4>
+    <div class="social-links-modal">
+      <a href="https://www.instagram.com/lyceum.co?igsh=b2hmdmoxcXN4dG1n" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://github.com/janicecarissa29/LYCEUM-Team.git" target="_blank"><i class="fa-brands fa-github"></i></a>
+      
+    </div>
+  </div>
+</div>
+
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="../js/sand-fluida.js"></script>
+    <script type="module" src="../js/firebase.js"></script>
+    <script type="module" src="../js/auth-check.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>

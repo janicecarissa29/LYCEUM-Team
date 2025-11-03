@@ -27,9 +27,16 @@ function initSprinklerControl() {
         if (toggleText) toggleText.textContent = isOn ? "ON" : "OFF";
         panel.classList.toggle("is-on", isOn);
         if (icon) icon.classList.toggle("spinning", isOn);
+        // Persist ke localStorage agar sistem utama bisa memulihkan status awal
+        try {
+            localStorage.setItem('sprinkler_state', isOn ? 0 : 1);
+        } catch (e) { /* silent */ }
+        // Broadcast status change untuk integrasi dengan kontrol sistem utama
+        try {
+            document.dispatchEvent(new CustomEvent('sprinklerStatusChanged', { detail: { isOn } }));
+        } catch (e) { /* silent */ }
         
-        // Perubahan warna label status (OFF/ON) 
-        // Anda perlu memastikan CSS Anda memiliki class 'active' atau logika warna lain untuk statusEl
+
         statusEl.classList.toggle('active', isOn); 
         statusEl.classList.toggle('off', !isOn); 
 
@@ -85,6 +92,16 @@ function initSprinklerControl() {
                 alert("Perintah gagal dikirim. Periksa izin Firebase atau koneksi Anda.");
             });
     });
+
+    // Matikan sprinkler saat sistem utama dimatikan
+    try {
+        document.addEventListener('mainSystemOff', () => {
+            try {
+                set(sprinklerRef, 1).catch(() => {});
+            } catch (e) { /* silent */ }
+            updateUI(1);
+        });
+    } catch (e) { /* silent */ }
 }
 
 if (document.readyState === "loading") {

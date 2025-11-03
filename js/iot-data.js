@@ -124,6 +124,11 @@ function initFeaturesRealtime() {
     if (recommendationsList) {
       recommendationsList.innerHTML = recs.map(rec => `<li>${rec}</li>`).join('');
     }
+
+    // Broadcast bahwa sensor aktif (data mengalir)
+    try {
+      document.dispatchEvent(new CustomEvent('sensorStatusChanged', { detail: { isOn: true } }));
+    } catch (e) { /* silent */ }
   }
 
   // Start simulation with initial values
@@ -136,6 +141,9 @@ function initFeaturesRealtime() {
   
   // Initial UI update
   updateUI(temp, ph, moisture);
+  try {
+    document.dispatchEvent(new CustomEvent('sensorStatusChanged', { detail: { isOn: true } }));
+  } catch (e) { /* silent */ }
   
   // Clear any existing interval
   if (simulationInterval) {

@@ -2,15 +2,15 @@
 import { db } from './firebase.js';
 import { ref, onValue, set } from 'https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js';
 
-// **PERUBAHAN DI SINI:** Sesuaikan jalur agar cocok dengan struktur database Anda: /Fan1/state
+
 function fanPath(currentFan) { 
-    // Mengubah 'fan1' menjadi 'Fan1' (kapitalisasi huruf pertama)
+   
     const capitalizedFan = currentFan.charAt(0).toUpperCase() + currentFan.slice(1);
     return `${capitalizedFan}/state`; 
 }
 console.log('Fan control initialized with Firebase path structure: Fan/state'); // Ubah deskripsi log
 
-function applyFanStatusUI(status) {
+function applyFanStatusUI(status, fanId = 'fan1') {
     const fanStatusIndicator = document.getElementById('fanStatus');
     const fanControlPanel = document.querySelector('.fan-control-panel');
     const fanIcon = document.getElementById('fanIcon');
@@ -35,6 +35,11 @@ function applyFanStatusUI(status) {
     if (fanToggleText) {
         fanToggleText.textContent = isOn ? 'ON' : 'OFF';
     }
+
+    // Broadcast status perubahan untuk integrasi kontrol sistem utama
+    try {
+        document.dispatchEvent(new CustomEvent('fanStatusChanged', { detail: { isOn, fanId } }));
+    } catch (e) { /* silent */ }
 }
 
 function sendFanCommand(cmd, currentFan) {
@@ -43,7 +48,7 @@ function sendFanCommand(cmd, currentFan) {
         const value = String(cmd).toUpperCase() === 'ON' ? 0 : 1;
         
         // Update UI terlebih dahulu untuk responsivitas
-        applyFanStatusUI(cmd);
+        applyFanStatusUI(cmd, currentFan);
         
         // Simpan status di localStorage terlebih dahulu
         try {
@@ -70,7 +75,7 @@ function sendFanCommand(cmd, currentFan) {
         return Promise.resolve();
     } catch (e) {
         // Tetap update UI meskipun ada error
-        applyFanStatusUI(cmd);
+        applyFanStatusUI(cmd, currentFan);
         return Promise.resolve();
     }
 }
@@ -89,14 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
         currentFan = active?.dataset?.value || 'fan1';
     }
     
-    // Mendengarkan status dari Firebase
+    // Mendengarkan status dari Firebase untuk fan yang sedang dipilih (meng-update UI panel kipas)
     function attachStatusListener() {
         // Cek localStorage terlebih dahulu
         try {
             const storedValue = localStorage.getItem(`fan_${currentFan}_state`);
             if (storedValue !== null) {
                 const isOn = (storedValue === '0' || storedValue === 0);
-                applyFanStatusUI(isOn ? 'ON' : 'OFF');
+                applyFanStatusUI(isOn ? 'ON' : 'OFF', currentFan);
             }
         } catch (e) {
             // Abaikan error localStorage
@@ -110,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (value !== null) {
                     // Interpretasi sesuai firmware: 0 = ON, 1 = OFF
                     const isOn = (value === 0 || value === '0');
-                    applyFanStatusUI(isOn ? 'ON' : 'OFF');
+                    applyFanStatusUI(isOn ? 'ON' : 'OFF', currentFan);
                     
                     // Simpan nilai ke localStorage untuk konsistensi
                     try {
@@ -125,6 +130,40 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (firebaseErr) {
             // Abaikan error Firebase secara silent
         }
+    }
+
+    // Listener background untuk kedua kipas (fan1 & fan2) agar sistem utama tahu statusnya
+    function attachBackgroundFanListeners() {
+        const fans = ['fan1', 'fan2'];
+        fans.forEach((fid) => {
+            // Restore dari localStorage terlebih dahulu untuk mendapatkan status awal
+            try {
+                const stored = localStorage.getItem(`fan_${fid}_state`);
+                if (stored !== null) {
+                    const isOn = (stored === '0' || stored === 0);
+                    try {
+                        document.dispatchEvent(new CustomEvent('fanStatusChanged', { detail: { isOn, fanId: fid } }));
+                    } catch (e) { /* silent */ }
+                }
+            } catch (e) { /* silent */ }
+
+            // Lalu dengarkan perubahan dari Firebase secara real-time
+            try {
+                const fanRef = ref(db, fanPath(fid));
+                onValue(fanRef, (snapshot) => {
+                    const value = snapshot.val();
+                    if (value !== null) {
+                        const isOn = (value === 0 || value === '0');
+                        // Simpan ke localStorage untuk konsistensi antar komponen
+                        try { localStorage.setItem(`fan_${fid}_state`, value); } catch (e) { /* silent */ }
+                        // Broadcast ke sistem utama, tanpa mengubah UI panel jika bukan fan yang aktif di UI
+                        try {
+                            document.dispatchEvent(new CustomEvent('fanStatusChanged', { detail: { isOn, fanId: fid } }));
+                        } catch (e) { /* silent */ }
+                    }
+                }, () => { /* silent on error */ });
+            } catch (e) { /* silent */ }
+        });
     }
 
     // Kirim perintah ke perangkat ketika tombol diklik (UI segera diupdate oleh script.js)
@@ -176,9 +215,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Mendengarkan status dari Firebase saat halaman dimuat
+    // Matikan kipas saat sistem utama dimatikan
+    try {
+        document.addEventListener('mainSystemOff', () => {
+            applyFanStatusUI('OFF', currentFan);
+            try {
+                const value = 1; // firmware OFF
+                set(ref(db, fanPath(currentFan)), value).catch(() => {});
+            } catch (e) { /* silent */ }
+        });
+    } catch (e) { /* silent */ }
+
+    // Pasang listener background untuk kedua kipas
+    attachBackgroundFanListeners();
+
+    // Mendengarkan status dari Firebase untuk kipas yang sedang dipilih saat halaman dimuat
     attachStatusListener();
     
     // Default aman jika belum ada status dari perangkat
-    applyFanStatusUI('OFF');
+    applyFanStatusUI('OFF', currentFan);
 });
