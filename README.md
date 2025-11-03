@@ -93,20 +93,25 @@ LYCEUM-Team/
 ├── 📁 assets/                     # Asset files
 │   └── 📁 images/                 # Gambar dan foto tim
 ├── 📁 css/                        # Stylesheet files
-│   └── 🎨 styles.css              # Main stylesheet
+│   ├── 🎨 styles.css              # Main stylesheet
+│   ├── 🎭 animation.css           # Animasi CSS
+│   └── 🔄 spinner-buttons.css     # Styling untuk spinner buttons
 ├── 📁 js/                         # JavaScript files
 │   ├── 🔐 auth-check.js           # Authentication logic
-│   ├── 🔥 firebase.js              # Firebase configuration
+│   ├── 🔥 firebase.js             # Firebase configuration
 │   ├── ⚙ firebaseConfig.js        # Firebase settings
-│   ├── 📊 iot-data.js              # IoT data handling
-│   ├── 🔄 iot-sync.js              # Data synchronization
-│   ├── 👤 login.js                  # Login functionality
-│   ├── 📈 Additional-metrics.js    # Metric sistem
-|   ├── 🎮 home-3d.js               # 3D animation
-|   ├── ❄ sand-fluida.js           # Sand fluid sistem
-|   ├── ⏳ spinner-control.js        # Spinner control
-|   ├── 🚿 sprinkler-control.js     # Sprinkler control
-│   └── 📜 script.js                # Main JavaScript
+│   ├── 📊 additional-metrics.js   # Metrik tambahan untuk monitoring
+│   ├── 🎬 animations.js           # Animasi JavaScript
+│   ├── 💨 fan-control.js          # Kontrol kipas
+│   ├── 🏠 home-3d.js              # Visualisasi 3D untuk homepage
+│   ├── 📡 iot-data.js             # Pengelolaan data IoT
+│   ├── 🔄 iot-sync.js             # Sinkronisasi data IoT
+│   ├── 🔑 login.js                # Logika login
+│   ├── 🎛️ main-system-control.js  # Kontrol sistem utama
+│   ├── 🏝️ sand-fluida.js          # Efek fluida pasir
+│   ├── 📜 script.js               # Script utama
+│   ├── 🔄 spinner-controls.js     # Kontrol untuk spinner
+│   └── 💦 sprinkler-control.js    # Kontrol sprinkler
 └── 📁 pages/                       # HTML pages
     ├── ℹ about.html               # About page
     ├── ⭐ features.html            # Features page

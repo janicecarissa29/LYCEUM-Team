@@ -1,0 +1,274 @@
+/***************************************************
+  LITTL-R Vision Node (ESP32-CAM)
+  - Deteksi fluoresensi hijau (Ralstonia)
+  - Kirim hasil ke Firebase Realtime Database
+  - Komentar berbahasa Indonesia
+***************************************************/
+
+#include "esp_camera.h"
+#include <WiFi.h>
+#include <Firebase_ESP_Client.h>
+#include <time.h>
+#include "addons/TokenHelper.h"
+#include "addons/RTDBHelper.h"
+
+// ================== PENGATURAN WIFI & FIREBASE ==================
+#define WIFI_SSID      "xxxxxx"
+#define WIFI_PASSWORD  "xxxxx"
+
+#define API_KEY        "Axxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+#define DATABASE_URL   "https://lyceum-87240-default-rtdb.asia-southeast1.firebasedatabase.app/"
+
+// Firebase object
+FirebaseData fbdo;
+FirebaseAuth auth;
+FirebaseConfig config;
+
+// ================== PIN KAMERA (AI-Thinker) ==================
+#define PWDN_GPIO_NUM     32
+#define RESET_GPIO_NUM    -1
+#define XCLK_GPIO_NUM      0
+#define SIOD_GPIO_NUM     26
+#define SIOC_GPIO_NUM     27
+#define Y9_GPIO_NUM       35
+#define Y8_GPIO_NUM       34
+#define Y7_GPIO_NUM       39
+#define Y6_GPIO_NUM       36
+#define Y5_GPIO_NUM       21
+#define Y4_GPIO_NUM       19
+#define Y3_GPIO_NUM       18
+#define Y2_GPIO_NUM        5
+#define VSYNC_GPIO_NUM    25
+#define HREF_GPIO_NUM     23
+#define PCLK_GPIO_NUM     22
+
+// ================== LED UV ==================
+// Pin untuk mengontrol LED UV (akan dinyalakan saat capture)
+#define UV_PIN 14  // ubah jika perlu sesuai wiring
+
+// ================== PENGATURAN DETEKSI ==================
+// Ambang batas deteksi: berapa rasio pixel hijau yang dianggap "terdeteksi"
+// Nilai 0.02 = 2% pixel hijau -> dianggap deteksi; sesuaikan berdasarkan uji lapang
+const float DETECTION_CONFIDENCE_THRESHOLD = 0.02; // 2%
+
+// Jumlah jarak antar scan (ms)
+const unsigned long CAPTURE_INTERVAL_MS = 5000UL; // scan tiap 5 detik
+
+// NTP (WIB UTC+7)
+const char* NTP_SERVER = "pool.ntp.org";
+const long GMT_OFFSET_SEC = 7 * 3600;
+const int DAYLIGHT_OFFSET_SEC = 0;
+
+// Variabel waktu
+unsigned long lastCaptureMillis = 0;
+
+// ================== FUNGSI BANTU WAKTU ==================
+String getWIBDateTimeString() {
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    return String("1970-01-01 00:00:00");
+  }
+  char buf[32];
+  strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &timeinfo);
+  return String(buf);
+}
+
+// ================== INISIALISASI WIFI ==================
+void initWiFi() {
+  Serial.print("[WIFI] Menghubungkan ke SSID: ");
+  Serial.println(WIFI_SSID);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  unsigned long start = millis();
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(300);
+    Serial.print(".");
+    if (millis() - start > 20000UL) { // timeout 20s
+      Serial.println("\n[WIFI] Gagal konek dalam 20s, coba ulang...");
+      start = millis();
+    }
+  }
+  Serial.println();
+  Serial.print("[WIFI] Terhubung, IP: ");
+  Serial.println(WiFi.localIP());
+}
+
+// ================== INISIALISASI KAMERA ==================
+bool initCamera() {
+  camera_config_t configCam;
+  configCam.ledc_channel = LEDC_CHANNEL_0;
+  configCam.ledc_timer = LEDC_TIMER_0;
+  configCam.pin_d0 = Y2_GPIO_NUM;
+  configCam.pin_d1 = Y3_GPIO_NUM;
+  configCam.pin_d2 = Y4_GPIO_NUM;
+  configCam.pin_d3 = Y5_GPIO_NUM;
+  configCam.pin_d4 = Y6_GPIO_NUM;
+  configCam.pin_d5 = Y7_GPIO_NUM;
+  configCam.pin_d6 = Y8_GPIO_NUM;
+  configCam.pin_d7 = Y9_GPIO_NUM;
+  configCam.pin_xclk = XCLK_GPIO_NUM;
+  configCam.pin_pclk = PCLK_GPIO_NUM;
+  configCam.pin_vsync = VSYNC_GPIO_NUM;
+  configCam.pin_href = HREF_GPIO_NUM;
+  configCam.pin_sscb_sda = SIOD_GPIO_NUM;
+  configCam.pin_sscb_scl = SIOC_GPIO_NUM;
+  configCam.pin_pwdn = PWDN_GPIO_NUM;
+  configCam.pin_reset = RESET_GPIO_NUM;
+  configCam.xclk_freq_hz = 20000000;
+  configCam.pixel_format = PIXFORMAT_RGB565; // format RGB565 -> 2 byte per pixel
+  configCam.frame_size = FRAMESIZE_QVGA;     // QVGA 320x240, cepat dan ringan
+  configCam.fb_location = CAMERA_FB_IN_PSRAM;
+  configCam.grab_mode = CAMERA_GRAB_WHEN_EMPTY;
+  configCam.fb_count = 1;
+
+  esp_err_t err = esp_camera_init(&configCam);
+  if (err != ESP_OK) {
+    Serial.printf("[CAM] Inisialisasi kamera gagal: 0x%x\n", err);
+    return false;
+  }
+  Serial.println("[CAM] Kamera siap (RGB565, QVGA).");
+  return true;
+}
+
+// ================== INISIALISASI FIREBASE ==================
+void initFirebase() {
+  Serial.println("[FIREBASE] Menginisialisasi...");
+  config.api_key = API_KEY;
+  config.database_url = DATABASE_URL;
+  config.token_status_callback = nullptr; // tidak menampilkan token helper di output (opsional)
+  // jika mau gunakan auth.user, bisa di-set di sini; untuk sekarang kita pakai akses langsung (pastikan aturan RTDB mengizinkan)
+  // Jika ingin menggunakan signIn, uncomment dan isi auth.user.email/password:
+  // auth.user.email = "email@example.com";
+  // auth.user.password = "password";
+  Firebase.begin(&config, &auth);
+  Firebase.reconnectWiFi(true);
+  fbdo.setResponseSize(4096);
+  Serial.println("[FIREBASE] Firebase ready (tersambung ke RTDB).");
+}
+
+// ================== ANALISA FRAME UNTUK HIJAU ==================
+// Mengembalikan confidence (0..1) sebagai rasio pixel hijau di frame
+float analyzeFrameForGreen() {
+  camera_fb_t *fb = esp_camera_fb_get();
+  if (!fb) {
+    Serial.println("[ANALISA] Gagal ambil frame (fb == NULL)");
+    return 0.0;
+  }
+
+  // FB dalam format RGB565 (2 byte per pixel => LENGHT / 2 pixel)
+  size_t byteLen = fb->len;
+  uint32_t pixelCount = byteLen / 2;
+  if (pixelCount == 0) {
+    esp_camera_fb_return(fb);
+    return 0.0;
+  }
+
+  uint32_t greenCount = 0;
+
+  // Proses tiap pixel (RGB565): 5 bits R, 6 bits G, 5 bits B
+  // Susunan biasanya: byte0 = low, byte1 = high -> pixel = (byte1 << 8) | byte0
+  for (size_t i = 0; i + 1 < byteLen; i += 2) {
+    uint8_t low = fb->buf[i];
+    uint8_t high = fb->buf[i + 1];
+    uint16_t pix = (uint16_t)high << 8 | (uint16_t)low;
+
+    // ekstrak R,G,B dari RGB565
+    uint8_t r5 = (pix >> 11) & 0x1F;
+    uint8_t g6 = (pix >> 5)  & 0x3F;
+    uint8_t b5 = pix & 0x1F;
+
+    // konversi ke 8-bit (0..255) kasar
+    uint8_t r = (r5 * 527 + 23) >> 6; // cara cepat konversi 5bit->8bit
+    uint8_t g = (g6 * 259 + 33) >> 6; // 6bit->8bit
+    uint8_t b = (b5 * 527 + 23) >> 6;
+
+    // Kriteria "hijau": G jauh lebih besar dari R dan B, dan G melebihi ambang tertentu
+    // Ambang ini sederhana; bisa disesuaikan lewat eksperimen lapangan
+    if (g > 120 && g > r + 25 && g > b + 25) {
+      greenCount++;
+    }
+  }
+
+  esp_camera_fb_return(fb);
+
+  float confidence = (float)greenCount / (float)pixelCount;
+  return confidence;
+}
+
+// ================== UPLOAD HASIL DETEKSI KE FIREBASE ==================
+void uploadDetectionToFirebase(bool detected, float confidencePercent) {
+  FirebaseJson detectJson;
+  detectJson.set("status", detected ? 1 : 0);
+  detectJson.set("timestamp", getWIBDateTimeString());
+  detectJson.set("confidence", confidencePercent); // 0..100
+
+  String path = "/Detection";
+  if (Firebase.RTDB.setJSON(&fbdo, path.c_str(), &detectJson)) {
+    Serial.printf("[FIREBASE] Upload sukses -> status=%d, confidence=%.2f%%\n", detected ? 1 : 0, confidencePercent);
+  } else {
+    Serial.printf("[FIREBASE] Upload gagal: %s\n", fbdo.errorReason().c_str());
+  }
+}
+
+// ================== SETUP AWAL ==================
+void setup() {
+  Serial.begin(115200);
+  delay(50);
+  Serial.println("\n=== LITTL-R CAM Booting ===");
+
+  // konfigurasi pin UV
+  pinMode(UV_PIN, OUTPUT);
+  digitalWrite(UV_PIN, LOW);
+
+  // inisialisasi WiFi, kamera, firebase
+  initWiFi();
+
+  if (!initCamera()) {
+    Serial.println("[SETUP] Gagal inisialisasi kamera, restart...");
+    delay(2000);
+    ESP.restart();
+  }
+
+  initFirebase();
+
+  // sinkron NTP (WIB)
+  configTime(GMT_OFFSET_SEC, DAYLIGHT_OFFSET_SEC, NTP_SERVER);
+  // tunggu singkat agar waktu sinkron (tidak blocking lama)
+  unsigned long tstart = millis();
+  while (millis() - tstart < 3000UL) {
+    time_t now = time(nullptr);
+    if (now > 100000) break;
+    delay(200);
+  }
+  Serial.println("[SETUP] Siap. Memulai loop pendeteksian.");
+  lastCaptureMillis = 0;
+}
+
+// ================== LOOP UTAMA ==================
+void loop() {
+  unsigned long now = millis();
+  if (now - lastCaptureMillis >= CAPTURE_INTERVAL_MS) {
+    lastCaptureMillis = now;
+
+    // 1) Nyalakan UV lalu tunggu singkat agar fluoresensi muncul (250-500 ms)
+    digitalWrite(UV_PIN, HIGH);
+    delay(400); // waktu eksposur untuk munculkan fluoresensi (uji di lapangan, sesuaikan)
+
+    // 2) Ambil frame dan analisa
+    Serial.println("\n[SCAN] Ambil frame, analisa hijau...");
+    float confidence = analyzeFrameForGreen(); // 0..1
+
+    // 3) Matikan UV agar hemat daya
+    digitalWrite(UV_PIN, LOW);
+
+    float confidencePercent = confidence * 100.0f;
+    bool detected = (confidence >= DETECTION_CONFIDENCE_THRESHOLD);
+
+    Serial.printf("[RESULT] Confidence = %.2f%% -> %s\n", confidencePercent, detected ? "TERDETEKSI" : "TIDAK");
+
+    // 4) Upload hasil ke Firebase (node /Detection)
+    uploadDetectionToFirebase(detected, confidencePercent);
+  }
+
+  // biarkan WiFi & Firebase berjalan, dan loop tetap ringan
+  delay(20);
+}
