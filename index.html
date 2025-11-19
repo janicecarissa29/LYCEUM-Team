@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="webapp/css/styles.css">
+  <link rel="stylesheet" href="webapp/css/intro-animation.css">
   
 
 </head>
@@ -29,10 +30,10 @@
         <span class="bar"></span>
       </button>
       <ul class="navbar-menu">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="pages/features.html">Features</a></li>
-        <li><a href="pages/preview.html">Preview</a></li>
-        <li><a href="pages/about.html">About Us</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="webapp/pages/features.html">Features</a></li>
+        <li><a href="webapp/pages/preview.html">Preview</a></li>
+        <li><a href="webapp/pages/about.html">About Us</a></li>
       </ul>
       
       <!-- Desktop Action Buttons -->
@@ -51,10 +52,10 @@
         </a>
       </div>
       <ul class="navbar-dropdown">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="pages/features.html">Features</a></li>
-        <li><a href="pages/preview.html">Preview</a></li>
-        <li><a href="pages/about.html">About Us</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="webapp/pages/features.html">Features</a></li>
+        <li><a href="webapp/pages/preview.html">Preview</a></li>
+        <li><a href="webapp/pages/about.html">About Us</a></li>
         <li class="menu-actions">
           <a href="#" id="openLoginBtn" class="btn-primary">Login</a>
           <a href="#" id="logoutBtn" class="btn-primary hidden">Logout</a>
@@ -82,11 +83,11 @@
 
   <div class="floating-buttons-container">
     <div class="floating-buttons">
-      <a href="pages/features.html" class="floating-btn btn-primary">
+      <a href="webapp/pages/features.html" class="floating-btn btn-primary">
         <i class="fa-solid fa-rocket"></i>
         <span>Explore Features</span>
       </a>
-      <a href="pages/preview.html" class="floating-btn btn-secondary">
+      <a href="webapp/pages/preview.html" class="floating-btn btn-secondary">
         <i class="fa-solid fa-eye"></i>
         <span>See Our Preview</span>
       </a>
@@ -150,9 +151,10 @@
   </div>
 </div>
 
-  <script type="module" src="js/firebase.js"></script>
-    <script type="module" src="js/auth-check.js"></script>
-   <script src="js/script.js"></script>
+  <script type="module" src="webapp/js/firebase.js"></script>
+    <script type="module" src="webapp/js/auth-check.js"></script>
+   <script src="webapp/js/intro-animation.js" defer></script>
+   <script src="webapp/js/script.js"></script>
 
 </body>
 </html>
